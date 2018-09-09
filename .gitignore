@@ -1,0 +1,66 @@
+# Fichiers JAVA
+java/target/
+!java/.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+java/.apt_generated
+java/.classpath
+java/.factorypath
+java/.project
+java/.settings
+java/.springBeans
+java/.sts4-cache
+
+### IntelliJ IDEA ###
+java/.idea
+java/*.iws
+java/*.iml
+java/*.ipr
+
+### NetBeans ###
+java/nbproject/private/
+java/build/
+java/nbbuild/
+java/dist/
+java/nbdist/
+java/.nb-gradle/
+
+# Fichiers ANGULAR
+
+# compiled output
+angular/dist
+angular/tmp
+angular/out-tsc
+
+# dependencies
+angular/node_modules
+
+# IDEs and editors
+angular/.idea
+angular/.project
+angular/.classpath
+angular/.c9/
+angular/*.launch
+angular/.settings/
+angular/*.sublime-workspace
+
+# IDE - VSCode
+angular/.vscode/*
+angular/!.vscode/settings.json
+angular/!.vscode/tasks.json
+angular/!.vscode/launch.json
+angular/!.vscode/extensions.json
+
+# misc
+angular/.sass-cache
+angular/connect.lock
+angular/coverage
+angular/libpeerconnection.log
+angular/npm-debug.log
+angular/yarn-error.log
+angular/testem.log
+angular/typings
+
+# System Files
+angular/.DS_Store
+angular/Thumbs.db
