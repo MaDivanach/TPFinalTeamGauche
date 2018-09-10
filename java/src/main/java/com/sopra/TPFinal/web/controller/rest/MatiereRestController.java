@@ -13,8 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.demo.videoclub.model.Adherent;
-import com.example.demo.videoclub.model.view.JsonViews;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Matiere;
 import com.sopra.TPFinal.repositories.MatiereRepository;
