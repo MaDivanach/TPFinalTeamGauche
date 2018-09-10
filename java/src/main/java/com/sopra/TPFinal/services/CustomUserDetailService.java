@@ -8,6 +8,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.sopra.TPFinal.model.User;
+import com.sopra.TPFinal.repositories.UserRoleRepositoy;
+import com.sopra.TPFinal.repositories.UsersRepository;
+
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 	
