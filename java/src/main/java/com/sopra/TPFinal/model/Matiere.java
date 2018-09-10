@@ -4,6 +4,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.view.JsonViews;
+
 @Entity
 @Table(name = "matiere")
 @SequenceGenerator(name = "seqMatiere", sequenceName = "seq_matiere", initialValue = 1, allocationSize = 1)
@@ -24,9 +27,6 @@ public class Matiere {
 	@JsonView(JsonViews.FormateurInMatiere.class)
 	@OneToMany(mappedBy = "key.matiere")
 	private Set<MatiereFormateur> formateurs;
-	@OneToOne(mappedBy = "matiere", fetch = FetchType.LAZY)
-	@JoinColumn(name = "prerequis")
-	private Prerequis prerequis;
 
 	public Matiere() {
 	}
