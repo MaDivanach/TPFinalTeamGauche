@@ -21,6 +21,7 @@ public class Matiere {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "prerequis_formateur")
 	private Niveau niveau;
+	@JsonView(JsonViews.FormateurInMatiere.class)
 	@OneToMany(mappedBy = "key.matiere")
 	private Set<MatiereFormateur> formateurs;
 	@OneToOne(mappedBy = "matiere", fetch = FetchType.LAZY)
