@@ -10,13 +10,20 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Expertise;
 import com.sopra.TPFinal.model.ExpertisePK;
-import com.sopra.TPFinal.model.Session;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.ExpertiseRepository;
 
@@ -43,7 +50,7 @@ public class ExpertiseRestController {
 		} else {
 			expertiseRepository.save(expertise);
 			HttpHeaders header = new HttpHeaders();
-			header.setLocation(uCB.path("/rest/expertise/{id}").buildAndExpand(expertise.getExpertisePK())).toUri();
+			header.setLocation(uCB.path("/rest/expertise/{id}").buildAndExpand(expertise.getExpertisePK()).toUri());
 			response = new ResponseEntity<Void>(header, HttpStatus.CREATED);
 		}
 		return response;

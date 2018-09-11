@@ -4,7 +4,7 @@ import {Formation} from './formation';
 
 export class Gestionnaire extends User {
 
-  constructor(formations: Formation[]) {
+  constructor(formations?: Formation[]) {
     super();
     this.role = Role.GESTIONNAIRE;
   }

@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AuthentificationComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
   }
 
   ngOnInit() {
