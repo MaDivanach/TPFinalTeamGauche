@@ -12,5 +12,4 @@ export class Expertise {
   set key(value: ExpertisePK) {
     this._key = value;
   }
-
 }
