@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Materiel} from './materiel';
+import {Materiel} from '../model/materiel';
 import {_mymateriel} from './tableauMateriel';
 import {MaterielService} from '../service/materiel.service';
 

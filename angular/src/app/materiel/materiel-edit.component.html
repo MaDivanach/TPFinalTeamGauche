@@ -1,3 +1,22 @@
-<p>
-  materiel-edit works!
-</p>
+<div> ID Materiel:
+  <input [(ngModel)]="materiel.id" disabled="disabled"/><br/>
+</div>
+<p>Ordinateur :</p><br/>
+<div *ngIf="materiel.type === 'ordinateur'">Processeur:
+  <input type="text" [(ngModel)]="materiel.processeur"/><br/>
+  <input type="text" [(ngModel)]="materiel.ram"/><br/>
+  <input type="text" [(ngModel)]="materiel.dd"/><br/>
+  <input type="date" [(ngModel)]="materiel.dateAchat"/><br/>
+  <input type="text" [(ngModel)]="materiel.stagiaires"/><br/>
+</div>
+<p>Salle :</p><br/>
+<div *ngIf="article.type === 'salle'">Capacite:
+  <input type="number" [(ngModel)]="materiel.capacite"/><br/>
+  <input type="text" [(ngModel)]="materiel.formationsSalle"/><br/>
+</div>
+<p>Videoprojecteur :</p><br/>
+<div *ngIf="article.type === 'videoprojecteur'">Formations attribuées:
+  <input type="text" [(ngModel)]="materiel.formationsVideoProj"/><br/>
+</div>
+
+<button class="btn btn-danger" (click)="save(article.id)">save</button>
