@@ -15,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Matiere;
+import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.MatiereRepository;
 
 @CrossOrigin(origins = { "*" })
