@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,12 +65,25 @@ public class SalleRestController {
 		Optional<Salle> opt = salleRepository.findById(salle.getId());
 		if (opt.isPresent()) {
 			Salle SalleEnBase = opt.get();
-			SalleEnBase.setCoutUtilisation(salle.getCoutUtilisation());
+			SalleEnBase.setCapacite(salle.getCapacite());
 			return new ResponseEntity<Salle>(SalleEnBase, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 		}
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
+		Optional<Salle> opt = salleRepository.findById(id);
+		ResponseEntity<Void> response = null;
+		if (opt.isPresent()) {
+			salleRepository.deleteById(id);
+			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return response;
 	}
 	
 }
