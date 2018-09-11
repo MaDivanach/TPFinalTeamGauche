@@ -22,10 +22,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Formation;
+import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.FormationRepository;
-import com.sopra.TPVolAngular.model.Vol;
-import com.sopra.TPVolAngular.model.view.JsonViews;
-import com.sopra.TPVolAngular.repositories.VolRepository;
 
 @RestController
 @RequestMapping("/rest/formation")
