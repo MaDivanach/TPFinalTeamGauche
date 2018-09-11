@@ -31,7 +31,7 @@ export class UserService {
     } else {
       if (user instanceof stagiaire) {
         const o = {
-          id: user.id, nom: user.nom, prenom: user.prenom, username: user.username, password: user.password, telephone: user.telephone, ordinateur: user.
+          id: user.id, nom: user.nom, prenom: user.prenom, username: user.username, password: user.password, telephone: user.telephone, ordinateur: use
         };
         return this.http.post(`${this.url}/rest/user/`, o);
       }
