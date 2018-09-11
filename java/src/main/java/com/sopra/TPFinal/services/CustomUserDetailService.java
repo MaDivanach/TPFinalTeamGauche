@@ -36,23 +36,22 @@ public class CustomUserDetailService implements UserDetailsService {
 		this.userRoleRepository = userRoleRepository;
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
-	// @Override
-	// public UserDetails loadUserByUsername(String username) throws
-	// UsernameNotFoundException {
-	// Optional<User> opt = userRepository.findById(username);
-	// if (opt.isPresent()) {
-	// return new CustomUserDetails(opt.get(),
-	// userRoleRepository.findCustomRoleByUsername(username));
-	// } else {
-	// throw new UsernameNotFoundException("utilisateur inconnu");
-	// }
-	//
-	// }
+	 @Override
+	 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	 Optional<User> opt = userRepository.findCustomByUsername(username);
+	 if (opt.isPresent()) {
+	 return new CustomUserDetails(opt.get(),
+	 userRoleRepository.findCustomRoleByUsername(username));
+	 } else {
+	 throw new UsernameNotFoundException("utilisateur inconnu");
+	 }
+	
+	 }
 
 }
