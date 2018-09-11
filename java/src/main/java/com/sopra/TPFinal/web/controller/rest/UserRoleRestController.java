@@ -16,41 +16,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.sopra.TPFinal.model.Materiel;
+import com.sopra.TPFinal.model.Salle;
+import com.sopra.TPFinal.model.User;
 import com.sopra.TPFinal.model.UserRole;
 import com.sopra.TPFinal.model.view.JsonViews;
-import com.sopra.TPFinal.repositories.MaterielRepository;
+import com.sopra.TPFinal.repositories.UserRoleRepositoy;
 
-@RequestMapping("/materiel")
-@RestController
-public class MaterielRestController {
+public class UserRoleRestController {
 	
 	@Autowired
-	private MaterielRepository materielRepository;
+	private UserRoleRepositoy userRoleRepository;
 	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
-	public ResponseEntity<List<Materiel>> findAll(){
-		return new ResponseEntity<>(materielRepository.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<UserRole>> findAll(){
+		return new ResponseEntity<>(userRoleRepository.findAll(), HttpStatus.OK);
 	}
 	
-	@PostMapping(path= {"/materiel"})
-	public ResponseEntity<Void> materiel(@Valid @RequestBody Materiel materiel, BindingResult br, UriComponentsBuilder uCB){
+	@PostMapping(path= {"/"})
+	public ResponseEntity<Void> userRole(@Valid @RequestBody UserRole userRole, BindingResult br, UriComponentsBuilder uCB){
 		
 		ResponseEntity<Void> response = null;
 		
 		if(br.hasErrors()) {
 			response = new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 		} else {
-			materielRepository.save(materiel);
+			userRoleRepository.save(userRole);
 			HttpHeaders header = new HttpHeaders();
 			
-			header.setLocation(uCB.path("rest/materiel/{id}").buildAndExpand(materiel.getId()).toUri());
+			header.setLocation(uCB.path("rest/userRole/{id}").buildAndExpand(userRole.getId()).toUri());
 			response = new ResponseEntity<Void>(HttpStatus.CREATED);
 		}
 		return response;
@@ -58,15 +55,16 @@ public class MaterielRestController {
 	
 	@JsonView(JsonViews.Common.class)
 	@PutMapping(path = { "/", "" })
-	public ResponseEntity<Materiel> update(@Valid @RequestBody Materiel materiel, BindingResult br) {
-		if (br.hasErrors() || materiel.getId() == null) {
+	public ResponseEntity<UserRole> update(@Valid @RequestBody UserRole userRole, BindingResult br) {
+		if (br.hasErrors() || userRole.getId() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Optional<Materiel> opt = materielRepository.findById(materiel.getId());
+		Optional<UserRole> opt = userRoleRepository.findById(userRole.getId());
 		if (opt.isPresent()) {
-			Materiel MaterielEnBase = opt.get();
-			MaterielEnBase.setCoutUtilisation(materiel.getCoutUtilisation());
-			return new ResponseEntity<Materiel>(MaterielEnBase, HttpStatus.OK);
+			UserRole UserRoleEnBase = opt.get();
+			UserRoleEnBase.setRole(userRole.getRole());
+			UserRoleEnBase.setUser(userRole.getUser());
+			return new ResponseEntity<UserRole>(UserRoleEnBase, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
@@ -74,17 +72,16 @@ public class MaterielRestController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
-		Optional<Materiel> opt = materielRepository.findById(id);
+	public ResponseEntity<Void> delete(@PathVariable(name = "id") Integer id) {
+		Optional<UserRole> opt = userRoleRepository.findById(id);
 		ResponseEntity<Void> response = null;
 		if (opt.isPresent()) {
-			materielRepository.deleteById(id);
+			userRoleRepository.deleteById(id);
 			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
-	
 	
 }

@@ -10,7 +10,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.Materiel;
 import com.sopra.TPFinal.model.Ordinateur;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.OrdinateurRepository;
@@ -62,7 +65,10 @@ public class OrdinateurRestController {
 		Optional<Ordinateur> opt = ordinateurRepository.findById(ordinateur.getId());
 		if (opt.isPresent()) {
 			Ordinateur OrdinateurEnBase = opt.get();
-			OrdinateurEnBase.setCoutUtilisation(ordinateur.getCoutUtilisation());
+			OrdinateurEnBase.setCPU(ordinateur.getCPU());
+			OrdinateurEnBase.setRam(ordinateur.getRam());
+			OrdinateurEnBase.setDD(ordinateur.getDD());
+			OrdinateurEnBase.setDateAchat(ordinateur.getDateAchat());
 			return new ResponseEntity<Ordinateur>(OrdinateurEnBase, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -70,4 +76,16 @@ public class OrdinateurRestController {
 		}
 	}
 	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
+		Optional<Ordinateur> opt = ordinateurRepository.findById(id);
+		ResponseEntity<Void> response = null;
+		if (opt.isPresent()) {
+			ordinateurRepository.deleteById(id);
+			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return response;
+	}
 }
