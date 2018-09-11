@@ -14,35 +14,36 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.Expertise;
+import com.sopra.TPFinal.model.ExpertisePK;
 import com.sopra.TPFinal.model.Session;
-import com.sopra.TPFinal.model.SessionPK;
 import com.sopra.TPFinal.model.view.JsonViews;
-import com.sopra.TPFinal.repositories.SessionRepository;
+import com.sopra.TPFinal.repositories.ExpertiseRepository;
 
 @CrossOrigin(origins = { "*" })
 @RestController
-@RequestMapping("/rest/session")
-public class SessionRestController {
+@RequestMapping("/rest/expertise")
+public class ExpertiseRestController {
 
 	@Autowired
-	private SessionRepository sessionRepository;
+	private ExpertiseRepository expertiseRepository;
 
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
-	public ResponseEntity<List<Session>> findAll() {
-		return new ResponseEntity<>(sessionRepository.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<Expertise>> findAll() {
+		return new ResponseEntity<>(expertiseRepository.findAll(), HttpStatus.OK);
 	}
 
 	@PostMapping(path = { "/", "" })
-	public ResponseEntity<Void> createSession(@Valid @RequestBody Session session, BindingResult br,
+	public ResponseEntity<Void> createExpertise(@Valid @RequestBody Expertise expertise, BindingResult br,
 			UriComponentsBuilder uCB) {
 		ResponseEntity<Void> response = null;
 		if (br.hasErrors()) {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
-			sessionRepository.save(session);
+			expertiseRepository.save(expertise);
 			HttpHeaders header = new HttpHeaders();
-			header.setLocation(uCB.path("/rest/session/{id}").buildAndExpand(session.getKey()).toUri());
+			header.setLocation(uCB.path("/rest/expertise/{id}").buildAndExpand(expertise.getExpertisePK())).toUri();
 			response = new ResponseEntity<Void>(header, HttpStatus.CREATED);
 		}
 		return response;
@@ -50,9 +51,9 @@ public class SessionRestController {
 
 	@GetMapping(value = "/{id}")
 	@JsonView(JsonViews.Common.class)
-	public ResponseEntity<Session> findById(@PathVariable(name = "id") SessionPK key) {
-		Optional<Session> opt = sessionRepository.findById(key);
-		ResponseEntity<Session> response = null;
+	public ResponseEntity<Expertise> findById(@PathVariable(name = "id") ExpertisePK key) {
+		Optional<Expertise> opt = expertiseRepository.findById(key);
+		ResponseEntity<Expertise> response = null;
 		if (opt.isPresent()) {
 			response = new ResponseEntity<>(opt.get(), HttpStatus.OK);
 		} else {
@@ -63,29 +64,26 @@ public class SessionRestController {
 
 	@JsonView(JsonViews.Common.class)
 	@PutMapping(path = { "/", "" })
-	public ResponseEntity<Session> update(@Valid @RequestBody Session session, BindingResult br) {
-		if (br.hasErrors() || session.getKey() == null) {
+	public ResponseEntity<Expertise> update(@Valid @RequestBody Expertise expertise, BindingResult br) {
+		if (br.hasErrors() || expertise.getExpertisePK() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Optional<Session> opt = sessionRepository.findById(session.getKey());
+		Optional<Expertise> opt = expertiseRepository.findById(expertise.getExpertisePK());
 		if (opt.isPresent()) {
-			Session sessionEnBase = opt.get();
-			sessionEnBase.setKey(session.getKey());
-			sessionEnBase.setDateDebut(session.getDateDebut());
-			sessionEnBase.setDateFin(session.getDateFin());
-			sessionRepository.save(sessionEnBase);
-			return new ResponseEntity<Session>(sessionEnBase, HttpStatus.OK);
+			Expertise expertiseEnBase = opt.get();
+			expertiseEnBase.setExpertisePK(expertise.getExpertisePK());
+			return new ResponseEntity<Expertise>(expertiseEnBase, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable(name = "id") SessionPK key) {
-		Optional<Session> opt = sessionRepository.findById(key);
+	public ResponseEntity<Void> delete(@PathVariable(name = "id") ExpertisePK key) {
+		Optional<Expertise> opt = expertiseRepository.findById(key);
 		ResponseEntity<Void> response = null;
 		if (opt.isPresent()) {
-			sessionRepository.deleteById(key);
+			expertiseRepository.deleteById(key);
 			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

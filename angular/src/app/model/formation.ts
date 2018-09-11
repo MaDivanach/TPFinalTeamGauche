@@ -1,3 +1,7 @@
+import {Gestionnaire} from './gestionnaire';
+import {VideoProjecteur} from '../materiel/videoProjecteur';
+import {Salle} from '../materiel/salle';
+
 export class Formation {
 
   constructor(private _id?: number, private _nom?: string, private _dateDebut?: Date, private _dateFin?: Date, private _gestionnaire?: Gestionnaire, private _videoProjecteur?: VideoProjecteur, private _salle?: Salle, private _stagiaires?: Set<Stagiaires>, private _sessions?: Set<Session>) {
