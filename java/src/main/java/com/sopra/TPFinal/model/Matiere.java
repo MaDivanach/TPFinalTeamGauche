@@ -2,14 +2,24 @@ package com.sopra.TPFinal.model;
 
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.view.JsonViews;
 
 @Entity
 @Table(name = "matiere")
-@SequenceGenerator(name = "seqMatiere", sequenceName = "seq_matiere", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "seqMatiere", sequenceName = "seq_matiere", initialValue = 100, allocationSize = 1)
 public class Matiere {
 	@Id
 	@Column(name = "id_matiere")
@@ -26,7 +36,7 @@ public class Matiere {
 	private Niveau niveau;
 	@JsonView(JsonViews.FormateurInMatiere.class)
 	@OneToMany(mappedBy = "key.matiere")
-	private Set<MatiereFormateur> formateurs;
+	private Set<Expertise> expertises;
 	@JsonView(JsonViews.SessionInMatiere.class)
 	@OneToMany(mappedBy = "key.matiere")
 	private Set<Session> sessions;
@@ -91,12 +101,28 @@ public class Matiere {
 		this.niveau = niveau;
 	}
 
-	public Set<MatiereFormateur> getFormateurs() {
-		return formateurs;
+	public int getVersion() {
+		return version;
 	}
 
-	public void setFormateurs(Set<MatiereFormateur> formateurs) {
-		this.formateurs = formateurs;
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public Set<Expertise> getExpertises() {
+		return expertises;
+	}
+
+	public void setExpertises(Set<Expertise> formateurs) {
+		this.expertises = formateurs;
+	}
+
+	public Set<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(Set<Session> sessions) {
+		this.sessions = sessions;
 	}
 
 }

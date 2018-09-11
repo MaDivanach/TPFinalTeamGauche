@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sopra.TPFinal.model.User;
+import com.sopra.TPFinal.repositories.UserRepository;
 import com.sopra.TPFinal.repositories.UserRoleRepositoy;
 import com.sopra.TPFinal.repositories.UsersRepository;
 
@@ -16,18 +17,18 @@ import com.sopra.TPFinal.repositories.UsersRepository;
 public class CustomUserDetailService implements UserDetailsService {
 	
 	@Autowired
-	private UsersRepository usersRepository;
+	private UserRepository usersRepository;
 	
 	@Autowired
 	private UserRoleRepositoy userRoleRepository;
 	
 	
-	public UsersRepository getUsersRepository() {
+	public UserRepository getUsersRepository() {
 		return usersRepository;
 	}
 
 
-	public void setUsersRepository(UsersRepository usersRepository) {
+	public void setUsersRepository(UserRepository usersRepository) {
 		this.usersRepository = usersRepository;
 	}
 

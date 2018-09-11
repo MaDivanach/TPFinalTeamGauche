@@ -23,14 +23,17 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.view.JsonViews;
 
 @Entity
-@Table(name="formation")
+@Table(name = "formation")
 public class Formation {
-
 	@Id
 	@SequenceGenerator(name = "seqformation", sequenceName = "seq_formation", initialValue = 100, allocationSize = 1)
 	@GeneratedValue(generator = "seqformation", strategy = GenerationType.SEQUENCE)
 	@Column(name = "id_formation")
 	private Long id;
+	@Version
+	private int version;
+	@Column(name = "nom", length = 100)
+	private String nom;
 	@Column(name = "date_debut")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -42,15 +45,15 @@ public class Formation {
 	@JsonView(JsonViews.Common.class)
 	private Date dateFin;
 	@ManyToOne
-	@JoinColumn(name = "id_gestionnaire")
+	@JoinColumn(name = "gestionnaire")
 	@JsonView(JsonViews.Common.class)
 	private Gestionnaire gestionnaire;
 	@ManyToOne
-	@JoinColumn(name = "id_videoprojecteur")
+	@JoinColumn(name = "videoprojecteur")
 	@JsonView(JsonViews.Common.class)
 	private VideoProjecteur videoProjecteur;
 	@ManyToOne
-	@JoinColumn(name = "id_Salle")
+	@JoinColumn(name = "salle")
 	@JsonView(JsonViews.Common.class)
 	private Salle salle;
 	@OneToMany(mappedBy = "formation")
@@ -59,8 +62,6 @@ public class Formation {
 	@OneToMany(mappedBy = "key.formation")
 	@JsonView(JsonViews.SessionInFormation.class)
 	private Set<Session> sessions;
-	@Version
-	private int version;
 
 	public Formation() {
 		super();
@@ -78,6 +79,31 @@ public class Formation {
 		this.stagiaires = stagiaires;
 		this.sessions = sessions;
 		this.version = version;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Formation other = (Formation) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 	public Long getId() {
@@ -152,31 +178,12 @@ public class Formation {
 		this.version = version;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public String getNom() {
+		return nom;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Formation other = (Formation) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
-	
-	
 
 }
