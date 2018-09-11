@@ -16,13 +16,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.Admin;
+import com.sopra.TPFinal.model.Formateur;
+import com.sopra.TPFinal.model.Gestionnaire;
+import com.sopra.TPFinal.model.Stagiaire;
+import com.sopra.TPFinal.model.Technicien;
 import com.sopra.TPFinal.model.User;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.UserRepository;
 
+@RestController
+@RequestMapping("/rest/user")
 public class UserRestController {
 	
 	@Autowired
@@ -31,46 +39,93 @@ public class UserRestController {
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
 	public ResponseEntity<List<User>> findAll(){
-		return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
-	}
-	
-	@PostMapping(path= {"/user"})
-	public ResponseEntity<Void> user(@Valid @RequestBody User user, BindingResult br, UriComponentsBuilder uCB){
-		
-		ResponseEntity<Void> response = null;
-		
-		if(br.hasErrors()) {
-			response = new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
-		} else {
-			userRepository.save(user);
-			HttpHeaders header = new HttpHeaders();
-			
-			header.setLocation(uCB.path("rest/salle/{id}").buildAndExpand(user.getId()).toUri());
-			response = new ResponseEntity<Void>(HttpStatus.CREATED);
-		}
+		ResponseEntity<List<User>> response = null;
+		response= new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
 		return response;
 	}
 	
-	@JsonView(JsonViews.Common.class)
-	@PutMapping(path = { "/", "" })
-	public ResponseEntity<User> update(@Valid @RequestBody User user, BindingResult br) {
-		if (br.hasErrors() || user.getId() == null) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		Optional<User> opt = userRepository.findById(user.getId());
-		if (opt.isPresent()) {
-			User UserEnBase = opt.get();
-			UserEnBase.setUsername(user.getUsername());
-			UserEnBase.setPrenom(user.getPrenom());
-			UserEnBase.setNom(user.getNom());
-			UserEnBase.setPassword(user.getPassword());
-			UserEnBase.setTel(user.getTel());
-			return new ResponseEntity<User>(UserEnBase, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	   @GetMapping(value = "/{id}")
+	    public ResponseEntity<User> findById(@PathVariable(name = "id") Integer id) {
+	        ResponseEntity<User> response = null;
+	        Optional<User> opt = userRepository.findById(id);
+	        if (opt.isPresent()) {
+	            response = new ResponseEntity<>(opt.get(), HttpStatus.OK);
+	        } else {
+	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
+	        return response;
+	    }
+	   
+	   @PostMapping(path = {"/technicien/", "/technicien"})
+	    public ResponseEntity<Void> createTechnicien(@Valid @RequestBody Technicien technicien, BindingResult br, UriComponentsBuilder uCB) {
+	        ResponseEntity<Void> response = null;
+	        if(br.hasErrors()) {
+	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        } else {
+	            userRepository.save(technicien);
+	            HttpHeaders header = new HttpHeaders();
+	            header.setLocation(uCB.path("/rest/user/technicien/{id}").buildAndExpand(technicien.getId()).toUri());
+	            response = new ResponseEntity<Void>(HttpStatus.CREATED);
+	        }
+	        return response;
+	    }
+	   
+	   @PostMapping(path = {"/gestionnaire/", "/gestionnaire"})
+	    public ResponseEntity<Void> createGestionnaire(@Valid @RequestBody Gestionnaire gestionnaire, BindingResult br, UriComponentsBuilder uCB) {
+	        ResponseEntity<Void> response = null;
+	        if(br.hasErrors()) {
+	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        } else {
+	            userRepository.save(gestionnaire);
+	            HttpHeaders header = new HttpHeaders();
+	            header.setLocation(uCB.path("/rest/user/technicien/{id}").buildAndExpand(gestionnaire.getId()).toUri());
+	            response = new ResponseEntity<Void>(HttpStatus.CREATED);
+	        }
+	        return response;
+	    }
+	   
+	   @PostMapping(path = {"/admin/", "/admin"})
+	    public ResponseEntity<Void> createAdmin(@Valid @RequestBody Admin admin, BindingResult br, UriComponentsBuilder uCB) {
+	        ResponseEntity<Void> response = null;
+	        if(br.hasErrors()) {
+	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        } else {
+	            userRepository.save(admin);
+	            HttpHeaders header = new HttpHeaders();
+	            header.setLocation(uCB.path("/rest/user/admin/{id}").buildAndExpand(admin.getId()).toUri());
+	            response = new ResponseEntity<Void>(HttpStatus.CREATED);
+	        }
+	        return response;
+	    }
+	   
+	   @PostMapping(path = {"/stagiaire/", "/stagiaire"})
+	    public ResponseEntity<Void> createStagiaire(@Valid @RequestBody Stagiaire stagiaire, BindingResult br, UriComponentsBuilder uCB) {
+	        ResponseEntity<Void> response = null;
+	        if(br.hasErrors()) {
+	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        } else {
+	            userRepository.save(stagiaire);
+	            HttpHeaders header = new HttpHeaders();
+	            header.setLocation(uCB.path("/rest/user/stagiaire/{id}").buildAndExpand(stagiaire.getId()).toUri());
+	            response = new ResponseEntity<Void>(HttpStatus.CREATED);
+	        }
+	        return response;
+	    }
+	   
+	   @PostMapping(path = {"/formateur/", "/formateur"})
+	    public ResponseEntity<Void> createFormateur(@Valid @RequestBody Formateur formateur, BindingResult br, UriComponentsBuilder uCB) {
+	        ResponseEntity<Void> response = null;
+	        if(br.hasErrors()) {
+	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        } else {
+	            userRepository.save(formateur);
+	            HttpHeaders header = new HttpHeaders();
+	            header.setLocation(uCB.path("/rest/user/formateur/{id}").buildAndExpand(formateur.getId()).toUri());
+	            response = new ResponseEntity<Void>(HttpStatus.CREATED);
+	        }
+	        return response;
+	    }
 
-		}
-	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable(name = "id") Integer id) {

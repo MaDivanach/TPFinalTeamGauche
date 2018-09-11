@@ -2,24 +2,27 @@ package com.sopra.TPFinal.model;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Embeddable
-public class MatiereFormateurPK implements Serializable {
+public class ExpertisePK implements Serializable {
 	@ManyToOne
-	@JoinColumn(name = "id_matiere")
-	private Matiere matiere;
-	@ManyToOne
-	@JoinColumn(name = "id_formateur")
+	@JoinColumn(name = "formateur")
 	private Formateur formateur;
+	@ManyToOne
+	@JoinColumn(name = "matiere")
+	private Matiere matiere;
 
-	public MatiereFormateurPK() {
+	public ExpertisePK() {
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((formateur == null) ? 0 : formateur.hashCode());
 		result = prime * result + ((matiere == null) ? 0 : matiere.hashCode());
 		return result;
 	}
@@ -32,7 +35,12 @@ public class MatiereFormateurPK implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MatiereFormateurPK other = (MatiereFormateurPK) obj;
+		ExpertisePK other = (ExpertisePK) obj;
+		if (formateur == null) {
+			if (other.formateur != null)
+				return false;
+		} else if (!formateur.equals(other.formateur))
+			return false;
 		if (matiere == null) {
 			if (other.matiere != null)
 				return false;
@@ -41,20 +49,20 @@ public class MatiereFormateurPK implements Serializable {
 		return true;
 	}
 
-	public Matiere getMatiere() {
-		return matiere;
-	}
-
-	public void setMatiere(Matiere matiere) {
-		this.matiere = matiere;
-	}
-
 	public Formateur getFormateur() {
 		return formateur;
 	}
 
 	public void setFormateur(Formateur formateur) {
 		this.formateur = formateur;
+	}
+
+	public Matiere getMatiere() {
+		return matiere;
+	}
+
+	public void setMatiere(Matiere matiere) {
+		this.matiere = matiere;
 	}
 
 }

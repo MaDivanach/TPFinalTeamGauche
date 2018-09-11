@@ -1,3 +1,31 @@
-<p>
-  formation-edit works!
-</p>
+<form (ngSubmit)="save()" #formulaire="ngForm">
+  <div class="form-group">
+    <label for="id">Id</label>
+    <input id="id" name="id" [(ngModel)]="formation.id" class="form-control" readonly/><br/>
+    <div class="form-group">
+      <label for="dateDebut">Date de début</label>
+      <input id="dateDebut" name="dateDebut" [(ngModel)]="formation.dateDebut" class="form-control" required/><br/>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="dateFin">Date de Fin</label>
+      <input id="dateFin" name="dateFin" [(ngModel)]="formation.dateFin" class="form-control" required/><br/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="gestionnaire">Gestionnaire de la formation</label>
+      <input id="gestionnaire" name="gestionnaire" [(ngModel)]="formation.gestionnaire" class="form-control" required/><br/>
+    </div>
+    <div class="form-group">
+      <label for="videoProjecteur">Videoprojecteur attribué</label>
+      <input id="videoProjecteur" name="videoProjecteur" [(ngModel)]="formation.videoProjecteur" class="form-control" required/><br/>
+    </div>
+    <div class="form-group">
+      <label for="salle">Salle attribué</label>
+      <input id="salle" name="salle" [(ngModel)]="formation.salle" class="form-control" required/><br/>
+    </div>
+  <div>
+  <button type="submit" class="btn btn-success" [disabled]="formulaire.invalid">Enregistrer</button>
+  </div>
+</form>
+
