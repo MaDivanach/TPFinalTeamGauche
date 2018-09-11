@@ -8,7 +8,7 @@ import {Session} from '../model/session';
 })
 export class SessionService {
 
-  url: string = 'http://localhost:4200/TPFinalTeamGauche';
+  url: string = 'http://localhost:4200/Projet';
   headers: HttpHeaders;
 
   constructor(private http: HttpClient) {

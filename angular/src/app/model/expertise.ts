@@ -1,6 +1,8 @@
+import {ExpertisePK} from './expertise-pk';
+
 export class Expertise {
   constructor(
-    private _key?: number) {
+    private _key?: ExpertisePK) {
   }
 
   get key(): number {

@@ -1,6 +1,8 @@
+import {SessionPK} from './session-pk';
+
 export class Session {
   constructor(
-    private _key?: number,
+    private _key?: SessionPK,
     private _dateDebut?: Date,
     private _dateFin?: Date) {
   }
