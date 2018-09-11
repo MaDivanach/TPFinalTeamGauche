@@ -1,6 +1,14 @@
 export class Materiel {
-  constructor(private _coutUtilisation?: number) {
+  constructor(protected _id?: number, protected _coutUtilisation?: number) {
 
+  }
+
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
   }
 
   get coutUtilisation(): number{

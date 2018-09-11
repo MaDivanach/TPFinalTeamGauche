@@ -1,26 +1,23 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Materiel} from '../materiel/materiel';
+import {Materiel} from '../model/materiel';
 import {_mymateriel} from '../materiel/tableauMateriel';
-import {Ordinateur} from '../materiel/ordinateur';
-import {Salle} from '../materiel/salle';
-import {VideoProjecteur} from '../materiel/videoProjecteur';
+import {Ordinateur} from '../model/ordinateur';
+import {Salle} from '../model/salle';
+import {VideoProjecteur} from '../model/videoProjecteur';
+import {instantiateDefaultStyleNormalizer} from '@angular/platform-browser/animations/src/providers';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaterielService {
 
-  @Injectable({
-    providedIn: 'root'
-  })
-
   url: string = 'http://localhost:8080/';
-  headers: HttpHeaders;
+  header: HttpHeaders;
 
-  constructor(private http :HttpClient) {
-    this.headers = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic ' + btoa('olivier:olivier')});
+  constructor(private http: HttpClient) {
+    this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic ' + btoa('olivier:olivier')});
   }
 
   public list(): Observable<Materiel[]> {
@@ -36,32 +33,31 @@ export class MaterielService {
   }
 
   public save(materiel: Materiel): Observable<any> {
-    if (_mymateriel.id) {
-      return this.http.put(`${this.url}/rest/materiel/`, _mymateriel, {headers: this.header});
+    if (materiel.id) {
+      return this.http.put(`${this.url}/rest/materiel/`, materiel, {headers: this.header});
     } else {
       /* return this.http.post(`${this.url}/rest/adherent/`, adherent);*/
-      if (_mymateriel instanceof Ordinateur) {
+      if (materiel instanceof Ordinateur) {
         const o = {
-          id: _mymateriel.id, processeur: ordinateur.processeur, ram: ordinateur.ram, dd: ordinateur.dd, dateAchat: ordinateur.dateAchat
+          id: materiel.id, processeur: ordinateur.processeur, ram: ordinateur.ram, dd: ordinateur.dd, dateAchat: ordinateur.dateAchat
         };
         console.log(o);
         return this.http.post(`${this.url}/rest/ordinateur/`, o);
       }
-      else if (_mymateriel instanceof Salle) {
+      else if (materiel instanceof Salle) {
         const o = {
-          id: _mymateriel.id, capacite: salle.capacite
+          id: materiel.id, capacite: salle.capacite
         };
         console.log(o);
         return this.http.post(`${this.url}/rest/salle/`, o);
       }
-    }
-  else
-    {
-      const o = {
-        id: _mymateriel.id
-      };
-      console.log(o);
-      return this.http.post(`${this.url}/rest/videoProjecteur/`, o);
+      else if (materiel instanceof VideoProjecteur) {
+        const o = {
+          id: materiel.id
+        };
+        console.log(o);
+        return this.http.post(`${this.url}/rest/videoProjecteur/`, o);
+      }
     }
   }
 }

@@ -1,7 +1,17 @@
+import {Stagiaire} from './stagiaire';
+
 export class Ordinateur {
 
-  constructor(private _processeur?: string, private  _ram?: string, private _dd?: string, private _dateAchat?: Date){}
+  constructor(private _processeur?: string, private  _ram?: string, private _dd?: string, private _dateAchat?: Date, private _stagiaires?: Stagiaire[]){}
 
+
+  get stagiaires(): Stagiaire[] {
+    return this._stagiaires;
+  }
+
+  set stagiaires(value: Stagiaire[]) {
+    this._stagiaires = value;
+  }
 
   get processeur(): string {
     return this._processeur;
