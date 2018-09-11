@@ -1,5 +1,7 @@
+import {Niveau} from './niveau.enum';
+
 export class Matiere{
-  constructor(private _id?: number, private _titre?: string, private _objectif?: string, private _niveau?: number){
+  constructor(private _id?: number, private _titre?: string, private _objectif?: string, private _niveau?: Niveau){
 
   }
 
