@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.util.StringUtils;
 
+import com.sopra.TPFinal.model.User;
+
 public class CustomUserDetails implements UserDetails{
 
 	private User user;

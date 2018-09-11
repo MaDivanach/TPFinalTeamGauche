@@ -48,7 +48,7 @@ public class Formation {
 	@ManyToOne
 	@JoinColumn(name = "id_videoprojecteur")
 	@JsonView(JsonViews.Common.class)
-	private Videoprojecteur videoprojecteur;
+	private VideoProjecteur videoprojecteur;
 	@ManyToOne
 	@JoinColumn(name = "id_Salle")
 	@JsonView(JsonViews.Common.class)
