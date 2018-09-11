@@ -21,6 +21,9 @@ import {FormationService} from './service/formation.service';
 import {MaterielService} from './service/materiel.service';
 import {SessionService} from './service/session.service';
 import {UserService} from './service/user.service';
+import {AuthentificationComponent} from './authentification/authentification.component';
+import {UserComponent} from './authentification/user.component';
+import {ExpertiseComponent} from './formateur/expertise.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import {UserService} from './service/user.service';
     MaterielEditComponent,
     MatiereEditComponent,
     FormationEditComponent,
-    SessionEditComponent
+    SessionEditComponent,
+    AuthentificationComponent,
+    UserComponent,
+    ExpertiseComponent
   ],
   imports: [
     BrowserModule,
