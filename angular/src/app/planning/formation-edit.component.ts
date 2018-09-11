@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Formation} from "../model/Formation";
-import {FormationService} from "../service/formation.service";
+import {Formation} from '../model/Formation';
+import {FormationService} from '../service/formation.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-formation-edit',

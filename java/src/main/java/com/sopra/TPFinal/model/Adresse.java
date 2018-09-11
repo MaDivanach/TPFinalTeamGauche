@@ -1,12 +1,10 @@
 package com.sopra.TPFinal.model;
 
-import javax.persistence.Column; 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.view.JsonViews;
-
-
 
 @Embeddable
 public class Adresse {
@@ -22,7 +20,7 @@ public class Adresse {
 	@Column(name = "ville", length = 200)
 	@JsonView(JsonViews.Common.class)
 	private String ville;
-	
+
 	public Adresse() {
 
 	}
@@ -34,8 +32,6 @@ public class Adresse {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
-
-
 
 	public Integer getNumero() {
 		return numero;

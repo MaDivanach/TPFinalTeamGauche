@@ -1,68 +1,61 @@
 package com.sopra.TPFinal.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="ordinateur")
-@SequenceGenerator(name = "seqOrdinateur", sequenceName = "seq_ordinateur", initialValue = 1, allocationSize = 1)
+@DiscriminatorValue("ordinateur")
 public class Ordinateur extends Materiel {
-	
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqOrdinateur")
-	@Column(name="processeur")
+	@Column(name = "processeur")
 	private String processeur;
-	
-	@Version
-	private int version;
-	
-	@Column(name="ram")
+	@Column(name = "ram")
 	public String ram;
-	
-	@Column(name="dd")
+	@Column(name = "dd")
 	public String dd;
-	
-	@Column(name="dateAchat")
+	@Column(name = "dateAchat")
 	private Date dateAchat;
-		
-	public Ordinateur(Long id, Double coutUtilisation, String processeur, String ram, String dd, Date dateAchat) {
-		super(id, coutUtilisation);
-		this.processeur = processeur;
-		this.ram = ram;
-		this.dd = dd;
-		this.dateAchat = dateAchat;
+	@OneToMany(mappedBy = "ordinateur", fetch = FetchType.LAZY)
+	private Set<Stagiaire> stagiaires;
+
+	public Ordinateur() {
 	}
-	
-	public String getCPU() {
+
+	public String getProcesseur() {
 		return processeur;
 	}
-	public void setCPU(String cPU) {
-		processeur = cPU;
+
+	public void setProcesseur(String processeur) {
+		this.processeur = processeur;
 	}
+
 	public String getRam() {
 		return ram;
 	}
+
 	public void setRam(String ram) {
-		ram = ram;
+		this.ram = ram;
 	}
-	public String getDD() {
+
+	public String getDd() {
 		return dd;
 	}
-	public void setDD(String dD) {
-		dd = dD;
+
+	public void setDd(String dd) {
+		this.dd = dd;
 	}
+
 	public Date getDateAchat() {
 		return dateAchat;
 	}
+
 	public void setDateAchat(Date dateAchat) {
 		this.dateAchat = dateAchat;
 	}
-	
-	
+
 }

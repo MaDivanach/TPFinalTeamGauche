@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Matiere} from '../model/matiere';
 
@@ -8,11 +8,10 @@ import {Matiere} from '../model/matiere';
 })
 export class MatiereService {
 
-  url: string = 'http://localhost:8080/TPFinalTeamGauche';
+  url: string = 'http://localhost:4200/TPFinalTeamGauche';
   headers: HttpHeaders;
 
-  constructor(private http: HttpMatiere) {
-
+  constructor(private http: HttpClient) {
   }
 
   public list(): Observable<Matiere[]> {
