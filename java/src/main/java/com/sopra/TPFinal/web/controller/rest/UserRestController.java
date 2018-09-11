@@ -16,41 +16,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.sopra.TPFinal.model.Materiel;
-import com.sopra.TPFinal.model.UserRole;
+import com.sopra.TPFinal.model.User;
 import com.sopra.TPFinal.model.view.JsonViews;
-import com.sopra.TPFinal.repositories.MaterielRepository;
+import com.sopra.TPFinal.repositories.UserRepository;
 
-@RequestMapping("/materiel")
-@RestController
-public class MaterielRestController {
+public class UserRestController {
 	
 	@Autowired
-	private MaterielRepository materielRepository;
+	private UserRepository userRepository;
 	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
-	public ResponseEntity<List<Materiel>> findAll(){
-		return new ResponseEntity<>(materielRepository.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<User>> findAll(){
+		return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
 	}
 	
-	@PostMapping(path= {"/materiel"})
-	public ResponseEntity<Void> materiel(@Valid @RequestBody Materiel materiel, BindingResult br, UriComponentsBuilder uCB){
+	@PostMapping(path= {"/user"})
+	public ResponseEntity<Void> user(@Valid @RequestBody User user, BindingResult br, UriComponentsBuilder uCB){
 		
 		ResponseEntity<Void> response = null;
 		
 		if(br.hasErrors()) {
 			response = new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 		} else {
-			materielRepository.save(materiel);
+			userRepository.save(user);
 			HttpHeaders header = new HttpHeaders();
 			
-			header.setLocation(uCB.path("rest/materiel/{id}").buildAndExpand(materiel.getId()).toUri());
+			header.setLocation(uCB.path("rest/salle/{id}").buildAndExpand(user.getId()).toUri());
 			response = new ResponseEntity<Void>(HttpStatus.CREATED);
 		}
 		return response;
@@ -58,15 +53,19 @@ public class MaterielRestController {
 	
 	@JsonView(JsonViews.Common.class)
 	@PutMapping(path = { "/", "" })
-	public ResponseEntity<Materiel> update(@Valid @RequestBody Materiel materiel, BindingResult br) {
-		if (br.hasErrors() || materiel.getId() == null) {
+	public ResponseEntity<User> update(@Valid @RequestBody User user, BindingResult br) {
+		if (br.hasErrors() || user.getId() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		Optional<Materiel> opt = materielRepository.findById(materiel.getId());
+		Optional<User> opt = userRepository.findById(user.getId());
 		if (opt.isPresent()) {
-			Materiel MaterielEnBase = opt.get();
-			MaterielEnBase.setCoutUtilisation(materiel.getCoutUtilisation());
-			return new ResponseEntity<Materiel>(MaterielEnBase, HttpStatus.OK);
+			User UserEnBase = opt.get();
+			UserEnBase.setUsername(user.getUsername());
+			UserEnBase.setPrenom(user.getPrenom());
+			UserEnBase.setNom(user.getNom());
+			UserEnBase.setPassword(user.getPassword());
+			UserEnBase.setTel(user.getTel());
+			return new ResponseEntity<User>(UserEnBase, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
@@ -74,17 +73,16 @@ public class MaterielRestController {
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
-		Optional<Materiel> opt = materielRepository.findById(id);
+	public ResponseEntity<Void> delete(@PathVariable(name = "id") Integer id) {
+		Optional<User> opt = userRepository.findById(id);
 		ResponseEntity<Void> response = null;
 		if (opt.isPresent()) {
-			materielRepository.deleteById(id);
+			userRepository.deleteById(id);
 			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
-	
 	
 }
