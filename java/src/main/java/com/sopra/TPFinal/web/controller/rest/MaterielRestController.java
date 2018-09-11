@@ -26,9 +26,6 @@ import com.sopra.TPFinal.model.Salle;
 import com.sopra.TPFinal.model.VideoProjecteur;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.MaterielRepository;
-import com.sopra.TPFinal.repositories.OrdinateurRepository;
-import com.sopra.TPFinal.repositories.SalleRepository;
-import com.sopra.TPFinal.repositories.VideoProjecteurRepository;
 
 @RequestMapping("/rest/materiel")
 @RestController
