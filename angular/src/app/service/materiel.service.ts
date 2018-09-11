@@ -39,24 +39,24 @@ export class MaterielService {
       /* return this.http.post(`${this.url}/rest/adherent/`, adherent);*/
       if (materiel instanceof Ordinateur) {
         const o = {
-          id: materiel.id, processeur: ordinateur.processeur, ram: ordinateur.ram, dd: ordinateur.dd, dateAchat: ordinateur.dateAchat
+          id: materiel.id, processeur: materiel.processeur, ram: materiel.ram, dd: materiel.dd, dateAchat: materiel.dateAchat
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/ordinateur/`, o);
+        return this.http.post(`${this.url}/rest/materiel/`, o);
       }
       else if (materiel instanceof Salle) {
         const o = {
-          id: materiel.id, capacite: salle.capacite
+          id: materiel.id, capacite: materiel.capacite
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/salle/`, o);
+        return this.http.post(`${this.url}/rest/materiel/`, o);
       }
       else if (materiel instanceof VideoProjecteur) {
         const o = {
           id: materiel.id
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/videoProjecteur/`, o);
+        return this.http.post(`${this.url}/rest/materiel/`, o);
       }
     }
   }
