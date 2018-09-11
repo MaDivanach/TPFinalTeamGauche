@@ -19,4 +19,23 @@ public class Formateur extends User{
 		super();
 		super.setRole(Role.FORMATEUR);
 	}
+
+	public Set<Expertise> getExpertises() {
+		return expertises;
+	}
+
+	public void setExpertises(Set<Expertise> expertises) {
+		this.expertises = expertises;
+	}
+
+	public Set<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(Set<Session> sessions) {
+		this.sessions = sessions;
+	}
+	
+	
+	
 }
