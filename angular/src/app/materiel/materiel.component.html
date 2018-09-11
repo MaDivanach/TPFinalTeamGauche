@@ -1,3 +1,34 @@
-<p>
-  materiel works!
-</p>
+<h1>Liste du materiel</h1>
+<table class="table">
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">cout de  l'utilisation</th>
+    <th scope="col">processeur</th>
+    <th scope="col">ram</th>
+    <th scope="col">Disque Dur</th>
+    <th scope="col">Date d'achat</th>
+  </tr>
+  <tr *ngFor="let materiel of materiels">
+    <td scope="rol">{{materiel.id}}</td>
+    <td scope="rol" *ngIf="materiel.type == 'ordinateur'">{{materiel.processeur}}</td>
+    <td scope="rol" *ngIf="materiel.type == 'ordinateur'">{{materiel.ram}}</td>
+    <td scope="rol" *ngIf="materiel.type == 'ordinateur'">{{materiel.dd}}</td>
+    <td scope="rol" *ngIf="materiel.type == 'ordinateur'">{{materiel.dateAchat}}</td>
+    <td scope="rol" *ngIf="materiel.type == 'salle'">{{materiel.capacite}}</td>
+    <td scope="rol" *ngIf="materiel.type == 'videoProjecteur'">{{materiel.coutUtilisation}}</td>
+
+    <td *ngIf="materiel.type == 'ordinateur'"><a href="" [routerLink]="['/materiel', 'ordinateur','edit',materiel.id]"
+                                       routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td *ngIf="materiel.type == 'salle'"><a href="" [routerLink]="['/materiel', 'salle','edit',materiel.id]"
+                                       routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td *ngIf="materiel.type == 'videoProjecteur'"><a href="" [routerLink]="['/materiel', 'videoProjecteur','edit',materiel.id]"
+                                       routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td>
+      <button class="btn btn-danger" (click)="delete(materiel.id)">supprimer</button>
+    </td>
+  </tr>
+</table>
+<a href="" [routerLink]="['/materiel','create', 'ordinateur']" class="btn btn-info">ajouter Ordinateur</a>
+<a href="" [routerLink]="['/materiel','create','salle']" class="btn btn-info">ajouter Salle</a>
+<a href="" [routerLink]="['/materiel','create','videoProjecteur']" class="btn btn-info">ajouter Salle</a>
+
