@@ -34,9 +34,6 @@ public class MaterielRestController {
 	@Autowired
 	private MaterielRepository materielRepository;
 	
-	@Autowired
-	private VideoProjecteur videoProjecteur;
-	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
 	public ResponseEntity<List<Materiel>> findAll(){

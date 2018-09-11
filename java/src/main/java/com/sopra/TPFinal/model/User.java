@@ -7,19 +7,19 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.view.JsonViews;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @SequenceGenerator(name = "seqUser", sequenceName = "seq_user", initialValue = 100, allocationSize = 1)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, length = 20, name = "type")
 public class User {
@@ -28,7 +28,7 @@ public class User {
 	@Column(name = "id_user")
 	@JsonView(JsonViews.Common.class)
 	private Integer id;
-	@Column(name = "username")
+	@Column(name = "username", unique = true)
 	@JsonView(JsonViews.Common.class)
 	private String username;
 	@Column(name = "password")
@@ -37,7 +37,7 @@ public class User {
 	@Column(name = "enable")
 	@JsonView(JsonViews.Common.class)
 	private boolean enable;
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	// @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	@Enumerated(EnumType.STRING)
 	@JsonView(JsonViews.Common.class)
 	private Role role;
