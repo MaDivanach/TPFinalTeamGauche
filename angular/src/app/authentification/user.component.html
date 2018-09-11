@@ -1,3 +1,32 @@
-<p>
-  user works!
-</p>
+<h1>Liste des users</h1>
+<table class="table">
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nom</th>
+    <th scope="col">Prenom</th>
+    <th scope="col">Username</th>
+    <th scope="col">Password</th>
+    <th scope="col">telephone</th>
+    <th scope="col">Role</th>
+  </tr>
+  <tr *ngFor="let u of user">
+    <td scope="rol">{{u.id}}</td>
+    <td scope="rol">{{u.nom}}</td>
+    <td scope="rol">{{u.prenom}}</td>
+    <td scope="rol">{{u.username}}</td>
+    <td scope="rol">{{u.password}}</td>
+    <td scope="rol">{{u.telephone}}</td>
+    <td scope="rol">{{u.role}}</td>
+    <td scope="rol" *ngIf="u.role=='FORMATEUR'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
+                                                   routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td scope="rol" *ngIf="u.role == 'STAGIAIRE'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
+                                                     routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td>
+      <button class="btn btn-danger" (click)="delete(u.id)">supprimer</button>
+    </td>
+  </tr>
+</table>
+<a href="" [routerLink]="['/materiel','create', 'ordinateur']" class="btn btn-info">ajouter Ordinateur</a>
+<a href="" [routerLink]="['/materiel','create','salle']" class="btn btn-info">ajouter Salle</a>
+<a href="" [routerLink]="['/materiel','create','videoProjecteur']" class="btn btn-info">ajouter Salle</a>
+
