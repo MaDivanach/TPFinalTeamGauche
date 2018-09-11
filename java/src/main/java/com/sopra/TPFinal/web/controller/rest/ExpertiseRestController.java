@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Expertise;
 import com.sopra.TPFinal.model.ExpertisePK;
+import com.sopra.TPFinal.model.Session;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.ExpertiseRepository;
 
@@ -59,6 +60,22 @@ public class ExpertiseRestController {
 			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return response;
+	}
+
+	@JsonView(JsonViews.Common.class)
+	@PutMapping(path = { "/", "" })
+	public ResponseEntity<Expertise> update(@Valid @RequestBody Expertise expertise, BindingResult br) {
+		if (br.hasErrors() || expertise.getExpertisePK() == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		Optional<Expertise> opt = expertiseRepository.findById(expertise.getExpertisePK());
+		if (opt.isPresent()) {
+			Expertise expertiseEnBase = opt.get();
+			expertiseEnBase.setExpertisePK(expertise.getExpertisePK());
+			return new ResponseEntity<Expertise>(expertiseEnBase, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@DeleteMapping(value = "/{id}")

@@ -70,6 +70,7 @@ public class SessionRestController {
 		Optional<Session> opt = sessionRepository.findById(session.getKey());
 		if (opt.isPresent()) {
 			Session sessionEnBase = opt.get();
+			sessionEnBase.setKey(session.getKey());
 			sessionEnBase.setDateDebut(session.getDateDebut());
 			sessionEnBase.setDateFin(session.getDateFin());
 			sessionRepository.save(sessionEnBase);
