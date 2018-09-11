@@ -34,7 +34,7 @@ public class SessionRestController {
 	}
 
 	@PostMapping(path = { "/", "" })
-	public ResponseEntity<Void> createMatiere(@Valid @RequestBody Session session, BindingResult br,
+	public ResponseEntity<Void> createSession(@Valid @RequestBody Session session, BindingResult br,
 			UriComponentsBuilder uCB) {
 		ResponseEntity<Void> response = null;
 		if (br.hasErrors()) {
