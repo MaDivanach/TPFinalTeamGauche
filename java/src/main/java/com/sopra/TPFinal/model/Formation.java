@@ -44,11 +44,11 @@ public class Formation {
 	@ManyToOne
 	@JoinColumn(name = "id_gestionnaire")
 	@JsonView(JsonViews.Common.class)
-	private Gestionnaire gestionaire;
+	private Gestionnaire gestionnaire;
 	@ManyToOne
 	@JoinColumn(name = "id_videoprojecteur")
 	@JsonView(JsonViews.Common.class)
-	private VideoProjecteur videoprojecteur;
+	private VideoProjecteur videoProjecteur;
 	@ManyToOne
 	@JoinColumn(name = "id_Salle")
 	@JsonView(JsonViews.Common.class)
@@ -66,14 +66,14 @@ public class Formation {
 		super();
 	}
 
-	public Formation(Long id, Date dateDebut, Date dateFin, Gestionnaire gestionaire, Videoprojecteur videoprojecteur,
+	public Formation(Long id, Date dateDebut, Date dateFin, Gestionnaire gestionnaire, VideoProjecteur videoProjecteur,
 			Salle salle, Set<Stagiaire> stagiaires, Set<Session> sessions, int version) {
 		super();
 		this.id = id;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.gestionaire = gestionaire;
-		this.videoprojecteur = videoprojecteur;
+		this.gestionnaire = gestionnaire;
+		this.videoProjecteur = videoProjecteur;
 		this.salle = salle;
 		this.stagiaires = stagiaires;
 		this.sessions = sessions;
@@ -104,20 +104,20 @@ public class Formation {
 		this.dateFin = dateFin;
 	}
 
-	public Gestionnaire getGestionaire() {
-		return gestionaire;
+	public Gestionnaire getGestionnaire() {
+		return gestionnaire;
 	}
 
-	public void setGestionaire(Gestionnaire gestionaire) {
-		this.gestionaire = gestionaire;
+	public void setGestionnaire(Gestionnaire gestionnaire) {
+		this.gestionnaire = gestionnaire;
 	}
 
-	public Videoprojecteur getVideoprojecteur() {
-		return videoprojecteur;
+	public VideoProjecteur getVideoProjecteur() {
+		return videoProjecteur;
 	}
 
-	public void setVideoprojecteur(Videoprojecteur videoprojecteur) {
-		this.videoprojecteur = videoprojecteur;
+	public void setVideoProjecteur(VideoProjecteur videoProjecteur) {
+		this.videoProjecteur = videoProjecteur;
 	}
 
 	public Salle getSalle() {

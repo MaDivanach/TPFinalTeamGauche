@@ -88,19 +88,17 @@ public class FormationRestController {
 		Optional<Formation> opt = formationRepository.findById(formation.getId());
 		if (opt.isPresent()) {
 			// update possible
-			Formation FormationEnBase = opt.get();
-			FormationEnBase.setDateDebut(formation.getDateDebut());
-			FormationEnBase.setDateFin(formation.getDateFin());
-			FormationEnBase.setGestionnaire(formation.getGestionnaire());
-			FormationEnBase.setHeureVideoProjecteur(formation.getVideoProjecteur());
-			FormationEnBase.setArrivee(vol.getArrivee());
-			FormationEnBase.setDepart(vol.getDepart());
-			FormationEnBase.setReservations(vol.getReservations());
-			FormationEnBase.setEscales(vol.getEscales());
-			FormationEnBase.setCompagnieAeriennes(vol.getCompagnieAeriennes());
-			return new ResponseEntity<Vol>(volEnBase, HttpStatus.OK);
+			Formation formationEnBase = opt.get();
+			formationEnBase.setDateDebut(formation.getDateDebut());
+			formationEnBase.setDateFin(formation.getDateFin());
+			formationEnBase.setGestionnaire(formation.getGestionnaire());
+			formationEnBase.setVideoProjecteur(formation.getVideoProjecteur());
+			formationEnBase.setSalle(formation.getSalle());
+			formationEnBase.setStagiaires(formation.getStagiaires());
+			formationEnBase.setSessions(formation.getSessions());
+			return new ResponseEntity<Formation>(formationEnBase, HttpStatus.OK);
 		} else {
-			// pas de vol
+			// pas de formation
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
@@ -108,10 +106,10 @@ public class FormationRestController {
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
-		Optional<Vol> opt = volRepository.findById(id);
+		Optional<Formation> opt = formationRepository.findById(id);
 		ResponseEntity<Void> response = null;
 		if (opt.isPresent()) {
-			volRepository.deleteById(id);
+			formationRepository.deleteById(id);
 			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
