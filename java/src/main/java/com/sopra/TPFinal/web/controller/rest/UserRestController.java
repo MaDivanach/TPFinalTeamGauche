@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Admin;
 import com.sopra.TPFinal.model.Formateur;
@@ -122,6 +123,51 @@ public class UserRestController {
 	            HttpHeaders header = new HttpHeaders();
 	            header.setLocation(uCB.path("/rest/user/formateur/{id}").buildAndExpand(formateur.getId()).toUri());
 	            response = new ResponseEntity<Void>(HttpStatus.CREATED);
+	        }
+	        return response;
+	    }
+	   
+	    @PutMapping(path = {"/", ""})
+	    public ResponseEntity<User> update(@Valid @RequestBody User user, BindingResult br) {
+	        ResponseEntity<User> response = null;
+	        if(br.hasErrors() || user.getId() == null) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
+	        Optional<User> opt = userRepository.findById(user.getId());
+	        if(opt.isPresent()) {
+	        	User userEnBase = opt.get();
+	        	userEnBase.setAdresse(user.getAdresse());
+	        	userEnBase.setEnable(user.isEnable());
+	        	userEnBase.setId(user.getId());
+	        	userEnBase.setNom(user.getNom());
+	        	userEnBase.setPassword(user.getPassword());
+	        	userEnBase.setPrenom(user.getPrenom());
+	        	userEnBase.setRole(user.getRole());
+	        	userEnBase.setTel(user.getTel());
+	        	userEnBase.setUsername(user.getUsername());
+	            switch(userEnBase.getClass().getName()) {
+	            case "gestionnaire":
+	                ((Gestionnaire) userEnBase).setFormations(((Gestionnaire) user).getFormations());
+	                userRepository.save(userEnBase);
+	                response = new ResponseEntity<User>(userEnBase, HttpStatus.OK);
+	                break;
+	            case "formateur":
+	                ((Formateur) userEnBase).setExpertises(((Formateur)user).getExpertises());
+	                ((Formateur) userEnBase).setSessions(((Formateur)user).getSessions());  
+	                userRepository.save(userEnBase);
+	                response = new ResponseEntity<User>(userEnBase, HttpStatus.OK);
+	                break;
+	            case "stagiaire":
+	                ((Stagiaire) userEnBase).setOrdinateur(((Stagiaire)user).getOrdinateur());
+	                userRepository.save(userEnBase);
+	                response = new ResponseEntity<User>(userEnBase, HttpStatus.OK);
+	                break;
+	            default:
+	                response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	                break;
+	            }
+	        } else {
+	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        }
 	        return response;
 	    }
