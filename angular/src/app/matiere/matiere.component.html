@@ -1,3 +1,21 @@
-<p>
-  matiere works!
-</p>
+<h1>Liste des matières</h1>
+<table class="table">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Titre</th>
+    <th scope="col">Objectif</th>
+    <th scope="col">Niveau</th>
+  </tr>
+  <tr *ngFor="let matiere of matieres">
+    <td scope="rol">{{matiere.id}}</td>
+    <td scope="rol">{{matiere.titre}}</td>
+    <td scope="rol">{{matiere.objectif}}</td>
+    <td scope="rol">{{matiere.niveau}}</td>
+    <td><a href="" [routerLink]="['/matiere','edit',matiere.id]" routerLinkActive="active" class="btn btn-info">Edition</a>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="delete(matiere.id)">Supprimer</button>
+    </td>
+  </tr>
+</table>
+<a href="" [routerLink]="['/matiere','create']" class="btn btn-info">Ajouter</a>

@@ -1,3 +1,29 @@
-<p>
-  formation works!
-</p>
+<h1>Liste des formations</h1>
+<table class="table">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Date de début</th>
+    <th scope="col">Date de fin</th>
+    <th scope="col">Gestionnaire</th>
+    <th scope="col">Videoprojecteur</th>
+    <th scope="col">Salle</th>
+    <th scope="col">Stagiaires</th>
+    <th scope="col">Sessions</th>
+  </tr>
+  <tr *ngFor="let f of formation">
+    <td scope="rol">{{f.id}}</td>
+    <td scope="rol">{{f.dateDebut}}</td>
+    <td scope="rol">{{f.dateFin}}</td>
+    <td scope="rol">{{f.gestionnaire}}</td>
+    <th scope="col">{{f.videoProjecteur}}</th>
+    <th scope="col">{{f.salle}}</th>
+    <th scope="col"><a href="" [routerLink]="['/formation',f.stagiaires]" routerLinkActive="active" class="btn btn-info">Stagiaires</a></th>
+    <th scope="col"><a href="" [routerLink]="['/formation',f.sessions]" routerLinkActive="active" class="btn btn-info">Sessions</a></th>
+    <td><a href="" [routerLink]="['/formation','edit',f.id]" routerLinkActive="active" class="btn btn-info">Edition</a>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="delete(f.id)">Supprimer</button>
+    </td>
+  </tr>
+</table>
+<a href="" [routerLink]="['/formation','create']" class="btn btn-info">Ajouter</a>
