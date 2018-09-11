@@ -27,6 +27,9 @@ public class Matiere {
 	@JsonView(JsonViews.FormateurInMatiere.class)
 	@OneToMany(mappedBy = "key.matiere")
 	private Set<MatiereFormateur> formateurs;
+	@JsonView(JsonViews.SessionInMatiere.class)
+	@OneToMany(mappedBy = "key.matiere")
+	private Set<Session> sessions;
 
 	public Matiere() {
 	}
