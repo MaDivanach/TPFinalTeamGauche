@@ -1,24 +1,28 @@
 package com.sopra.TPFinal.model;
 
+import java.util.Set;
+
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name="videoProjecteur")
-//@SequenceGenerator(name = "seqVideoProjecteur", sequenceName = "seq_videoProjecteur", initialValue = 1, allocationSize = 1)
-
+@DiscriminatorValue("videoprojecteur")
 public class VideoProjecteur extends Materiel {
-	
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqVideoProjecteur")
-	
-	@Version
-	private int version;
-	
-	public VideoProjecteur(Long id, Double coutUtilisation) {
-		super(id, coutUtilisation);
-		// TODO Auto-generated constructor stub
+	@OneToMany(fetch = FetchType.LAZY)
+	private Set<Formation> formations;
+
+	public VideoProjecteur() {
+		super();
+	}
+
+	public Set<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(Set<Formation> formations) {
+		this.formations = formations;
 	}
 
 }
