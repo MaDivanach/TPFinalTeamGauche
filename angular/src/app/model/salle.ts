@@ -1,8 +1,11 @@
 import {Formation} from './Formation';
+import {Materiel} from './materiel';
 
-export class Salle {
+export class Salle extends Materiel {
 
-  constructor(private _capacite?: number, private _formationsSalle?: Formation[]){}
+  constructor(private _capacite?: number, private _formationsSalle?: Formation[]){
+    super();
+  }
 
 
   get formationsSalle(): Formation[] {

@@ -1,8 +1,10 @@
 import {Stagiaire} from './stagiaire';
+import {Materiel} from './materiel';
 
-export class Ordinateur {
+export class Ordinateur extends Materiel{
 
-  constructor(private _processeur?: string, private  _ram?: string, private _dd?: string, private _dateAchat?: Date, private _stagiaires?: Stagiaire[]){}
+  constructor(private _processeur?: string, private  _ram?: string, private _dd?: string, private _dateAchat?: Date, private _stagiaires?: Stagiaire[]){
+    super();}
 
 
   get stagiaires(): Stagiaire[] {

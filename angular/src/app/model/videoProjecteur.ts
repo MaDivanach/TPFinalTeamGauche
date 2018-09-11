@@ -1,8 +1,10 @@
 import {Formation} from './Formation';
+import {Materiel} from './materiel';
 
-export class VideoProjecteur {
+export class VideoProjecteur extends Materiel {
 
   constructor(private _formationsVideoProj?: Formation[]) {
+    super();
   }
 
   get formationsVideoProj(): Formation[] {
