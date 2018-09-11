@@ -7,29 +7,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.sopra.TPFinal.model.User;
 import com.sopra.TPFinal.repositories.UserRepository;
 import com.sopra.TPFinal.repositories.UserRoleRepositoy;
-import com.sopra.TPFinal.repositories.UsersRepository;
+
 
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 	
 	@Autowired
-	private UserRepository usersRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
 	private UserRoleRepositoy userRoleRepository;
 	
 	
 	public UserRepository getUsersRepository() {
-		return usersRepository;
+		return userRepository;
 	}
 
 
-	public void setUsersRepository(UserRepository usersRepository) {
-		this.usersRepository = usersRepository;
+	public void setUsersRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
 	}
 
 
@@ -45,7 +44,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<User> opt=usersRepository.findById(username);
+		Optional<User> opt=userRepository.findById(username);
 		if (opt.isPresent()) {
 			return new CustomUserDetails(opt.get(), userRoleRepository.findCustomRoleByUsername(username));
 		} else {
