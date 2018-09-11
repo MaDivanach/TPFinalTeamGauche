@@ -38,16 +38,16 @@ public class FormationRestController {
 		return new ResponseEntity<>(formationRepository.findAll(), HttpStatus.OK);
 	}
 
-	@JsonView(JsonViews.StagiaireInFormation.class)
-	@GetMapping(path = { "/stagiaireinformation" })
-	public ResponseEntity<Optional<Formation>> StagiaireInFormation(Long id) {
-		return new ResponseEntity<>(formationRepository.StagiaireInFormation(id), HttpStatus.OK);
-	}
-	@JsonView(JsonViews.SessionInFormation.class)
-	@GetMapping(path = { "/sessionInFormation" })
-	public ResponseEntity<Optional<Formation>> SessionInFormation(Long id) {
-		return new ResponseEntity<>(formationRepository.SessionInFormation(id), HttpStatus.OK);
-	}
+//	@JsonView(JsonViews.StagiaireInFormation.class)
+//	@GetMapping(path = { "/stagiaireinformation" })
+//	public ResponseEntity<Optional<Formation>> StagiaireInFormation(Long id) {
+//		return new ResponseEntity<>(formationRepository.StagiaireInFormation(id), HttpStatus.OK);
+//	}
+//	@JsonView(JsonViews.SessionInFormation.class)
+//	@GetMapping(path = { "/sessionInFormation" })
+//	public ResponseEntity<Optional<Formation>> SessionInFormation(Long id) {
+//		return new ResponseEntity<>(formationRepository.SessionInFormation(id), HttpStatus.OK);
+//	}
 	
 	@PostMapping(path = { "/", "" })
 	public ResponseEntity<Void> createFormation(@Valid @RequestBody Formation formation, BindingResult br,

@@ -1,7 +1,19 @@
-export class Ordinateur {
+import {Stagiaire} from './stagiaire';
+import {Materiel} from './materiel';
 
-  constructor(private _processeur?: string, private  _ram?: string, private _dd?: string, private _dateAchat?: Date){}
+export class Ordinateur extends Materiel{
 
+  constructor(private _processeur?: string, private  _ram?: string, private _dd?: string, private _dateAchat?: Date, private _stagiaires?: Stagiaire[]){
+    super();}
+
+
+  get stagiaires(): Stagiaire[] {
+    return this._stagiaires;
+  }
+
+  set stagiaires(value: Stagiaire[]) {
+    this._stagiaires = value;
+  }
 
   get processeur(): string {
     return this._processeur;
