@@ -13,12 +13,10 @@ import {MatiereComponent} from './matiere/matiere.component';
 import {SessionComponent} from './session/session.component';
 import {PlanningComponent} from './planning/planning.component';
 import {FormationComponent} from './planning/formation.component';
-import {FormateurService} from './service/formateur.service';
 import {FormationService} from './service/formation.service';
 import {MaterielService} from './service/materiel.service';
 import {SessionService} from './service/session.service';
 import {UserService} from './service/user.service';
-import { FormateurEditComponent } from './formateur/formateur-edit/formateur-edit.component';
 import { MaterielEditComponent } from './materiel/materiel-edit.component';
 import { MatiereEditComponent } from './matiere/matiere-edit.component';
 import { FormationEditComponent } from './planning/formation-edit.component';
@@ -34,7 +32,6 @@ import { SessionEditComponent } from './planning/session-edit.component';
     SessionComponent,
     PlanningComponent,
     FormationComponent,
-    FormateurEditComponent,
     MaterielEditComponent,
     MatiereEditComponent,
     FormationEditComponent,
@@ -48,7 +45,6 @@ import { SessionEditComponent } from './planning/session-edit.component';
     HttpClientModule
   ],
   providers: [
-    FormateurService,
     FormationService,
     MaterielService,
     SessionService,
