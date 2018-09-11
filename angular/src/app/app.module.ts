@@ -24,6 +24,7 @@ import {UserService} from './service/user.service';
 import {AuthentificationComponent} from './authentification/authentification.component';
 import {UserComponent} from './authentification/user.component';
 import {ExpertiseComponent} from './formateur/expertise.component';
+import { UserEditComponent } from './authentification/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {ExpertiseComponent} from './formateur/expertise.component';
     SessionEditComponent,
     AuthentificationComponent,
     UserComponent,
-    ExpertiseComponent
+    ExpertiseComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
