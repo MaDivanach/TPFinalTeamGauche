@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.view.JsonViews;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @SequenceGenerator(name = "seqUser", sequenceName = "seq_user", initialValue = 100, allocationSize = 1)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, length = 20, name = "type")
 public class User {
@@ -37,7 +37,7 @@ public class User {
 	@Column(name = "enable")
 	@JsonView(JsonViews.Common.class)
 	private boolean enable;
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	//@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	@Enumerated(EnumType.STRING)
 	@JsonView(JsonViews.Common.class)
 	private Role role;
