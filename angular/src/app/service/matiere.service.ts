@@ -8,7 +8,7 @@ import {Matiere} from '../model/matiere';
 })
 export class MatiereService {
 
-  url: string = 'http://localhost:4200/TPFinalTeamGauche';
+  url: string = 'http://localhost:4200/Projet';
   headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
