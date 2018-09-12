@@ -13,28 +13,33 @@ import {instantiateDefaultStyleNormalizer} from '@angular/platform-browser/anima
 })
 export class MaterielService {
 
-  url: string = 'http://localhost:8080/';
-  header: HttpHeaders;
+  url: string = 'http://localhost:8080/Projet';
+
+  // header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic ' + btoa('olivier:olivier')});
+    // this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic ' + btoa('olivier:olivier')});
   }
 
   public list(): Observable<Materiel[]> {
-    return this.http.get<Materiel[]>(`${this.url}/rest/materiel/`, {headers: this.header});
+    // return this.http.get<Materiel[]>(`${this.url}rest/materiel/`, {headers: this.header});
+    return this.http.get<Materiel[]>(`${this.url}rest/materiel/`);
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(`${this.url}/rest/materiel/${id}`, {headers: this.header});
+    // return this.http.delete(`${this.url}rest/materiel/${id}`, {headers: this.header});
+    return this.http.delete(`${this.url}rest/materiel/${id}`);
   }
 
   public findById(id: number): Observable<Materiel> {
-    return this.http.get<Materiel>(`${this.url}/rest/materiel/${id}`, {headers: this.header});
+    // return this.http.get<Materiel>(`${this.url}rest/materiel/${id}`, {headers: this.header});
+    return this.http.get<Materiel>(`${this.url}rest/materiel/${id}`);
   }
 
   public save(materiel: Materiel): Observable<any> {
     if (materiel.id) {
-      return this.http.put(`${this.url}/rest/materiel/`, materiel, {headers: this.header});
+      // return this.http.put(`${this.url}rest/materiel/`, materiel, {headers: this.header});
+      return this.http.put(`${this.url}rest/materiel/`, materiel);
     } else {
       /* return this.http.post(`${this.url}/rest/adherent/`, adherent);*/
       if (materiel instanceof Ordinateur) {
@@ -42,21 +47,21 @@ export class MaterielService {
           id: materiel.id, processeur: materiel.processeur, ram: materiel.ram, dd: materiel.dd, dateAchat: materiel.dateAchat
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/materiel/`, o);
+        return this.http.post(`${this.url}rest/materiel/`, o);
       }
       else if (materiel instanceof Salle) {
         const o = {
           id: materiel.id, capacite: materiel.capacite
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/materiel/`, o);
+        return this.http.post(`${this.url}rest/materiel/`, o);
       }
       else if (materiel instanceof VideoProjecteur) {
         const o = {
           id: materiel.id
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/materiel/`, o);
+        return this.http.post(`${this.url}rest/materiel/`, o);
       }
     }
   }
