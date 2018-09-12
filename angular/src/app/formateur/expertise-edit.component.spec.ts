@@ -1,21 +1,20 @@
-/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SessionComponent } from './session.component';
+import { ExpertiseEditComponent } from './expertise-edit.component';
 
-describe('SessionComponent', () => {
-  let component: SessionComponent;
-  let fixture: ComponentFixture<SessionComponent>;
+describe('ExpertiseEditComponent', () => {
+  let component: ExpertiseEditComponent;
+  let fixture: ComponentFixture<ExpertiseEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SessionComponent ]
+      declarations: [ ExpertiseEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SessionComponent);
+    fixture = TestBed.createComponent(ExpertiseEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -24,4 +23,3 @@ describe('SessionComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-*/

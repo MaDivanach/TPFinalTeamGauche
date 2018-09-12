@@ -5,12 +5,11 @@ export class Expertise {
     private _key?: ExpertisePK) {
   }
 
-  get key(): number {
+  get key(): ExpertisePK {
     return this._key;
   }
 
-  set key(value: number) {
+  set key(value: ExpertisePK) {
     this._key = value;
   }
-
 }

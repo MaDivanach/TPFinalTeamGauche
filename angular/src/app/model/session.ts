@@ -7,11 +7,11 @@ export class Session {
     private _dateFin?: Date) {
   }
 
-  get key(): number {
+  get key(): SessionPK {
     return this._key;
   }
 
-  set key(value: number) {
+  set key(value: SessionPK) {
     this._key = value;
   }
 
@@ -30,5 +30,4 @@ export class Session {
   set dateFin(value: Date) {
     this._dateFin = value;
   }
-
 }
