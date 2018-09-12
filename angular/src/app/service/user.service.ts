@@ -13,7 +13,7 @@ import {Stagiaire} from '../model/stagiaire';
 })
 export class UserService {
 
-  url: string = 'http://localhost:8080/demo';
+  url: string = 'http://localhost:8080/TPFinalTeamGauche';
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
