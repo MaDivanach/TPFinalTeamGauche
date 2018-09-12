@@ -17,17 +17,21 @@
       </div>
     <div class="form-group">
       <label for="gestionnaire">Gestionnaire de la formation</label>
-      <select id="gestionnaire" name="gestionnaire" [(ngModel)]="formation.gestionnaire" class="form-control" required>
+      <select id="gestionnaire" name="gestionnaire" [(ngModel)]="formation.gestionnaire" class="form-control" >
         <option *ngFor="let g of gestionnaires"></option>
       </select><br/>
     </div>
     <div class="form-group">
       <label for="videoProjecteur">Videoprojecteur attribué</label>
-      <input id="videoProjecteur" name="videoProjecteur" [(ngModel)]="formation.videoProjecteur" class="form-control" required/><br/>
+      <select id="videoProjecteur" name="videoProjecteur" [(ngModel)]="formation.videoProjecteur" class="form-control" >
+      <option *ngFor="let v of videoprojecteur"></option>
+      </select>
     </div>
     <div class="form-group">
       <label for="salle">Salle attribué</label>
-      <input id="salle" name="salle" [(ngModel)]="formation.salle" class="form-control" required/><br/>
+      <select id="salle" name="salle" [(ngModel)]="formation.salle" class="form-control" >
+        <option *ngFor="let s of salles"></option>
+      </select>
     </div>
   <div>
   <button type="submit" class="btn btn-success" [disabled]="formulaire.invalid">Enregistrer</button>
