@@ -33,6 +33,7 @@ export class FormationService {
 
   public save(formation: Formation): Observable<any> {
     if (formation.id) {
+      console.log(formation);
       return this.http.put(`${this.url}/rest/formation/`, formation, {headers: this.header});
     } else {
       const o = {
@@ -47,7 +48,7 @@ export class FormationService {
         sessions: formation.sessions
       };
       console.log(o);
-      return this.http.post(`${this.url}/rest/formation/`, o, {headers: this.header});
+      return this.http.post(`${this.url}/rest/formation/`, o);
     }
   }
 }

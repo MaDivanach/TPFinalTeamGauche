@@ -45,9 +45,9 @@ export class FormationEditComponent implements OnInit {
 
 
   public save() {
-    this.formationService.save(this.formation).subscribe(resp => {
-      this.router.navigate([`/formation`]);
-    });
-    this.formation = new Formation();
+      this.formationService.save(this.formation).subscribe(resp => {
+        this.router.navigate([`/formation`]);
+      });
+      this.formation = new Formation();
   }
 }
