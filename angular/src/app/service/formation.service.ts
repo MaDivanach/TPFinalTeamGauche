@@ -13,10 +13,7 @@ export class FormationService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.header = new HttpHeaders({
-      'Content-type': 'application/json',
-      'Authorization': 'Basic'
-    });
+    this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic'});
   }
 
   public list(): Observable<Formation[]> {
@@ -33,7 +30,6 @@ export class FormationService {
 
   public save(formation: Formation): Observable<any> {
     if (formation.id) {
-      console.log(formation);
       return this.http.put(`${this.url}/rest/formation/`, formation, {headers: this.header});
     } else {
       const o = {
