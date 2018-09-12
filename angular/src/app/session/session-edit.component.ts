@@ -1,3 +1,4 @@
+/*
 import {Component, OnInit} from '@angular/core';
 import {Session} from '../model/session';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -32,3 +33,4 @@ export class SessionEditComponent implements OnInit {
   }
 
 }
+*/

@@ -1,6 +1,21 @@
+import {Gestionnaire} from './gestionnaire';
+import {Stagiaire} from './stagiaire';
+import {Session} from './session';
+import {VideoProjecteur} from './videoProjecteur';
+import {Salle} from './salle';
+
 export class Formation {
 
-  constructor(private _id?: number, private _nom?: string, private _dateDebut?: Date, private _dateFin?: Date, private _gestionnaire?: Gestionnaire, private _videoProjecteur?: VideoProjecteur, private _salle?: Salle, private _stagiaires?: Set<Stagiaires>, private _sessions?: Set<Session>) {
+  constructor(
+    private _id?: number,
+    private _nom?: string,
+    private _dateDebut?: Date,
+    private _dateFin?: Date,
+    private _gestionnaire?: Gestionnaire,
+    private _videoProjecteur?: VideoProjecteur,
+    private _salle?: Salle,
+    private _stagiaires?: Set<Stagiaire>,
+    private _sessions?: Set<Session>) {
   }
 
   get id(): number {
@@ -59,11 +74,11 @@ export class Formation {
     this._salle = value;
   }
 
-  get stagiaires(): Set<Stagiaires> {
+  get stagiaires(): Set<Stagiaire> {
     return this._stagiaires;
   }
 
-  set stagiaires(value: Set<Stagiaires>) {
+  set stagiaires(value: Set<Stagiaire>) {
     this._stagiaires = value;
   }
 
