@@ -29,6 +29,10 @@ import com.sopra.TPFinal.model.Stagiaire;
 import com.sopra.TPFinal.model.Technicien;
 import com.sopra.TPFinal.model.User;
 import com.sopra.TPFinal.model.view.JsonViews;
+import com.sopra.TPFinal.repositories.FormateurRepository;
+import com.sopra.TPFinal.repositories.GestionnaireRepository;
+import com.sopra.TPFinal.repositories.StagiaireRepository;
+import com.sopra.TPFinal.repositories.TechnicienRepository;
 import com.sopra.TPFinal.repositories.UserRepository;
 
 @CrossOrigin(origins = { "*" })
@@ -38,6 +42,15 @@ public class UserRestController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private GestionnaireRepository gestionnaireRepository;
+	@Autowired
+	private TechnicienRepository technicienRepository;
+	@Autowired
+	private FormateurRepository formateurRepository;
+	@Autowired
+	private StagiaireRepository stagiaireRepository;
+	
 	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
@@ -46,6 +59,39 @@ public class UserRestController {
 		response= new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
 		return response;
 	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping(path = {"/gestionnaire/", "/gestionnaire"})
+	public ResponseEntity<List<Gestionnaire>> findAllG(){
+		ResponseEntity<List<Gestionnaire>> response = null;
+		response= new ResponseEntity<>(gestionnaireRepository.findAll(), HttpStatus.OK);
+		return response;
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping(path = {"/technicien/", "/technicien"})
+	public ResponseEntity<List<Technicien>> findAllT(){
+		ResponseEntity<List<Technicien>> response = null;
+		response= new ResponseEntity<>(technicienRepository.findAll(), HttpStatus.OK);
+		return response;
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping(path = {"/formateur/", "/formateur"})
+	public ResponseEntity<List<Formateur>> findAllF(){
+		ResponseEntity<List<Formateur>> response = null;
+		response= new ResponseEntity<>(formateurRepository.findAll(), HttpStatus.OK);
+		return response;
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping(path = {"/stagiaire/", "/stagiaire"})
+	public ResponseEntity<List<Stagiaire>> findAllS(){
+		ResponseEntity<List<Stagiaire>> response = null;
+		response= new ResponseEntity<>(stagiaireRepository.findAll(), HttpStatus.OK);
+		return response;
+	}
+	
 	
 	   @GetMapping(value = "/{id}")
 	    public ResponseEntity<User> findById(@PathVariable(name = "id") Integer id) {
