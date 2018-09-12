@@ -26,8 +26,8 @@ export class FormationEditComponent implements OnInit {
   }
 
   ngOnInit() {
-/*    this.ar.params.subscribe(params => {
-      /!*  console.log(params);*!/
+    this.ar.params.subscribe(params => {
+      /*  console.log(params);*/
       console.log(this.formation);
       if (params.id) {
         this.formationService.findById(params.id).subscribe(resp => {
@@ -43,13 +43,11 @@ export class FormationEditComponent implements OnInit {
     });
   }
 
-/*
+
   public save() {
     this.formationService.save(this.formation).subscribe(resp => {
       this.router.navigate([`/formation`]);
     });
     this.formation = new Formation();
   }
-*/
-
 }
