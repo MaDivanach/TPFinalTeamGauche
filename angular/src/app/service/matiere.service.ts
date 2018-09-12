@@ -2,24 +2,27 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Matiere} from '../model/matiere';
+import {Materiel} from '../model/materiel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MatiereService {
 
-  url: string = 'http://localhost:4200/Projet';
-  headers: HttpHeaders;
+  url: string = 'http://localhost:8080/Projet';
+
+  /*headers: HttpHeaders;*/
 
   constructor(private http: HttpClient) {
   }
 
+
   public list(): Observable<Matiere[]> {
-    return this.http.get<Matiere[]>('${this.url}/rest/matiere/');
+    return this.http.get<Matiere[]>(`${this.url}/rest/matiere/`);
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete('${this.url}/rest/matiere/${id}');
+    return this.http.delete(`${this.url}/rest/matiere/${id}`);
   }
 
   public findById(id: number): Observable<Matiere> {
