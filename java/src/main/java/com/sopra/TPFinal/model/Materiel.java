@@ -10,13 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
-
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.view.JsonViews;
 
 @Entity
@@ -28,7 +26,6 @@ import com.sopra.TPFinal.model.view.JsonViews;
 public abstract class Materiel {
 
 	@Id
-	@JsonView(JsonViews.Common.class)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMateriel")
 	@JsonView(JsonViews.Common.class)
 	@Column(name = "id")

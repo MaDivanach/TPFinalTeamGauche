@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
 import {FormsModule} from '@angular/forms';
@@ -27,7 +26,7 @@ import {ExpertiseComponent} from './formateur/expertise.component';
 import {UserEditComponent} from './authentification/user-edit.component';
 import {ExpertiseEditComponent} from './formateur/expertise-edit.component';
 import { LoginComponent } from './login/login.component';
-import { LoginEditComponent } from './login/login-edit.component';
+import {AuthService} from './service/auth.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +48,6 @@ import { LoginEditComponent } from './login/login-edit.component';
     UserEditComponent,
     ExpertiseEditComponent,
     LoginComponent,
-    LoginEditComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +60,8 @@ import { LoginEditComponent } from './login/login-edit.component';
     FormationService,
     MaterielService,
     SessionService,
-    UserService
+    UserService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
