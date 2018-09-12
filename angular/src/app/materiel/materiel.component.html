@@ -18,13 +18,13 @@
     <td scope="rol">{{materiel.coutUtilisation}}</td>
     <td scope="rol">{{materiel.type}}</td>
     <td scope="rol"><span *ngIf="materiel.type == 'ordinateur'">{{materiel.processeur}}</span></td>
-    <td scope="rol" *ngIf="materiel.type == 'ordinateur'">{{materiel.ram}}</td>
-    <!--<td scope="rol" *ngIf="materiel.type == 'ordinateur'">{{materiel.dd}}</td>-->
-    <td scope="rol" *ngIf="materiel.type == 'ordinateur'">{{materiel.dateAchat}}</td>
-    <td scope="rol" *ngIf="materiel.type == 'ordinateur'">{{materiel.stagiaires}}</td>
-    <td scope="rol" *ngIf="materiel.type == 'salle'">{{materiel.capacite}}</td>
-    <td scope="rol" *ngIf="materiel.type == 'salle'">{{materiel.formationsSalle}}</td>
-    <td scope="rol" *ngIf="materiel.type == 'videoprojecteur'">{{materiel.formationsVideoProj}}</td>
+    <td scope="rol"><span *ngIf="materiel.type == 'ordinateur'">{{materiel.ram}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type == 'ordinateur'">{{materiel.dd}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type == 'ordinateur'">{{materiel.dateAchat}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type == 'ordinateur'">{{materiel.stagiaires}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type == 'salle'">{{materiel.capacite}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type == 'salle'">{{materiel.formationsSalle}}</span></td>
+   <!-- <td scope="rol" *ngIf="materiel.type == 'videoprojecteur'">{{materiel.formationsVideoProj}}</td>-->
 
     <td *ngIf="materiel.type == 'ordinateur'"><a href="" [routerLink]="['/materiel', 'ordinateur','edit',materiel.id]"
                                                  routerLinkActive="active" class="btn btn-info">edition</a></td>

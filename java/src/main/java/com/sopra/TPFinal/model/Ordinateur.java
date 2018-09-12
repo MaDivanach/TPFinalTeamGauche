@@ -9,15 +9,22 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.view.JsonViews;
+
 @Entity
 @DiscriminatorValue("ordinateur")
 public class Ordinateur extends Materiel {
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "processeur")
 	private String processeur;
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "ram")
 	public String ram;
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "dd")
 	public String dd;
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "dateAchat")
 	private Date dateAchat;
 	@OneToMany(mappedBy = "ordinateur", fetch = FetchType.LAZY)
