@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Matiere} from '../model/matiere';
 import {MatiereService} from '../service/matiere.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Niveau} from '../model/niveau.enum';
 
 @Component({
   selector: 'app-matiere-edit',
@@ -11,6 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class MatiereEditComponent implements OnInit {
 
   matiere: Matiere = new Matiere();
+  niveaux: Niveau[] = [Niveau.Debutant, Niveau.Intermediaire, Niveau.Avance, Niveau.Expert];
 
   constructor(
     private matiereService: MatiereService,
