@@ -9,11 +9,10 @@ import {Session} from '../model/session';
 export class SessionService {
 
   url: string = 'http://localhost:8080/Projet';
-
   headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic '});
+    this.headers = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic'});
   }
 
   public list(): Observable<Session[]> {
