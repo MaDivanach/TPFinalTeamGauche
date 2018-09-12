@@ -89,6 +89,7 @@ public class FormationRestController {
 		if (opt.isPresent()) {
 			// update possible
 			Formation formationEnBase = opt.get();
+			formationEnBase.setNom(formation.getNom());
 			formationEnBase.setDateDebut(formation.getDateDebut());
 			formationEnBase.setDateFin(formation.getDateFin());
 			formationEnBase.setGestionnaire(formation.getGestionnaire());
@@ -99,7 +100,7 @@ public class FormationRestController {
 			return new ResponseEntity<Formation>(formationEnBase, HttpStatus.OK);
 		} else {
 			// pas de formation
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 
 	}

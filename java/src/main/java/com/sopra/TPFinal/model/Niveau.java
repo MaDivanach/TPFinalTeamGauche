@@ -1,7 +1,7 @@
 package com.sopra.TPFinal.model;
 
 public enum Niveau {
-	DEBUTANT(1), INTERMEDIAIRE(2), AVANCE(3), EXPERT(4);
+	DEBUTANT(0), INTERMEDIAIRE(1), AVANCE(2), EXPERT(3);
 
 	private Integer niveau;
 

@@ -1,6 +1,6 @@
-import {Component, OnInit} from "@angular/core";
-import {FormationService} from "../service/formation.service";
-import {Formation} from "../model/formation";
+import {Component, OnInit} from '@angular/core';
+import {FormationService} from '../service/formation.service';
+import {Formation} from '../model/formation';
 
 @Component({
   selector: 'app-formation',
@@ -14,11 +14,9 @@ export class FormationComponent implements OnInit {
   }
 
   ngOnInit() {
-/*
     this.list();
-*/
   }
-/*
+
   public list() {
     this.formationService.list().subscribe(resp => {
       this.formation = resp;
@@ -29,5 +27,5 @@ export class FormationComponent implements OnInit {
     return this.formationService.delete(id).subscribe(resp => {
       this.list();
     });
-  }*/
+  }
 }
