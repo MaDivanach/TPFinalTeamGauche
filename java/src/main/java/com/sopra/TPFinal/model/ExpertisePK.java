@@ -6,13 +6,18 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.view.JsonViews;
+
 @Embeddable
 public class ExpertisePK implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "formateur")
+	@JsonView(JsonViews.Common.class)
 	private Formateur formateur;
 	@ManyToOne
 	@JoinColumn(name = "matiere")
+	
 	private Matiere matiere;
 
 	public ExpertisePK() {

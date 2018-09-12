@@ -10,12 +10,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.view.JsonViews;
+
 @Entity
 @Table(name="user_roles")
 public class UserRole {
 	@Id
+	@JsonView(JsonViews.Common.class)
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
+	@JsonView(JsonViews.Common.class)
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	@ManyToOne
