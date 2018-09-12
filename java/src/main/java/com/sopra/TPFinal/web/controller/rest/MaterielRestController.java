@@ -29,7 +29,6 @@ import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.MaterielRepository;
 
 @CrossOrigin(origins = { "*" })
-
 @RequestMapping("/rest/materiel")
 @RestController
 public class MaterielRestController {

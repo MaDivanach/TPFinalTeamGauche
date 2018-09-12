@@ -1,6 +1,7 @@
 package com.sopra.TPFinal.model;
 
 import javax.persistence.Column;
+
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -11,10 +12,17 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+
 @Entity
 @Table(name = "materiel")
 @SequenceGenerator(name = "seqMateriel", sequenceName = "seq_materiel", initialValue = 100, allocationSize = 1)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, length = 20, name = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "type")
+@JsonSubTypes({ @Type(value = Ordinateur.class, name = "ordinateur"), @Type(value = Salle.class, name = "salle"), @Type(value = VideoProjecteur.class, name = "videoprojecteur") })
 public abstract class Materiel {
 
 	@Id
