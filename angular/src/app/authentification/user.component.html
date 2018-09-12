@@ -1,5 +1,18 @@
-<!--
-<h1>Liste des users</h1>
+<h1>Ajouter User</h1>
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Ajouter User
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item"  href="#" [routerLink]="['/client','create','gestionnaire']"> ajouter un gestionnaire</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/materiel','create','technicien']">ajouter un technicien</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/materiel','create','admin']">ajouter un admin</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/materiel','create','stagiaire']">ajouter un stagiaire</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/materiel','create','formateur']">ajouter un formateur</a>
+  </div>
+</div>
+
+<h1>Liste des Users</h1>
 <table class="table">
   <tr>
     <th scope="col">ID</th>
@@ -9,6 +22,8 @@
     <th scope="col">Password</th>
     <th scope="col">telephone</th>
     <th scope="col">Role</th>
+    <th scope="col">Editer</th>
+    <th scope="col">Supprimer</th>
   </tr>
   <tr *ngFor="let u of user">
     <td scope="rol">{{u.id}}</td>
@@ -27,8 +42,3 @@
     </td>
   </tr>
 </table>
-<a href="" [routerLink]="['/materiel','create', 'ordinateur']" class="btn btn-info">ajouter Ordinateur</a>
-<a href="" [routerLink]="['/materiel','create','salle']" class="btn btn-info">ajouter Salle</a>
-<a href="" [routerLink]="['/materiel','create','videoProjecteur']" class="btn btn-info">ajouter Salle</a>
-
--->
