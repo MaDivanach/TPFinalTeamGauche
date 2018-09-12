@@ -13,10 +13,12 @@ export class MatiereComponent implements OnInit {
   constructor(private matiereService: MatiereService) { }
 
   ngOnInit() {
+/*
     this.list();
+*/
   }
 
-  public list(){
+/*  public list(){
     this.matiereService.list().subscribe(resp =>{
       this.matieres = resp;
     });
@@ -26,6 +28,6 @@ export class MatiereComponent implements OnInit {
     this.matiereService.delete(id).subscribe(resp =>{
       this.list();
     });
-  }
+  }*/
 
 }

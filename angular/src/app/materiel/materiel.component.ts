@@ -17,10 +17,12 @@ export class MaterielComponent implements OnInit {
 
 
   ngOnInit() {
+/*
     this.list();
+*/
   }
 
-  public list() {
+/*  public list() {
     this.materielService.list().subscribe(resp => {
       this.materiels = resp;
     }, error => console.log(error));
@@ -31,5 +33,5 @@ export class MaterielComponent implements OnInit {
         this.list();
       }
     );
-  }
+  }*/
 }
