@@ -33,12 +33,11 @@ export class ExpertiseService {
       return this.http.put(`${this.url}/rest/expertise/`, expertise);
     } else {
       const o = {
-        dateDebut: session.dateDebut,
-        dateFin: session.dateFin,
+        key: expertise.key
       };
       console.log(o);
       return this.http.post(`${this.url}/rest/expertise`, o);
     }
   }
-  
+
 }

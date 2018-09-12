@@ -32,6 +32,7 @@ export class SessionService {
       return this.http.put(`${this.url}/rest/session/`, session);
     } else {
       const o = {
+        key: session.key,
         dateDebut: session.dateDebut,
         dateFin: session.dateFin,
       };
