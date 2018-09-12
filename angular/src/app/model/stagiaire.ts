@@ -1,7 +1,7 @@
 import {User} from './user';
 import {Role} from './role.enum';
-import {Ordinateur} from '../materiel/ordinateur';
 import {Formation} from './formation';
+import {Ordinateur} from './ordinateur';
 
 export class Stagiaire extends User {
 
