@@ -14,45 +14,38 @@ import {Stagiaire} from '../model/stagiaire';
 export class UserService {
 
   url: string = 'http://localhost:8080/Projet';
-  /*header: HttpHeaders;*/
+  header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    /*this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic ' + btoa('olivier:olivier')});*/
+    this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic '});
   }
 
   public list(): Observable<User[]> {
-   //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
-    return this.http.get<User[]>(`${this.url}/rest/user/`);
+    return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
   }
 
   public listG(): Observable<Gestionnaire[]> {
-    //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
-    return this.http.get<Gestionnaire[]>(`${this.url}/rest/gestionnaire/`);
+    return this.http.get<Gestionnaire[]>(`${this.url}/rest/gestionnaire/`, {headers: this.header});
   }
 
   public ListT(): Observable<Technicien[]> {
-    //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
-    return this.http.get<Technicien[]>(`${this.url}/rest/technicien/`);
+    return this.http.get<Technicien[]>(`${this.url}/rest/technicien/`, {headers: this.header});
   }
 
   public listF(): Observable<Formateur[]> {
-    //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
-    return this.http.get<Formateur[]>(`${this.url}/rest/formateur/`);
+    return this.http.get<Formateur[]>(`${this.url}/rest/formateur/`, {headers: this.header});
   }
 
   public listS(): Observable<Stagiaire[]> {
-    //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
-    return this.http.get<Stagiaire[]>(`${this.url}/rest/stagiaire/`);
+    return this.http.get<Stagiaire[]>(`${this.url}/rest/stagiaire/`, {headers: this.header});
   }
 
   public delete(id: number): Observable<any> {
-    // return this.http.delete(`${this.url}/rest/user/${id}`, {headers: this.header});
-    return this.http.delete(`${this.url}/rest/user/${id}`);
+    return this.http.delete(`${this.url}/rest/user/${id}`, {headers: this.header});
   }
 
   public findById(id: number): Observable<User> {
-    // return this.http.get<User>(`${this.url}/rest/user/${id}`, {headers: this.header});
-    return this.http.get<User>(`${this.url}/rest/user/${id}`);
+    return this.http.get<User>(`${this.url}/rest/user/${id}`, {headers: this.header});
   }
 
   public save(user: User): Observable<any> {
@@ -73,7 +66,7 @@ export class UserService {
           formations: user.formations
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/user/`, o);
+        return this.http.post(`${this.url}/rest/gestionnaire/`, o);
       } else if (user instanceof Technicien) {
         const o = {
           id: user.id,
@@ -85,7 +78,7 @@ export class UserService {
           role: user.role
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/user/`, o);
+        return this.http.post(`${this.url}/rest/technicien/`, o);
       } else if (user instanceof Admin) {
         const o = {
           id: user.id,
@@ -97,7 +90,7 @@ export class UserService {
           role: user.role
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/user/`, o);
+        return this.http.post(`${this.url}/rest/admin/`, o);
       } else if (user instanceof Formateur) {
         const o = {
           id: user.id,
@@ -112,7 +105,7 @@ export class UserService {
 
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/user/`, o);
+        return this.http.post(`${this.url}/rest/formateur/`, o);
       } else if (user instanceof Stagiaire) {
         const o = {
           id: user.id,
@@ -126,7 +119,7 @@ export class UserService {
           formation: user.formation
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/user/`, o);
+        return this.http.post(`${this.url}/rest/stagiaire/`, o);
 
       }
 

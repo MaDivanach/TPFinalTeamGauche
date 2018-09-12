@@ -15,7 +15,7 @@ export class FormationService {
   constructor(private http: HttpClient) {
     this.header = new HttpHeaders({
       'Content-type': 'application/json',
-      'Authorization': 'Basic' + btoa('admin:admin')
+      'Authorization': 'Basic'
     });
   }
 

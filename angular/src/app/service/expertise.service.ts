@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Expertise} from '../model/expertise';
 import {Observable} from 'rxjs';
-import {Session} from '../model/session';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +9,10 @@ import {Session} from '../model/session';
 export class ExpertiseService {
 
   url: string = 'http://localhost:8080/Projet';
-
   headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic '});
+    this.headers = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic'});
   }
 
   public list(): Observable<Expertise[]> {
