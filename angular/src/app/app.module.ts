@@ -24,7 +24,8 @@ import {UserService} from './service/user.service';
 import {AuthentificationComponent} from './authentification/authentification.component';
 import {UserComponent} from './authentification/user.component';
 import {ExpertiseComponent} from './formateur/expertise.component';
-import { UserEditComponent } from './authentification/user-edit.component';
+import {UserEditComponent} from './authentification/user-edit.component';
+import {ExpertiseEditComponent} from './formateur/expertise-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { UserEditComponent } from './authentification/user-edit.component';
     AuthentificationComponent,
     UserComponent,
     ExpertiseComponent,
-    UserEditComponent
+    UserEditComponent,
+    ExpertiseEditComponent
   ],
   imports: [
     BrowserModule,
