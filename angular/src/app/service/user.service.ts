@@ -45,7 +45,8 @@ export class UserService {
           username: user.username,
           password: user.password,
           telephone: user.telephone,
-          role: user.role
+          role: user.role,
+          formations: user.formations
         };
         console.log(o);
         return this.http.post(`${this.url}/rest/user/`, o);
