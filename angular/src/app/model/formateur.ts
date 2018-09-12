@@ -6,7 +6,7 @@ import {Expertise} from './expertise';
 export class Formateur extends User {
 
 
-  constructor(private _sessions: Session[], private _expertises: Expertise[]) {
+  constructor(private _sessions?: Session[], private _expertises?: Expertise[]) {
     super();
     this.role = Role.FORMATEUR;
   }

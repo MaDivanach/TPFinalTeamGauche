@@ -1,9 +1,19 @@
 import {Role} from './role.enum';
+import {Adresse} from './adresse';
 
 export class User {
-  constructor(private _nom?: string, private _prenom?: string, private _username?: string, private _password?: string, private _telephone?: string, private _role?: Role, private _id?: number) {
+  constructor(
+    private _id?: number,
+    private _username?: string,
+    private _password?: string,
+    private _enable?: boolean,
+    private _role?: Role,
+    private _nom?: string,
+    private _prenom?: string,
+    private _telephone?: string,
+    private _adresse?: Adresse
+  ) {
   }
-
 
   get nom(): string {
     return this._nom;
@@ -59,5 +69,21 @@ export class User {
 
   set id(value: number) {
     this._id = value;
+  }
+
+  get enable(): boolean {
+    return this._enable;
+  }
+
+  set enable(value: boolean) {
+    this._enable = value;
+  }
+
+  get adresse(): Adresse {
+    return this._adresse;
+  }
+
+  set adresse(value: Adresse) {
+    this._adresse = value;
   }
 }

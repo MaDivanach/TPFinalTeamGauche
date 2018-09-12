@@ -22,8 +22,6 @@ export class UserEditComponent implements OnInit {
 
   ngOnInit() {
     this.ar.params.subscribe(params => {
-      /*  console.log(params);*/
-      console.log(this.user);
       if (params.type === 'gestionnaire') {
         this.user = new Gestionnaire();
       } else if (params.type === 'admin') {
@@ -32,9 +30,11 @@ export class UserEditComponent implements OnInit {
         this.user = new Technicien();
       } else if (params.type === 'stagiaire') {
         this.user = new Stagiaire();
-      } /*else if (params.type === 'formateur') {
-             this.user = new Formateur();
-           }*/
+      } else if (params.type === 'formateur') {
+        this.user = new Formateur();
+      } else {
+        this.user = null;
+      }
       if (params.id) {
         this.userService.findById(params.id).subscribe(resp => {
           this.user = resp;

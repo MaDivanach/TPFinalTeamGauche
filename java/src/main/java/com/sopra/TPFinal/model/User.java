@@ -26,7 +26,13 @@ import com.sopra.TPFinal.model.view.JsonViews;
 @SequenceGenerator(name = "seqUser", sequenceName = "seq_user", initialValue = 100, allocationSize = 1)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, length = 20, name = "type")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "type")
-@JsonSubTypes({ @Type(value = Admin.class, name = "admin"), @Type(value = Gestionnaire.class, name = "gestionnaire"), @Type(value = Stagiaire.class, name = "stagiaire"), @Type(value = Technicien.class, name = "technicien"), @Type(value = Formateur.class, name = "formateur") })
+@JsonSubTypes({ 
+	@Type(value = Admin.class, name = "admin"),
+	@Type(value = Gestionnaire.class, name = "gestionnaire"),
+	@Type(value = Stagiaire.class, name = "stagiaire"),
+	@Type(value = Technicien.class, name = "technicien"),
+	@Type(value = Formateur.class, name = "formateur")
+	})
 public class User {
 	@Id
 	@GeneratedValue(generator = "seqUser", strategy = GenerationType.IDENTITY)
@@ -39,22 +45,21 @@ public class User {
 	@Column(name = "password")
 	@JsonView(JsonViews.Common.class)
 	private String password;
-	@Column(name = "enable")
-	@JsonView(JsonViews.Common.class)
-	private boolean enable;
-	// @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+//	@Column(name = "enable")
+//	@JsonView(JsonViews.Common.class)
+//	private boolean enable;
 	@Enumerated(EnumType.STRING)
 	@JsonView(JsonViews.Common.class)
 	private Role role;
-	@Column(name = "name")
+	@Column(name = "nom")
 	@JsonView(JsonViews.Common.class)
 	private String nom;
-	@Column(name = "firstname")
+	@Column(name = "prenom")
 	@JsonView(JsonViews.Common.class)
 	private String prenom;
-	@Column(name = "telephonenumber")
+	@Column(name = "telephone")
 	@JsonView(JsonViews.Common.class)
-	private String tel;
+	private String telephone;
 	@Version
 	private int version;
 	@Embedded
@@ -114,13 +119,13 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isEnable() {
-		return enable;
-	}
-
-	public void setEnable(boolean enable) {
-		this.enable = enable;
-	}
+//	public boolean isEnable() {
+//		return enable;
+//	}
+//
+//	public void setEnable(boolean enable) {
+//		this.enable = enable;
+//	}
 
 	public Role getRole() {
 		return role;
@@ -147,11 +152,11 @@ public class User {
 	}
 
 	public String getTel() {
-		return tel;
+		return telephone;
 	}
 
 	public void setTel(String tel) {
-		this.tel = tel;
+		this.telephone = tel;
 	}
 
 	public Adresse getAdresse() {

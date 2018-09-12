@@ -50,10 +50,8 @@ export class UserService {
 
   public save(user: User): Observable<any> {
     if (user.id) {
-      // return this.http.put(`${this.url}/rest/user/`, user, {headers: this.header});
-      return this.http.put(`${this.url}/rest/user/`, user);
+      return this.http.put(`${this.url}/rest/user/`, user, {headers: this.header});
     } else {
-      /* return this.http.post(`${this.url}/rest/adherent/`, adherent);*/
       if (user instanceof Gestionnaire) {
         const o = {
           id: user.id,
@@ -66,7 +64,7 @@ export class UserService {
           formations: user.formations
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/gestionnaire/`, o);
+        return this.http.post(`${this.url}/rest/gestionnaire/`, o, {headers: this.header});
       } else if (user instanceof Technicien) {
         const o = {
           id: user.id,
@@ -78,7 +76,7 @@ export class UserService {
           role: user.role
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/technicien/`, o);
+        return this.http.post(`${this.url}/rest/technicien/`, o, {headers: this.header});
       } else if (user instanceof Admin) {
         const o = {
           id: user.id,
@@ -90,7 +88,7 @@ export class UserService {
           role: user.role
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/admin/`, o);
+        return this.http.post(`${this.url}/rest/admin/`, o, {headers: this.header});
       } else if (user instanceof Formateur) {
         const o = {
           id: user.id,
@@ -105,7 +103,7 @@ export class UserService {
 
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/formateur/`, o);
+        return this.http.post(`${this.url}/rest/formateur/`, o, {headers: this.header});
       } else if (user instanceof Stagiaire) {
         const o = {
           id: user.id,
@@ -119,10 +117,8 @@ export class UserService {
           formation: user.formation
         };
         console.log(o);
-        return this.http.post(`${this.url}/rest/stagiaire/`, o);
-
+        return this.http.post(`${this.url}/rest/stagiaire/`, o, {headers: this.header});
       }
-
     }
   }
 }
