@@ -13,28 +13,32 @@ import {Stagiaire} from '../model/stagiaire';
 })
 export class UserService {
 
-  url: string = 'http://localhost:8080/TPFinalTeamGauche';
-  header: HttpHeaders;
+  url: string = 'http://localhost:8080/Projet';
+  /*header: HttpHeaders;*/
 
   constructor(private http: HttpClient) {
-    this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic ' + btoa('olivier:olivier')});
+    /*this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic ' + btoa('olivier:olivier')});*/
   }
 
   public list(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
+   //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
+    return this.http.get<User[]>(`${this.url}/rest/user/`);
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(`${this.url}/rest/user/${id}`, {headers: this.header});
+    // return this.http.delete(`${this.url}/rest/user/${id}`, {headers: this.header});
+    return this.http.delete(`${this.url}/rest/user/${id}`);
   }
 
   public findById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.url}/rest/user/${id}`, {headers: this.header});
+    // return this.http.get<User>(`${this.url}/rest/user/${id}`, {headers: this.header});
+    return this.http.get<User>(`${this.url}/rest/user/${id}`);
   }
 
   public save(user: User): Observable<any> {
     if (user.id) {
-      return this.http.put(`${this.url}/rest/user/`, user, {headers: this.header});
+      // return this.http.put(`${this.url}/rest/user/`, user, {headers: this.header});
+      return this.http.put(`${this.url}/rest/user/`, user);
     } else {
       /* return this.http.post(`${this.url}/rest/adherent/`, adherent);*/
       if (user instanceof Gestionnaire) {
