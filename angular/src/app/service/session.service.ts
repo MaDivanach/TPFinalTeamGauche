@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Session} from '../model/session';
@@ -8,18 +8,19 @@ import {Session} from '../model/session';
 })
 export class SessionService {
 
-  url: string = 'http://localhost:4200/Projet';
-  headers: HttpHeaders;
+  url: string = 'http://localhost:8080/Projet';
+
+  /*headers: HttpHeaders; */
 
   constructor(private http: HttpClient) {
   }
 
   public list(): Observable<Session[]> {
-    return this.http.get<Session[]>('${this.url}/rest/session/');
+    return this.http.get<Session[]>(`${this.url}/rest/session/`);
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete('${this.url}/rest/session/${id}');
+    return this.http.delete(`${this.url}/rest/session/${id}`);
   }
 
   public findById(id: number): Observable<Session> {
@@ -31,6 +32,7 @@ export class SessionService {
       return this.http.put(`${this.url}/rest/session/`, session);
     } else {
       const o = {
+        key: session.key,
         dateDebut: session.dateDebut,
         dateFin: session.dateFin,
       };
