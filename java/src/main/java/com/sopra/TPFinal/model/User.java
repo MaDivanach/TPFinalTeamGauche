@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import org.hibernate.validator.constraints.UniqueElements;
 
@@ -50,6 +51,8 @@ public class User {
 	@Column(name = "telephonenumber")
 	@JsonView(JsonViews.Common.class)
 	private String tel;
+	@Version
+	private int version;
 	@Embedded
 	@JsonView(JsonViews.UserWithAdresse.class)
 	private Adresse adresse;
