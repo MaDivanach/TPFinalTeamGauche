@@ -11,27 +11,28 @@ export class MatiereService {
 
   url: string = 'http://localhost:8080/Projet';
 
-  /*headers: HttpHeaders;*/
+  header: HttpHeaders;
 
   constructor(private http: HttpClient) {
+    this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic '});
   }
 
 
   public list(): Observable<Matiere[]> {
-    return this.http.get<Matiere[]>(`${this.url}/rest/matiere/`);
+    return this.http.get<Matiere[]>(`${this.url}/rest/matiere/`, {headers: this.header});
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(`${this.url}/rest/matiere/${id}`);
+    return this.http.delete(`${this.url}/rest/matiere/${id}`, {headers: this.header});
   }
 
   public findById(id: number): Observable<Matiere> {
-    return this.http.get<Matiere>(`${this.url}/rest/matiere/${id}`);
+    return this.http.get<Matiere>(`${this.url}/rest/matiere/${id}`, {headers: this.header});
   }
 
   public save(matiere: Matiere): Observable<any> {
     if (matiere.id) {
-      return this.http.put(`${this.url}/rest/matiere/`, matiere);
+      return this.http.put(`${this.url}/rest/matiere/`, matiere, {headers: this.header});
     } else {
       const o = {
         id: matiere.id,
@@ -40,7 +41,7 @@ export class MatiereService {
         niveau: matiere.niveau,
       };
       console.log(o);
-      return this.http.post(`${this.url}/rest/matiere`, o);
+      return this.http.post(`${this.url}/rest/matiere`, o, {headers: this.header});
     }
   }
 
