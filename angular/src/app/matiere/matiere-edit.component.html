@@ -31,12 +31,12 @@
     </div>
     <div class="form-group">
       <label for="niveau">Niveau :</label>
-      <select class="form-control" id="niveau" name="niveau" [(ngModel)]="matiere.niveau">
-        <option></option>
-        <option>Débutant</option>
-        <option>Intermédiaire</option>
-        <option>Avancé</option>
-        <option>Expert</option>
+      <select id="niveau" name="niveau" [(ngModel)]="matiere.niveau">
+        <option value="">--- Choisissez un niveau ---</option>
+        <option value="{{Niveau.Debutant}}">Débutant</option>
+        <option value="{{Niveau.Intermediaire}}">Intermédiaire</option>
+        <option value="{{Niveau.Expert}}">Avancé</option>
+        <option value="{{Niveau.Avance}}">Expert</option>
       </select>
     </div>
   </div>

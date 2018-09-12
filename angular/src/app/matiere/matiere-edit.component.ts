@@ -11,10 +11,6 @@ import {Niveau} from '../model/niveau.enum';
 })
 export class MatiereEditComponent implements OnInit {
 
-  debutant: Niveau = Niveau.Debutant;
-  intermediaire: Niveau = Niveau.Intermediaire;
-  avance: Niveau = Niveau.Avance;
-  expert: Niveau = Niveau.Expert;
   matiere: Matiere = new Matiere();
 
   constructor(
