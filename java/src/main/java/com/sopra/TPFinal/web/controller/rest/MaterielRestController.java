@@ -27,6 +27,9 @@ import com.sopra.TPFinal.model.Salle;
 import com.sopra.TPFinal.model.VideoProjecteur;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.MaterielRepository;
+import com.sopra.TPFinal.repositories.OrdinateurRepository;
+import com.sopra.TPFinal.repositories.SalleRepository;
+import com.sopra.TPFinal.repositories.VideoProjecteurRepository;
 
 @CrossOrigin(origins = { "*" })
 @RequestMapping("/rest/materiel")
@@ -35,11 +38,35 @@ public class MaterielRestController {
 	
 	@Autowired
 	private MaterielRepository materielRepository;
+	@Autowired
+	private OrdinateurRepository ordinateurRepository;
+	@Autowired
+	private SalleRepository salleRepository;
+	@Autowired
+	private VideoProjecteurRepository videoProjecteurRepository;
 	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
 	public ResponseEntity<List<Materiel>> findAll(){
 		return new ResponseEntity<>(materielRepository.findAll(), HttpStatus.OK);
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping(path = { "/ordinateur/", "/ordinateur" })
+	public ResponseEntity<List<Ordinateur>> findAllOrdinateurs(){
+		return new ResponseEntity<>(ordinateurRepository.findAll(), HttpStatus.OK);
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping(path = { "/salle/", "/salle" })
+	public ResponseEntity<List<Salle>> findAllSalles(){
+		return new ResponseEntity<>(salleRepository.findAll(), HttpStatus.OK);
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping(path = { "/videoprojecteur/", "/videoprojecteur" })
+	public ResponseEntity<List<VideoProjecteur>> findAllVideoProjecteurs(){
+		return new ResponseEntity<>(videoProjecteurRepository.findAll(), HttpStatus.OK);
 	}
 	
 	@PostMapping(path = {"/ordinateur/", "/ordinateur"})
