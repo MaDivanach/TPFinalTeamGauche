@@ -24,15 +24,19 @@ public class Matiere {
 	@Id
 	@Column(name = "id_matiere")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMatiere")
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@Version
 	private int version;
 	@Column(name = "titre", length = 50)
+	@JsonView(JsonViews.Common.class)
 	private String titre;
 	@Column(name = "objectif", length = 1000)
+	@JsonView(JsonViews.Common.class)
 	private String objectif;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "prerequis_formateur")
+	@JsonView(JsonViews.Common.class)
 	private Niveau niveau;
 	@JsonView(JsonViews.FormateurInMatiere.class)
 	@OneToMany(mappedBy = "key.matiere")

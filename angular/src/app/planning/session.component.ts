@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionService} from '../service/session.service';
 import {Session} from '../model/session';
+import {SessionPK} from '../model/session-pk';
 
 @Component({
   selector: 'app-session',
@@ -24,8 +25,8 @@ export class SessionComponent implements OnInit {
     });
   }
 
-  public delete(id: number) {
-    this.sessionService.delete(id).subscribe(resp => {
+  public delete(key: SessionPK) {
+    this.sessionService.delete(key).subscribe(resp => {
       this.list();
     });
   }
