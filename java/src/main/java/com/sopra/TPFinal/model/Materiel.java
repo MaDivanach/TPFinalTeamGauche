@@ -15,7 +15,9 @@ import javax.persistence.Version;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.sopra.TPFinal.model.view.JsonViews;
 
 @Entity
 @Table(name = "materiel")
@@ -26,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 public abstract class Materiel {
 
 	@Id
+	@JsonView(JsonViews.Common.class)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMateriel")
 	@Column(name = "id")
 	private Long id;

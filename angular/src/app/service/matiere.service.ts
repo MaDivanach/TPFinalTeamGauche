@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Matiere} from '../model/matiere';
-import {Materiel} from '../model/materiel';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class MatiereService {
   headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic '});
+    this.headers = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic'});
   }
 
 
