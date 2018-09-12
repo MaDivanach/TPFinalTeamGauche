@@ -89,6 +89,7 @@ public class FormationRestController {
 		if (opt.isPresent()) {
 			// update possible
 			Formation formationEnBase = opt.get();
+			formationEnBase.setNom(formation.getNom());
 			formationEnBase.setDateDebut(formation.getDateDebut());
 			formationEnBase.setDateFin(formation.getDateFin());
 			formationEnBase.setGestionnaire(formation.getGestionnaire());
