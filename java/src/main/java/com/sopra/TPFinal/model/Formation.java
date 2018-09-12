@@ -28,11 +28,13 @@ public class Formation {
 	@Id
 	@SequenceGenerator(name = "seqformation", sequenceName = "seq_formation", initialValue = 100, allocationSize = 1)
 	@GeneratedValue(generator = "seqformation", strategy = GenerationType.SEQUENCE)
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "id_formation")
 	private Long id;
 	@Version
 	private int version;
-	@Column(name = "nom", length = 100)
+	@Column(name = "nom")
+	@JsonView(JsonViews.Common.class)
 	private String nom;
 	@Column(name = "date_debut")
 	@Temporal(TemporalType.DATE)
