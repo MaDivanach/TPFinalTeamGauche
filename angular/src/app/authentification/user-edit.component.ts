@@ -21,8 +21,8 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit() {
-/*    this.ar.params.subscribe(params => {
-      /!*  console.log(params);*!/
+    this.ar.params.subscribe(params => {
+      /*  console.log(params);*/
       console.log(this.user);
       if (params.type === 'gestionnaire') {
         this.user = new Gestionnaire();
@@ -32,21 +32,21 @@ export class UserEditComponent implements OnInit {
         this.user = new Technicien();
       } else if (params.type === 'stagiaire') {
         this.user = new Stagiaire();
-      } else if (params.type === 'formateur') {
-        this.user = new Formateur();
-      }
+      } /*else if (params.type === 'formateur') {
+             this.user = new Formateur();
+           }*/
       if (params.id) {
         this.userService.findById(params.id).subscribe(resp => {
           this.user = resp;
           console.log(this.user);
         });
       }
-    });*/
+    });
   }
-/*
+
   public save() {
     this.userService.save(this.user).subscribe(resp => {
       this.router.navigate([`/user`]);
     });
-  }*/
+  }
 }
