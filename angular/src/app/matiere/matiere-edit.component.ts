@@ -12,23 +12,26 @@ export class MatiereEditComponent implements OnInit {
 
   matiere: Matiere = new Matiere();
 
-  constructor(private matiereService: MatiereService, private ar: ActivatedRoute, private router: Router) {
+  constructor(
+    private matiereService: MatiereService,
+    private ar: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit() {
-/*    this.ar.params.subscribe(params => {
+    this.ar.params.subscribe(params => {
       if (params.id) {
         this.matiereService.findById(params.id).subscribe(resp => {
           this.matiere = resp;
         });
       }
-    });*/
+    });
   }
-/*
+
   public save() {
     this.matiereService.save(this.matiere).subscribe(resp => {
       this.router.navigate(['/matiere']);
     });
-  }*/
+  }
 
 }
