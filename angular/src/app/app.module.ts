@@ -26,6 +26,8 @@ import {UserComponent} from './authentification/user.component';
 import {ExpertiseComponent} from './formateur/expertise.component';
 import {UserEditComponent} from './authentification/user-edit.component';
 import {ExpertiseEditComponent} from './formateur/expertise-edit.component';
+import { LoginComponent } from './login/login.component';
+import { LoginEditComponent } from './login/login-edit.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import {ExpertiseEditComponent} from './formateur/expertise-edit.component';
     UserComponent,
     ExpertiseComponent,
     UserEditComponent,
-    ExpertiseEditComponent
+    ExpertiseEditComponent,
+    LoginComponent,
+    LoginEditComponent
   ],
   imports: [
     BrowserModule,

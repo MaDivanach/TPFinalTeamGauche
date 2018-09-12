@@ -6,9 +6,12 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,15 +22,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Admin;
 import com.sopra.TPFinal.model.Formateur;
 import com.sopra.TPFinal.model.Gestionnaire;
+import com.sopra.TPFinal.model.Role;
 import com.sopra.TPFinal.model.Stagiaire;
 import com.sopra.TPFinal.model.Technicien;
 import com.sopra.TPFinal.model.User;
+import com.sopra.TPFinal.model.UserRole;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.UserRepository;
 
@@ -121,6 +127,8 @@ public class UserRestController {
 	        if(br.hasErrors()) {
 	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        } else {
+	        	formateur.setPassword(formateur.getPassword());
+	        	getPasswordEncoder().encode(formateur.getPassword());
 	            userRepository.save(formateur);
 	            HttpHeaders header = new HttpHeaders();
 	            header.setLocation(uCB.path("/rest/user/formateur/{id}").buildAndExpand(formateur.getId()).toUri());
@@ -128,6 +136,8 @@ public class UserRestController {
 	        }
 	        return response;
 	    }
+	   
+	   
 	   
 	    @PutMapping(path = {"/", ""})
 	    public ResponseEntity<User> update(@Valid @RequestBody User user, BindingResult br) {
@@ -187,5 +197,11 @@ public class UserRestController {
 		}
 		return response;
 	}
+	
+	@Bean
+	   public PasswordEncoder getPasswordEncoder() {
+	       return new BCryptPasswordEncoder();
+	   }
+	
 	
 }
