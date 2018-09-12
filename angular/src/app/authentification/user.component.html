@@ -1,3 +1,4 @@
+<!--
 <h1>Liste des users</h1>
 <table class="table">
   <tr>
@@ -17,9 +18,9 @@
     <td scope="rol">{{u.password}}</td>
     <td scope="rol">{{u.telephone}}</td>
     <td scope="rol">{{u.role}}</td>
-    <td scope="rol" *ngIf="u.role=='FORMATEUR'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
+    <td scope="rol" *ngIf="u.type === 'FORMATEUR'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
                                                    routerLinkActive="active" class="btn btn-info">edition</a></td>
-    <td scope="rol" *ngIf="u.role == 'STAGIAIRE'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
+    <td scope="rol" *ngIf="u.type === 'STAGIAIRE'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
                                                      routerLinkActive="active" class="btn btn-info">edition</a></td>
     <td>
       <button class="btn btn-danger" (click)="delete(u.id)">supprimer</button>
@@ -30,3 +31,4 @@
 <a href="" [routerLink]="['/materiel','create','salle']" class="btn btn-info">ajouter Salle</a>
 <a href="" [routerLink]="['/materiel','create','videoProjecteur']" class="btn btn-info">ajouter Salle</a>
 
+-->

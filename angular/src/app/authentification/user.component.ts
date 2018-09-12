@@ -15,9 +15,12 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+/*
     this.list();
+*/
   }
 
+/*
   public list() {
     this.userService.list().subscribe(resp => {
       this.user = resp;
@@ -30,5 +33,6 @@ export class UserComponent implements OnInit {
     });
   }
 
+*/
 
 }
