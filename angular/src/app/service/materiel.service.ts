@@ -13,7 +13,8 @@ import {instantiateDefaultStyleNormalizer} from '@angular/platform-browser/anima
 })
 export class MaterielService {
 
-  url: string = 'http://localhost:8080/';
+  url: string = 'http://localhost:8080/Projet';
+
   // header: HttpHeaders;
 
   constructor(private http: HttpClient) {
