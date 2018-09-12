@@ -100,7 +100,7 @@ public class FormationRestController {
 			return new ResponseEntity<Formation>(formationEnBase, HttpStatus.OK);
 		} else {
 			// pas de formation
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 
 	}
