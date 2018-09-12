@@ -1,7 +1,6 @@
 package com.sopra.TPFinal.model;
 
 import javax.persistence.Column;
-
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -16,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.view.JsonViews;
 
 @Entity
 @Table(name = "materiel")
@@ -27,10 +28,12 @@ public abstract class Materiel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMateriel")
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "id")
 	private Long id;
 	@Version
 	private int version;
+	@JsonView(JsonViews.Common.class)
 	@Column(name = "coutUtilisation")
 	private Double coutUtilisation;
 
