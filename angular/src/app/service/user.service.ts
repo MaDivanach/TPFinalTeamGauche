@@ -81,7 +81,10 @@ export class UserService {
           username: user.username,
           password: user.password,
           telephone: user.telephone,
-          role: user.role
+          role: user.role,
+          expertises: user.expertises,
+          sessions: user.sessions
+
         };
         console.log(o);
         return this.http.post(`${this.url}/rest/user/`, o);
@@ -93,7 +96,9 @@ export class UserService {
           username: user.username,
           password: user.password,
           telephone: user.telephone,
-          role: user.role
+          role: user.role,
+          ordinateur: user.ordinateur,
+          formation: user.formation
         };
         console.log(o);
         return this.http.post(`${this.url}/rest/user/`, o);

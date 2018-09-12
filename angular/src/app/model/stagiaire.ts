@@ -3,6 +3,7 @@ import {Role} from './role.enum';
 import {Ordinateur} from './ordinateur';
 import {Formation} from './formation';
 
+
 export class Stagiaire extends User {
 
   constructor(private _ordinateur?: Ordinateur, private _formation?: Formation) {
