@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,10 +39,13 @@ public class MaterielRestController {
 	
 	@Autowired
 	private MaterielRepository materielRepository;
+	
 	@Autowired
 	private OrdinateurRepository ordinateurRepository;
+	
 	@Autowired
 	private SalleRepository salleRepository;
+	
 	@Autowired
 	private VideoProjecteurRepository videoProjecteurRepository;
 	
@@ -49,24 +53,6 @@ public class MaterielRestController {
 	@GetMapping(path = { "/", "" })
 	public ResponseEntity<List<Materiel>> findAll(){
 		return new ResponseEntity<>(materielRepository.findAll(), HttpStatus.OK);
-	}
-	
-	@JsonView(JsonViews.Common.class)
-	@GetMapping(path = { "/ordinateur/", "/ordinateur" })
-	public ResponseEntity<List<Ordinateur>> findAllOrdinateurs(){
-		return new ResponseEntity<>(ordinateurRepository.findAll(), HttpStatus.OK);
-	}
-	
-	@JsonView(JsonViews.Common.class)
-	@GetMapping(path = { "/salle/", "/salle" })
-	public ResponseEntity<List<Salle>> findAllSalles(){
-		return new ResponseEntity<>(salleRepository.findAll(), HttpStatus.OK);
-	}
-	
-	@JsonView(JsonViews.Common.class)
-	@GetMapping(path = { "/videoprojecteur/", "/videoprojecteur" })
-	public ResponseEntity<List<VideoProjecteur>> findAllVideoProjecteurs(){
-		return new ResponseEntity<>(videoProjecteurRepository.findAll(), HttpStatus.OK);
 	}
 	
 	@PostMapping(path = {"/ordinateur/", "/ordinateur"})
@@ -111,21 +97,60 @@ public class MaterielRestController {
         return response;
     }
 	
-//	@JsonView(JsonViews.Common.class)
-//	@PutMapping(path = { "/", "" })
-//	public ResponseEntity<Materiel> update(@Valid @RequestBody Materiel materiel, BindingResult br) {
-//		if (br.hasErrors() || materiel.getId() == null) {
-//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//		}
-//		Optional<Materiel> opt = materielRepository.findById(materiel.getId());
-//		if (opt.isPresent()) {
-//			Materiel MaterielEnBase = opt.get();
-//			MaterielEnBase.setCoutUtilisation(materiel.getCoutUtilisation());
-//			return new ResponseEntity<Materiel>(MaterielEnBase, HttpStatus.OK);
-//		} else {
-//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//		}
-//	}
+	@JsonView(JsonViews.Common.class)
+	@PutMapping(path = { "/ordinateur/", "/ordinateur" })
+	public ResponseEntity<Ordinateur> update(@Valid @RequestBody Ordinateur ordinateur, BindingResult br) {
+		if (br.hasErrors() || ordinateur.getId() == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		Optional<Ordinateur> opt = ordinateurRepository.findById(ordinateur.getId());
+		if (opt.isPresent()) {
+			Ordinateur OrdinateurEnBase = opt.get();
+			OrdinateurEnBase.setId(ordinateur.getId());
+			OrdinateurEnBase.setCoutUtilisation(ordinateur.getCoutUtilisation());
+			OrdinateurEnBase.setProcesseur(ordinateur.getProcesseur());
+			OrdinateurEnBase.setRam(ordinateur.getRam());
+			OrdinateurEnBase.setDd(ordinateur.getDd());
+			OrdinateurEnBase.setDateAchat(ordinateur.getDateAchat());
+			return new ResponseEntity<Ordinateur>(OrdinateurEnBase, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@PutMapping(path = { "/salle/", "/salle" })
+	public ResponseEntity<Salle> update(@Valid @RequestBody Salle salle, BindingResult br) {
+		if (br.hasErrors() || salle.getId() == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		Optional<Salle> opt = salleRepository.findById(salle.getId());
+		if (opt.isPresent()) {
+			Salle SalleEnBase = opt.get();
+			SalleEnBase.setId(salle.getId());
+			SalleEnBase.setCoutUtilisation(salle.getCoutUtilisation());
+			return new ResponseEntity<Salle>(SalleEnBase, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@PutMapping(path = { "/videoporjecteur/", "/videoprojecteur" })
+	public ResponseEntity<VideoProjecteur> update(@Valid @RequestBody VideoProjecteur videoProjecteur, BindingResult br) {
+		if (br.hasErrors() || videoProjecteur.getId() == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		Optional<VideoProjecteur> opt = videoProjecteurRepository.findById(videoProjecteur.getId());
+		if (opt.isPresent()) {
+			VideoProjecteur VideoProjecteurEnBase = opt.get();
+			VideoProjecteurEnBase.setId(videoProjecteur.getId());
+			VideoProjecteurEnBase.setCoutUtilisation(videoProjecteur.getCoutUtilisation());
+			return new ResponseEntity<VideoProjecteur>(VideoProjecteurEnBase, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
