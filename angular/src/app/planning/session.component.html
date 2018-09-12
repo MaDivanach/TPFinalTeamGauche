@@ -1,3 +1,20 @@
-<p>
-  session works!
-</p>
+<h1>Liste des sessions</h1>
+<table class="table">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Date de début</th>
+    <th scope="col">Date de fin</th>
+  </tr>
+  <tr *ngFor="let session of sessions">
+    <td scope="rol">{{session.key}}</td>
+    <td scope="rol">{{session.dateDebut}}</td>
+    <td scope="rol">{{session.dateFin}}</td>
+    <td><a href="" [routerLink]="['/session','edit',session.key]" routerLinkActive="active"
+           class="btn btn-info">Edition</a>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="delete(session.key)">Supprimer</button>
+    </td>
+  </tr>
+</table>
+<a href="" [routerLink]="['/session','create']" class="btn btn-info">Ajouter</a>

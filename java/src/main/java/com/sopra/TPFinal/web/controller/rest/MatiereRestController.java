@@ -50,7 +50,7 @@ public class MatiereRestController {
 			matiereRepository.save(matiere);
 			HttpHeaders header = new HttpHeaders();
 			header.setLocation(uCB.path("/rest/matiere/{id}").buildAndExpand(matiere.getId()).toUri());
-			response = new ResponseEntity<Void>(header, HttpStatus.CREATED);
+			response = new ResponseEntity<Void>(HttpStatus.CREATED);
 		}
 		return response;
 	}
