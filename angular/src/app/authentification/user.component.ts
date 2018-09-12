@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user';
 import {UserService} from '../service/user.service';
 
@@ -15,24 +15,24 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-/*
-    this.list();
-*/
+    /*
+        this.list();
+    */
   }
 
-/*
-  public list() {
-    this.userService.list().subscribe(resp => {
-      this.user = resp;
-    }, error => console.log(error));
-  }
+  /*
+    public list() {
+      this.userService.list().subscribe(resp => {
+        this.user = resp;
+      }, error => console.log(error));
+    }
 
-  public delete(id: number) {
-    return this.userService.delete(id).subscribe(resp => {
-      this.list();
-    });
-  }
+    public delete(id: number) {
+      return this.userService.delete(id).subscribe(resp => {
+        this.list();
+      });
+    }
 
-*/
+  */
 
 }
