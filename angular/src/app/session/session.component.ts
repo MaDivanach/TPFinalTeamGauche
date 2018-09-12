@@ -1,3 +1,4 @@
+/*
 import {Component, OnInit} from '@angular/core';
 import {SessionService} from '../service/session.service';
 import {Session} from '../model/session';
@@ -14,10 +15,12 @@ export class SessionComponent implements OnInit {
   }
 
   ngOnInit() {
+/!*
     this.list();
+*!/
   }
 
-  public list() {
+/!*  public list() {
     this.sessionService.list().subscribe(resp => {
       this.sessions = resp;
     });
@@ -27,6 +30,7 @@ export class SessionComponent implements OnInit {
     this.sessionService.delete(id).subscribe(resp => {
       this.list();
     });
-  }
+  }*!/
 
 }
+*/

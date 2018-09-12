@@ -10,7 +10,7 @@ import {routes} from '../route';
 import {MaterielComponent} from './materiel/materiel.component';
 import {FormateurComponent} from './formateur/formateur.component';
 import {MatiereComponent} from './matiere/matiere.component';
-import {SessionComponent} from './session/session.component';
+import {SessionComponent} from './planning/session.component';
 import {PlanningComponent} from './planning/planning.component';
 import {FormationComponent} from './planning/formation.component';
 import {MaterielEditComponent} from './materiel/materiel-edit.component';

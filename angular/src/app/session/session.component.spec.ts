@@ -1,3 +1,4 @@
+/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SessionComponent } from './session.component';
@@ -23,3 +24,4 @@ describe('SessionComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+*/
