@@ -29,24 +29,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeRequests().antMatchers("/**/edit").authenticated().and().formLogin().antMatchers("/**").permitAll();
-//		http.authorizeRequests().antMatchers("/menu/").authenticated().and().formLogin().loginPage("/login")
-//				.failureUrl("/login?error=erreur").permitAll().and().logout().permitAll()
-//				.logoutSuccessUrl("/deconnexion/");
-//		http.authorizeRequests().antMatchers("/client/").permitAll();
-//		http.authorizeRequests().antMatchers("/passager/").permitAll();
-//		http.authorizeRequests().antMatchers("/rest/**").authenticated().and().httpBasic();
-		
-//		http.authorizeRequests().anyRequest().permitAll().and()
-//		.formLogin().and()
-//		.httpBasic();
-//		
-//		http.csrf().disable();
-//		http.headers().frameOptions().disable();
         http.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous();
         http.headers().frameOptions().disable();
 		System.out.println(getPasswordEncoder().encode("admin"));
+
 
 	}
 
