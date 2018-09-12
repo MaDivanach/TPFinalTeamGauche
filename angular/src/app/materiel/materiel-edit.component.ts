@@ -20,7 +20,7 @@ export class MaterielEditComponent implements OnInit {
 
   ngOnInit() {
 
-/*    this.ar.params.subscribe(params => {
+    this.ar.params.subscribe(params => {
       console.log(this.materiel);
       if (params.type === 'ordinateur') {
         this.materiel = new Ordinateur();
@@ -35,14 +35,13 @@ export class MaterielEditComponent implements OnInit {
           console.log(this.materiel);
         });
       }
-    });*/
+    });
 
   }
-/*
   public save() {
     this.materielService.save(this.materiel).subscribe(resp => {
       this.router.navigate(['/materiel']);
     });
-  }*/
+  }
 
 }
