@@ -9,13 +9,13 @@ import {Formation} from '../model/formation';
 })
 export class FormationService {
 
-  url: string = 'http://localhost:8080/demo';
+  url: string = 'http://localhost:8080/Projet';
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
     this.header = new HttpHeaders({
       'Content-type': 'application/json',
-      'Authorization': 'Basic ' + btoa('olivier:olivier')
+      'Authorization': 'Basic' + btoa('admin:admin')
     });
   }
 

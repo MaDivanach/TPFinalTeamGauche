@@ -2,6 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {Formation} from '../model/formation';
 import {FormationService} from '../service/formation.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MaterielService} from '../service/materiel.service';
+import {UserService} from '../service/user.service';
+import {Gestionnaire} from '../model/gestionnaire';
+import {Salle} from '../model/salle';
+import {VideoProjecteur} from '../model/videoProjecteur';
+import {User} from '../model/user';
 
 @Component({
   selector: 'app-formation-edit',
@@ -10,12 +16,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class FormationEditComponent implements OnInit {
 
-  formation: Formation;
+  formation: Formation = new Formation();
+  gestionnaires: Gestionnaire[];
+  salles: Salle[];
+  videoprojecteur: VideoProjecteur[];
 
-  constructor(private formationService: FormationService, private ar: ActivatedRoute, private router: Router) {
+  constructor(private formationService: FormationService, private ar: ActivatedRoute, private router: Router, private materielService: MaterielService, private userService: UserService) {
 
   }
-
 
   ngOnInit() {
 /*    this.ar.params.subscribe(params => {
@@ -27,7 +35,12 @@ export class FormationEditComponent implements OnInit {
           console.log(this.formation);
         });
       }
-    });*/
+      this.userService.listG().subscribe(
+        resp => {
+          this.gestionnaires = resp;
+        }
+      );
+    });
   }
 
 /*
@@ -35,6 +48,7 @@ export class FormationEditComponent implements OnInit {
     this.formationService.save(this.formation).subscribe(resp => {
       this.router.navigate([`/formation`]);
     });
+    this.formation = new Formation();
   }
 */
 

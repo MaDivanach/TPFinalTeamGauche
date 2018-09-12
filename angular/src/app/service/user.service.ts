@@ -25,6 +25,26 @@ export class UserService {
     return this.http.get<User[]>(`${this.url}/rest/user/`);
   }
 
+  public listG(): Observable<Gestionnaire[]> {
+    //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
+    return this.http.get<Gestionnaire[]>(`${this.url}/rest/gestionnaire/`);
+  }
+
+  public ListT(): Observable<Technicien[]> {
+    //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
+    return this.http.get<Technicien[]>(`${this.url}/rest/technicien/`);
+  }
+
+  public listF(): Observable<Formateur[]> {
+    //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
+    return this.http.get<Formateur[]>(`${this.url}/rest/formateur/`);
+  }
+
+  public listS(): Observable<Stagiaire[]> {
+    //  return this.http.get<User[]>(`${this.url}/rest/user/`, {headers: this.header});
+    return this.http.get<Stagiaire[]>(`${this.url}/rest/stagiaire/`);
+  }
+
   public delete(id: number): Observable<any> {
     // return this.http.delete(`${this.url}/rest/user/${id}`, {headers: this.header});
     return this.http.delete(`${this.url}/rest/user/${id}`);
