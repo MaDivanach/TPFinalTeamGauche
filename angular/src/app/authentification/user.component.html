@@ -1,34 +1,53 @@
-<!--
-<h1>Liste des users</h1>
+<h1>Ajouter User</h1>
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+     aria-haspopup="true" aria-expanded="false">
+    Ajouter User
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#" [routerLink]="['/user','create','gestionnaire']"> ajouter un gestionnaire</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/user','create','technicien']">ajouter un technicien</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/user','create','admin']">ajouter un admin</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/user','create','stagiaire']">ajouter un stagiaire</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/user','create','formateur']">ajouter un formateur</a>
+  </div>
+</div>
+
+<h1>Liste des Users</h1>
 <table class="table">
   <tr>
     <th scope="col">ID</th>
+    <th scope="col">Type</th>
     <th scope="col">Nom</th>
     <th scope="col">Prenom</th>
     <th scope="col">Username</th>
     <th scope="col">Password</th>
     <th scope="col">telephone</th>
     <th scope="col">Role</th>
+    <th scope="col">Editer</th>
+    <th scope="col">Supprimer</th>
   </tr>
   <tr *ngFor="let u of user">
     <td scope="rol">{{u.id}}</td>
+    <td scope="rol">{{u.type}}</td>
     <td scope="rol">{{u.nom}}</td>
     <td scope="rol">{{u.prenom}}</td>
     <td scope="rol">{{u.username}}</td>
     <td scope="rol">{{u.password}}</td>
     <td scope="rol">{{u.telephone}}</td>
     <td scope="rol">{{u.role}}</td>
-    <td scope="rol" *ngIf="u.type === 'FORMATEUR'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
-                                                   routerLinkActive="active" class="btn btn-info">edition</a></td>
-    <td scope="rol" *ngIf="u.type === 'STAGIAIRE'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
-                                                     routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td scope="rol" *ngIf="u.type === 'formateur'"><a href="" [routerLink]="['/user', 'formateur','edit',u.id]"
+                                                      routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td scope="rol" *ngIf="u.type === 'stagiaire'"><a href="" [routerLink]="['/user', 'stagiaire','edit',u.id]"
+                                                      routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td scope="rol" *ngIf="u.type === 'technicien'"><a href="" [routerLink]="['/user', 'technicien','edit',u.id]"
+                                                       routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td scope="rol" *ngIf="u.type === 'admin'"><a href="" [routerLink]="['/user', 'admin','edit',u.id]"
+                                                  routerLinkActive="active" class="btn btn-info">edition</a></td>
+    <td scope="rol" *ngIf="u.type === 'gestionnaire'"><a href="" [routerLink]="['/user', 'gestionnaire','edit',u.id]"
+                                                         routerLinkActive="active" class="btn btn-info">edition</a></td>
     <td>
       <button class="btn btn-danger" (click)="delete(u.id)">supprimer</button>
     </td>
   </tr>
 </table>
-<a href="" [routerLink]="['/materiel','create', 'ordinateur']" class="btn btn-info">ajouter Ordinateur</a>
-<a href="" [routerLink]="['/materiel','create','salle']" class="btn btn-info">ajouter Salle</a>
-<a href="" [routerLink]="['/materiel','create','videoProjecteur']" class="btn btn-info">ajouter Salle</a>
-
--->

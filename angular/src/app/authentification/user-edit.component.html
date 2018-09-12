@@ -1,5 +1,39 @@
-<!--
-<p>
-  user-edit works!
-</p>
--->
+<form (ngSubmit)="save()" #formulaire="ngForm">
+  <div class="form-group">
+    <label for="id">id</label>
+    <input id="id" name="id" [(ngModel)]="user.id" class="form-control" readonly/><br/>
+    <div class="form-group">
+      <label for="nom">nom</label>
+      <input id="nom" name="nom" [(ngModel)]="user.nom" class="form-control" minlength="3" required/><br/>
+    </div>
+    <div class="form-group">
+      <label for="prenom">prenom</label>
+      <input id="prenom" name="prenom" [(ngModel)]="user.prenom" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="username">username</label>
+      <input id="username" name="username" [(ngModel)]="user.username" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="password">password</label>
+      <input id="password" name="password" [(ngModel)]="user.password" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="telephone">telephone</label>
+      <input id="telephone" name="telephone" [(ngModel)]="user.telephone" class="form-control"/>
+    </div>
+    <!-- <div *ngIf="router.url === '/user','create','gestionnaire'" class="form-group">
+       <label for="prenom">prenom</label>
+       <input id="prenomphy" name="prenom" [(ngModel)]="clientPhysique.prenom" class="form-control" minlength="3" required/>
+     </div>
+     <div *ngIf="router.url === '/client/create/el'" class="form-group">
+       <label for="prenom">prenom</label>
+       <input id="prenom" name="prenom" [(ngModel)]="clientEl.prenom" class="form-control" minlength="3" required/>
+     </div>
+     <div *ngIf="router.url === '/client/create/moral'" class="form-group">
+       <label for="siret">siret</label>
+       <input id="siret" name="siret" [(ngModel)]="clientMoral.siret" class="form-control" minlength="3" required/>
+     </div>-->
+   </div>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+</form>

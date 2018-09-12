@@ -14,8 +14,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.view.JsonViews;
 
@@ -23,6 +25,8 @@ import com.sopra.TPFinal.model.view.JsonViews;
 @Table(name = "users")
 @SequenceGenerator(name = "seqUser", sequenceName = "seq_user", initialValue = 100, allocationSize = 1)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, length = 20, name = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "type")
+@JsonSubTypes({ @Type(value = Admin.class, name = "admin"), @Type(value = Gestionnaire.class, name = "gestionnaire"), @Type(value = Stagiaire.class, name = "stagiaire"), @Type(value = Technicien.class, name = "technicien"), @Type(value = Formateur.class, name = "formateur") })
 public class User {
 	@Id
 	@GeneratedValue(generator = "seqUser", strategy = GenerationType.IDENTITY)
