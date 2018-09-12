@@ -14,11 +14,8 @@ export class FormationComponent implements OnInit {
   }
 
   ngOnInit() {
-/*
     this.list();
-*/
   }
-/*
   public list() {
     this.formationService.list().subscribe(resp => {
       this.formation = resp;
@@ -29,5 +26,5 @@ export class FormationComponent implements OnInit {
     return this.formationService.delete(id).subscribe(resp => {
       this.list();
     });
-  }*/
+  }
 }

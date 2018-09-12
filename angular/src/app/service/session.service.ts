@@ -10,26 +10,27 @@ export class SessionService {
 
   url: string = 'http://localhost:8080/Projet';
 
-  /*headers: HttpHeaders; */
+  header: HttpHeaders;
 
   constructor(private http: HttpClient) {
+    this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic '});
   }
 
   public list(): Observable<Session[]> {
-    return this.http.get<Session[]>(`${this.url}/rest/session/`);
+    return this.http.get<Session[]>(`${this.url}/rest/session/`, {headers: this.header});
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(`${this.url}/rest/session/${id}`);
+    return this.http.delete(`${this.url}/rest/session/${id}`, {headers: this.header});
   }
 
   public findById(id: number): Observable<Session> {
-    return this.http.get<Session>(`${this.url}/rest/session/${id}`);
+    return this.http.get<Session>(`${this.url}/rest/session/${id}`, {headers: this.header});
   }
 
   public save(session: Session): Observable<any> {
     if (session.key) {
-      return this.http.put(`${this.url}/rest/session/`, session);
+      return this.http.put(`${this.url}/rest/session/`, session, {headers: this.header});
     } else {
       const o = {
         key: session.key,
