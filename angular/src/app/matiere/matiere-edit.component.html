@@ -33,10 +33,7 @@
       <label for="niveau">Niveau :</label>
       <select id="niveau" name="niveau" [(ngModel)]="matiere.niveau">
         <option value="">--- Choisissez un niveau ---</option>
-        <option value="{{Niveau.Debutant}}">Débutant</option>
-        <option value="{{Niveau.Intermediaire}}">Intermédiaire</option>
-        <option value="{{Niveau.Expert}}">Avancé</option>
-        <option value="{{Niveau.Avance}}">Expert</option>
+        <option *ngFor="let niveau of niveaux" [value]="niveau" [label]="niveaux[niveau]"></option>
       </select>
     </div>
   </div>
