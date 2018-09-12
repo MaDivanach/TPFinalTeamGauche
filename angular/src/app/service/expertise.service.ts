@@ -11,26 +11,27 @@ export class ExpertiseService {
 
   url: string = 'http://localhost:8080/Projet';
 
-  /*headers: HttpHeaders;*/
+  headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic '});
   }
 
   public list(): Observable<Expertise[]> {
-    return this.http.get<Expertise[]>(`${this.url}/rest/expertise/`);
+    return this.http.get<Expertise[]>(`${this.url}/rest/expertise/`, {headers: this.headers});
   }
 
   public delete(id: number): Observable<any> {
-    return this.http.delete(`${this.url}/rest/expertise/${id}`);
+    return this.http.delete(`${this.url}/rest/expertise/${id}`, {headers: this.headers});
   }
 
   public findById(id: number): Observable<Expertise> {
-    return this.http.get<Expertise>(`${this.url}/rest/expertise/${id}`);
+    return this.http.get<Expertise>(`${this.url}/rest/expertise/${id}`, {headers: this.headers});
   }
 
   public save(expertise: Expertise): Observable<any> {
     if (expertise.key) {
-      return this.http.put(`${this.url}/rest/expertise/`, expertise);
+      return this.http.put(`${this.url}/rest/expertise/`, expertise, {headers: this.headers});
     } else {
       const o = {
         key: expertise.key
