@@ -9,6 +9,7 @@ export class Stagiaire extends User {
   constructor(private _ordinateur?: Ordinateur, private _formation?: Formation) {
     super();
     this.role = Role.STAGIAIRE;
+    this.type = 'stagiaire';
   }
 
 
