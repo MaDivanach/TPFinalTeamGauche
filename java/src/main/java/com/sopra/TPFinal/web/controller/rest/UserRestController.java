@@ -117,6 +117,8 @@ public class UserRestController {
 	        if(br.hasErrors()) {
 	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        } else {
+	        	technicien.setPassword(technicien.getPassword());
+	        	getPasswordEncoder().encode(technicien.getPassword());
 	            userRepository.save(technicien);
 	            HttpHeaders header = new HttpHeaders();
 	            header.setLocation(uCB.path("/rest/user/technicien/{id}").buildAndExpand(technicien.getId()).toUri());
@@ -131,6 +133,8 @@ public class UserRestController {
 	        if(br.hasErrors()) {
 	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        } else {
+	        	gestionnaire.setPassword(gestionnaire.getPassword());
+	        	getPasswordEncoder().encode(gestionnaire.getPassword());
 	            userRepository.save(gestionnaire);
 	            HttpHeaders header = new HttpHeaders();
 	            header.setLocation(uCB.path("/rest/user/technicien/{id}").buildAndExpand(gestionnaire.getId()).toUri());
@@ -145,6 +149,8 @@ public class UserRestController {
 	        if(br.hasErrors()) {
 	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        } else {
+	        	admin.setPassword(admin.getPassword());
+	        	getPasswordEncoder().encode(admin.getPassword());
 	            userRepository.save(admin);
 	            HttpHeaders header = new HttpHeaders();
 	            header.setLocation(uCB.path("/rest/user/admin/{id}").buildAndExpand(admin.getId()).toUri());
@@ -159,6 +165,8 @@ public class UserRestController {
 	        if(br.hasErrors()) {
 	            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        } else {
+	        	stagiaire.setPassword(stagiaire.getPassword());
+	        	getPasswordEncoder().encode(stagiaire.getPassword());
 	            userRepository.save(stagiaire);
 	            HttpHeaders header = new HttpHeaders();
 	            header.setLocation(uCB.path("/rest/user/stagiaire/{id}").buildAndExpand(stagiaire.getId()).toUri());
