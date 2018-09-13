@@ -5,7 +5,7 @@
 
 
   <div *ngFor="let materiel of materiels">
-    <tr>
+    <tr *ngIf="materiel.type == 'ordinateur'">
       <th scope="col">ID</th>
       <th scope="col">cout de l'utilisation</th>
       <th scope="col">Type</th>
@@ -49,7 +49,7 @@
 
 
   <div *ngFor="let materiel of materiels">
-    <tr>
+    <tr *ngIf="materiel.type == 'salle'">
       <th scope="col">ID</th>
       <th scope="col">cout de l'utilisation</th>
       <th scope="col">Type</th>
@@ -80,7 +80,7 @@
 
 
   <div *ngFor="let materiel of materiels">
-    <tr>
+    <tr *ngIf="materiel.type == 'videoprojecteur'">
       <th scope="col">ID</th>
       <th scope="col">cout de l'utilisation</th>
       <th scope="col">Type</th>
