@@ -63,7 +63,7 @@ public class MaterielRestController {
         } else {
             materielRepository.save(ordinateur);
             HttpHeaders header = new HttpHeaders();
-            header.setLocation(uCB.path("/rest/user/ordinateur/{id}").buildAndExpand(ordinateur.getId()).toUri());
+            header.setLocation(uCB.path("/rest/materiel/ordinateur/{id}").buildAndExpand(ordinateur.getId()).toUri());
             response = new ResponseEntity<Void>(HttpStatus.CREATED);
         }
         return response;
@@ -77,7 +77,7 @@ public class MaterielRestController {
         } else {
             materielRepository.save(salle);
             HttpHeaders header = new HttpHeaders();
-            header.setLocation(uCB.path("/rest/user/salle/{id}").buildAndExpand(salle.getId()).toUri());
+            header.setLocation(uCB.path("/rest/materiel/salle/{id}").buildAndExpand(salle.getId()).toUri());
             response = new ResponseEntity<Void>(HttpStatus.CREATED);
         }
         return response;
@@ -91,7 +91,7 @@ public class MaterielRestController {
         } else {
             materielRepository.save(videoProjecteur);
             HttpHeaders header = new HttpHeaders();
-            header.setLocation(uCB.path("/rest/user/ordinateur/{id}").buildAndExpand(videoProjecteur.getId()).toUri());
+            header.setLocation(uCB.path("/rest/materiel/videoProjecteur/{id}").buildAndExpand(videoProjecteur.getId()).toUri());
             response = new ResponseEntity<Void>(HttpStatus.CREATED);
         }
         return response;
@@ -136,7 +136,7 @@ public class MaterielRestController {
 	}
 	
 	@JsonView(JsonViews.Common.class)
-	@PutMapping(path = { "/videoporjecteur/", "/videoprojecteur" })
+	@PutMapping(path = { "/videoprojecteur/", "/videoprojecteur" })
 	public ResponseEntity<VideoProjecteur> update(@Valid @RequestBody VideoProjecteur videoProjecteur, BindingResult br) {
 		if (br.hasErrors() || videoProjecteur.getId() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
