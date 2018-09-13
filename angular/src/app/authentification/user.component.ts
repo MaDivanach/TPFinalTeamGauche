@@ -15,24 +15,27 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-        this.list();
+    this.list();
   }
 
-    public list() {
-      this.userService.list().subscribe(
-        resp => {
+  public list() {
+    this.userService.list().subscribe(
+      resp => {
         this.users = resp;
+        for (const user of this.users) {
+          user.password = atob(user.password);
+        }
       }
-      );
-    }
+    );
+  }
 
-    public delete(id: number) {
-      return this.userService.delete(id).subscribe(
-        resp => {
+  public delete(id: number) {
+    return this.userService.delete(id).subscribe(
+      resp => {
         this.list();
       }
-      );
-    }
+    );
+  }
 
 
 }

@@ -7,6 +7,8 @@ import {Technicien} from '../model/technicien';
 import {Admin} from '../model/admin';
 import {Formateur} from '../model/formateur';
 import {Stagiaire} from '../model/stagiaire';
+import {headersToString} from 'selenium-webdriver/http';
+import {Role} from '../model/role.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +59,7 @@ export class UserService {
           type: user.type,
           id: user.id,
           username: user.username,
-          password: user.password,
+          password: btoa(user.password),
           nom: user.nom,
           prenom: user.prenom,
           telephone: user.telephone,
@@ -74,7 +76,7 @@ export class UserService {
           nom: user.nom,
           prenom: user.prenom,
           username: user.username,
-          password: user.password,
+          password: btoa(user.password),
           telephone: user.telephone,
           role: user.role,
           adresse: user.adresse
@@ -88,7 +90,7 @@ export class UserService {
           nom: user.nom,
           prenom: user.prenom,
           username: user.username,
-          password: user.password,
+          password: btoa(user.password),
           telephone: user.telephone,
           role: user.role,
           adresse: user.adresse
@@ -102,7 +104,7 @@ export class UserService {
           nom: user.nom,
           prenom: user.prenom,
           username: user.username,
-          password: user.password,
+          password: btoa(user.password),
           telephone: user.telephone,
           role: user.role,
           adresse: user.adresse,
@@ -119,7 +121,7 @@ export class UserService {
           nom: user.nom,
           prenom: user.prenom,
           username: user.username,
-          password: user.password,
+          password: btoa(user.password),
           telephone: user.telephone,
           role: user.role,
           adresse: user.adresse,
@@ -130,5 +132,9 @@ export class UserService {
         return this.http.post(`${this.url}/rest/user/stagiaire`, o, {headers: this.header});
       }
     }
+  }
+
+  public loadByUsername(username: string): Observable<any> {
+    return this.http.get(`${this.url}/rest/user/userload/${username}`, {headers: this.header});
   }
 }
