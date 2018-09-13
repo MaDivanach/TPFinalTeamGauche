@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Embeddable
 public class SessionPK implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinTable(name = "matiere", joinColumns = {@JoinColumn(name="")})
+	@JoinColumn(name = "matiere")
 	private Matiere matiere;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "formateur")
