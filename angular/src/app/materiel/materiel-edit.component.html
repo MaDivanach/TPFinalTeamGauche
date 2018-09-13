@@ -7,15 +7,11 @@
     <label for="type">type</label>
     <input id="type" name="type" class="form-control" [(ngModel)]="materiel.type" readonly="readonly" name="type"/>
   </div>
-
-  <!--ngIf impossible car le type de materiel n'est pas défini de base-->
-  <p>Ordinateur :</p><br/>
-  <div *ngIf="materiel.type === 'ordinateur'">Processeur:
-    <div class="form-group">
-      <label for="coutO">Cout d'utilisation</label>
-      <input id="coutO" name="coutO" class="form-control" type="number" [(ngModel)]="materiel.coutUtilisation" required #coutO="ngModel"/><br/>
-      <p *ngIf="coutO.dirty&&coutO.hasError('required')">Le cout d'utilisation de l'ordianteur est nécessaire</p>
-    </div>
+  <div class="form-group">
+    <label for="coutUtilisation">Cout d'utilisation</label>
+    <input id="coutUtilisation" name="coutUtilisation" class="form-control" type="number" [(ngModel)]="materiel.coutUtilisation"/><br/>
+  </div>
+  <div *ngIf="materiel.type === 'ordinateur'">
     <div class="form-group">
       <label for="processeur">Processeur</label>
       <input id="processeur" name="processeur" class="form-control" type="text" [(ngModel)]="materiel.processeur"/><br/>
@@ -32,41 +28,12 @@
       <label for="dateAchat">date Achat</label>
       <input id="dateAchat" name="dateAchat" class="form-control" type="date" [(ngModel)]="materiel.dateAchat"/><br/>
     </div>
-    <!--<div class="form-group">
-      <label for="dd">DD</label>
-      <input type="text" [(ngModel)]="materiel.stagiaires"/><br/>
-    </div>-->
   </div>
-
-  <p>Salle :</p><br/>
-  <div *ngIf="article.type === 'salle'">
-    <div class="form-group">
-      <label for="coutS">Cout d'utilisation</label>
-      <input id="coutS" name="coutS" class="form-control" type="number" [(ngModel)]="materiel.coutUtilisation" required #coutS="ngModel"/><br/>
-      <p *ngIf="coutS.dirty&&coutS.hasError('required')">Le cout d'utilisation de la salle est nécessaire</p>
-    </div>
+  <div *ngIf="materiel.type === 'salle'">
     <div class="form-group">
       <label for="capacite">capacite</label>
       <input id="capacite" name="capacite" class="form-control" type="number" [(ngModel)]="materiel.capacite"/><br/>
-    </div><!--<div class="form-group">
-    <input type="text" [(ngModel)]="materiel.formationsSalle"/><br/>
-    </div>-->
-
-  </div>
-  <p>Videoprojecteur :</p><br/>
-  <div *ngIf="materiel.type === 'videoprojecteur'">Formations attribuées:
-    <div class="form-group">
-      <label for="coutV">Cout d'utilisation</label>
-      <input id="coutV" name="coutV" class="form-control" type="number" [(ngModel)]="materiel.coutUtilisation" required #coutV="ngModel"/><br/>
-      <p *ngIf="coutV.dirty&&coutV.hasError('required')">Le cout d'utilisation du video-projecteur est nécessaire</p>
-    </div>
-    <div class="form-group">
-      <label for="formationsVid">formationsVid</label>
-      <input id="formationsVid" name="formationsVid" class="form-control" type="text"
-             [(ngModel)]="materiel.formationsVideoProj"/><br/>
     </div>
   </div>
-
   <button type="submit" class="btn btn-danger" [disabled]="formulaire.invalid">save</button>
-
 </form>

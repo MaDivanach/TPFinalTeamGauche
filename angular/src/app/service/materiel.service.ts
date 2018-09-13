@@ -32,27 +32,38 @@ export class MaterielService {
 
   public save(materiel: Materiel): Observable<any> {
     if (materiel.id) {
-      return this.http.put(`${this.url}/rest/materiel/`, materiel, {headers: this.header});
+      if (materiel instanceof Ordinateur) {
+        return this.http.put(`${this.url}/rest/materiel/ordinateur`, materiel, {headers: this.header});
+      } else if (materiel instanceof Salle) {
+        return this.http.put(`${this.url}/rest/materiel/salle`, materiel, {headers: this.header});
+      } else if (materiel instanceof VideoProjecteur) {
+        return this.http.put(`${this.url}/rest/materiel/videoprojecteur`, materiel, {headers: this.header});
+      }
     } else {
       if (materiel instanceof Ordinateur) {
         const o = {
-          id: materiel.id, processeur: materiel.processeur, ram: materiel.ram, dd: materiel.dd, dateAchat: materiel.dateAchat
+          id: materiel.id,
+          type: materiel.type,
+          coutUtilisation: materiel.coutUtilisation,
+          processeur: materiel.processeur,
+          ram: materiel.ram,
+          dd: materiel.dd,
+          dateAchat: materiel.dateAchat
         };
-        console.log(o);
-        return this.http.post(`${this.url}/rest/materiel/`, o);
-      }
-      else if (materiel instanceof Salle) {
+        return this.http.post(`${this.url}/rest/materiel/ordinateur`, o, {headers: this.header});
+      } else if (materiel instanceof Salle) {
         const o = {
-          id: materiel.id, capacite: materiel.capacite
+          id: materiel.id,
+          coutUtilisation: materiel.coutUtilisation,
+          capacite: materiel.capacite
         };
-        console.log(o);
-        return this.http.post(`${this.url}/rest/materiel/`, o);
+        return this.http.post(`${this.url}/rest/materiel/salle`, o, {headers: this.header});
       } else if (materiel instanceof VideoProjecteur) {
         const o = {
-          id: materiel.id
+          id: materiel.id,
+          coutUtilisation: materiel.coutUtilisation
         };
-        console.log(o);
-        return this.http.post(`${this.url}/rest/materiel/`, o);
+        return this.http.post(`${this.url}/rest/materiel/videoprojecteur`, o, {headers: this.header});
       }
     }
   }
