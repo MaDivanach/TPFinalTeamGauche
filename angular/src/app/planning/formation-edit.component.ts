@@ -20,6 +20,7 @@ export class FormationEditComponent implements OnInit {
   gestionnaires: Gestionnaire[];
   salles: Salle[];
   videoprojecteurs: VideoProjecteur[];
+  idgestion: number;
 
   constructor(
     private formationService: FormationService,
@@ -37,6 +38,7 @@ export class FormationEditComponent implements OnInit {
       if (params.id) {
         this.formationService.findById(params.id).subscribe(resp => {
           this.formation = resp;
+          this.idgestion = this.formation.gestionnaire.id;
           console.log(this.formation);
         });
       }
@@ -50,8 +52,13 @@ export class FormationEditComponent implements OnInit {
 
 
   public save() {
+    this.userService.findById(this.idgestion).subscribe(resp => {
+      // @ts-ignore
+      this.formation.gestionnaire = resp;
+
       this.formationService.save(this.formation).subscribe(resp => {
         this.router.navigate([`/formation`]);
       });
+    });
   }
 }
