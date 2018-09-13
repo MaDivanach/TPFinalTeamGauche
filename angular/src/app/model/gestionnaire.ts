@@ -7,6 +7,7 @@ export class Gestionnaire extends User {
   constructor(private _formations?: Formation[]) {
     super();
     this.role = Role.GESTIONNAIRE;
+    this.type = 'gestionnaire';
   }
 
 
