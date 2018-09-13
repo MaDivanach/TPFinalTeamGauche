@@ -25,19 +25,19 @@ export class UserService {
   }
 
   public listG(): Observable<Gestionnaire[]> {
-    return this.http.get<Gestionnaire[]>(`${this.url}/rest/gestionnaire`, {headers: this.header});
+    return this.http.get<Gestionnaire[]>(`${this.url}/rest/user/gestionnaire`, {headers: this.header});
   }
 
   public ListT(): Observable<Technicien[]> {
-    return this.http.get<Technicien[]>(`${this.url}/rest/technicien`, {headers: this.header});
+    return this.http.get<Technicien[]>(`${this.url}/rest/user/technicien`, {headers: this.header});
   }
 
   public listF(): Observable<Formateur[]> {
-    return this.http.get<Formateur[]>(`${this.url}/rest/formateur`, {headers: this.header});
+    return this.http.get<Formateur[]>(`${this.url}/rest/user/formateur`, {headers: this.header});
   }
 
   public listS(): Observable<Stagiaire[]> {
-    return this.http.get<Stagiaire[]>(`${this.url}/rest/stagiaire`, {headers: this.header});
+    return this.http.get<Stagiaire[]>(`${this.url}/rest/user/stagiaire`, {headers: this.header});
   }
 
   public delete(id: number): Observable<any> {
