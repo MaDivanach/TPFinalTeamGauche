@@ -28,6 +28,7 @@ public abstract class Materiel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMateriel")
 	@Column(name = "id")
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@Version
 	private int version;

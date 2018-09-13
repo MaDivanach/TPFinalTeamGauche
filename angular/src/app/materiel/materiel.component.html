@@ -1,92 +1,61 @@
 <h1>Liste du materiel</h1>
-<h4>Liste des Ordinateurs : </h4>
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+     aria-haspopup="true" aria-expanded="false">
+    Ajouter Materiel
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#" [routerLink]="['/materiel','create','ordinateur']"> ajouter un ordinateur</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/materiel','create','salle']">ajouter une salle</a>
+    <a class="dropdown-item" href="#" [routerLink]="['/materiel','create','videoprojecteur']">ajouter un videoprojecteur</a>
+  </div>
+</div>
 <table class="table">
   <tr>
     <th scope="col">ID</th>
     <th scope="col">cout de l'utilisation</th>
     <th scope="col">Type</th>
-    <th scope="col">processeur</th>
+    <th scope="col">Processeur</th>
     <th scope="col">ram</th>
     <th scope="col">Disque Dur</th>
     <th scope="col">Date d'achat</th>
-    <th scope="col">Editer</th>
-    <th scope="col">Supprimer</th>
-  </tr>
-  <div *ngFor="let materiel of materiels">
-    <tr *ngIf="materiel.type == 'ordinateur'">
-      <td scope="rol">{{materiel.id}}</td>
-      <td scope="rol">{{materiel.coutUtilisation}}</td>
-      <td scope="rol">{{materiel.type}}</td>
-      <td scope="rol">{{materiel.processeur}}</td>
-      <td scope="rol">{{materiel.ram}}</td>
-      <td scope="rol">{{materiel.dd}}</td>
-      <td scope="rol">{{materiel.dateAchat}}</td>
-      <td>
-        <a href="" [routerLink]="['/materiel','edit', 'ordinateur',materiel.id]" routerLinkActive="active"
-           class="btn btn-info">edition</a>
-      </td>
-      <td>
-        <button class="btn btn-danger" (click)="delete(materiel.id)">supprimer</button>
-      </td>
-    </tr>
-  </div>
-</table>
-<a href="" [routerLink]="['/materiel','create', 'ordinateur']" class="btn btn-info">ajouter Ordinateur
-</a>
-<br/>
-
-<h4>Liste des Salles : </h4>
-<table class="table">
-  <tr>
-    <th scope="col">ID</th>
-    <th scope="col">cout de l'utilisation</th>
-    <th scope="col">Type</th>
     <th scope="col">Capacité</th>
     <th scope="col">Editer</th>
     <th scope="col">Supprimer</th>
   </tr>
-  <div *ngFor="let materiel of materiels">
-    <tr *ngIf="materiel.type == 'salle'">
-      <td scope="rol">{{materiel.id}}</td>
-      <td scope="rol">{{materiel.coutUtilisation}}</td>
-      <td scope="rol">{{materiel.type}}</td>
-      <td scope="rol">{{materiel.capacite}}</td>
-      <td><a href="" [routerLink]="['/materiel', 'edit', 'salle',materiel.id]"
-             routerLinkActive="active" class="btn btn-info">edition</a></td>
-      <td>
-        <button class="btn btn-danger" (click)="delete(materiel.id)">supprimer</button>
-      </td>
-    </tr>
-  </div>
-  <a href="" [routerLink]="['/materiel','create','salle']" class="btn btn-info">ajouter Salle
-  </a>
-</table>
-<br/>
-
-<h4>Liste des Video-projecteurs : </h4>
-<table class="table">
-  <div>
-    <th scope="col">ID</th>
-    <th scope="col">cout de l'utilisation</th>
-    <th scope="col">Type</th>
-    <th scope="col">Editer</th>
-    <th scope="col">Supprimer</th>
-  </div>
-  <div *ngFor="let materiel of materiels">
-    <tr *ngIf="materiel.type == 'videoprojecteur'">
-      <td scope="rol">{{materiel.id}}</td>
-      <td scope="rol">{{materiel.coutUtilisation}}</td>
-      <td scope="rol">{{materiel.type}}</td>
-      <td><a href=""
-             [routerLink]="['/materiel','edit', 'videoprojecteur',materiel.id]"
-             routerLinkActive="active" class="btn btn-info">edition</a></td>
-      <td>
-        <button class="btn btn-danger" (click)="delete(materiel.id)">supprimer</button>
-      </td>
-    </tr>
-  </div>
-  <a href="" [routerLink]="['/materiel','create','videoprojecteur']" class="btn btn-info">ajouter VidéoProjecteur
-  </a>
+  <tr *ngFor="let materiel of materiels">
+    <td scope="rol">{{materiel.id}}</td>
+    <td scope="rol">{{materiel.coutUtilisation}}</td>
+    <td scope="rol">{{materiel.type}}</td>
+    <td scope="rol"><span *ngIf="materiel.type === 'ordinateur'">{{materiel.processeur}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type === 'ordinateur'">{{materiel.ram}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type === 'ordinateur'">{{materiel.dd}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type === 'ordinateur'">{{materiel.dateAchat}}</span></td>
+    <td scope="rol"><span *ngIf="materiel.type === 'salle'">{{materiel.capacite}}</span></td>
+    <td>
+      <span *ngIf="materiel.type === 'ordinateur'">
+        <a href="" [routerLink]="['/materiel', 'edit', 'ordinateur', materiel.id]" routerLinkActive="active"
+           class="btn btn-info">
+          edition
+        </a>
+      </span>
+      <span *ngIf="materiel.type === 'salle'">
+        <a href="" [routerLink]="['/materiel', 'edit', 'salle', materiel.id]" routerLinkActive="active"
+           class="btn btn-info">
+         edition
+       </a>
+      </span>
+      <span *ngIf="materiel.type === 'videoprojecteur'">
+        <a href="" [routerLink]="['/materiel', 'edit', 'videoprojecteur', materiel.id]" routerLinkActive="active"
+           class="btn btn-info">
+          edition
+        </a>
+      </span>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="delete(materiel.id)">Supprimer</button>
+    </td>
+  </tr>
 </table>
 
 

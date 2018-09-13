@@ -1,8 +1,10 @@
 export class Materiel {
-  constructor(private _id?: number, private _coutUtilisation?: number, private _type?: string) {
-
+  constructor(
+    private _id?: number,
+    private _coutUtilisation?: number,
+    private _type?: string
+  ) {
   }
-
 
   get type(): string {
     return this._type;
@@ -20,11 +22,11 @@ export class Materiel {
     this._id = value;
   }
 
-  get coutUtilisation(): number{
+  get coutUtilisation(): number {
     return this._coutUtilisation;
   }
 
-  set coutUtilisation(value : number){
+  set coutUtilisation(value: number) {
     this._coutUtilisation = value;
   }
 }
