@@ -22,14 +22,16 @@ export class UserComponent implements OnInit {
       this.userService.list().subscribe(
         resp => {
         this.users = resp;
-      }, error => console.log(error)
+      }
       );
     }
 
     public delete(id: number) {
-      return this.userService.delete(id).subscribe(resp => {
+      return this.userService.delete(id).subscribe(
+        resp => {
         this.list();
-      });
+      }
+      );
     }
 
 

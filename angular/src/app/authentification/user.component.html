@@ -27,7 +27,7 @@
     <th scope="col">Editer</th>
     <th scope="col">Supprimer</th>
   </tr>
-  <tr *ngFor="let user of user">
+  <tr *ngFor="let user of users">
     <td scope="rol">{{user.id}}</td>
     <td scope="rol">{{user.type}}</td>
     <td scope="rol">{{user.nom}}</td>
@@ -38,15 +38,15 @@
     <td scope="rol">{{user.role}}</td>
     <td scope="rol">
       <a href="" *ngIf="user.type === 'admin'" class="btn btn-info"
-         [routerLink]="['/user', 'admin','edit',user.id]" routerLinkActive="active">edition</a>
+         [routerLink]="['/user', 'edit', 'admin', user.id]" routerLinkActive="active">edition</a>
       <a href="" *ngIf="user.type === 'formateur'" class="btn btn-info"
-         [routerLink]="['/user', 'formateur','edit',user.id]" routerLinkActive="active">edition</a>
+         [routerLink]="['/user', 'edit', 'formateur', user.id]" routerLinkActive="active">edition</a>
       <a href="" *ngIf="user.type === 'stagiaire'" class="btn btn-info"
-         [routerLink]="['/user', 'stagiaire','edit',user.id]" routerLinkActive="active">edition</a>
+         [routerLink]="['/user', 'edit', 'stagiaire', user.id]" routerLinkActive="active">edition</a>
       <a href="" *ngIf="user.type === 'technicien'" class="btn btn-info"
-         [routerLink]="['/user', 'technicien','edit',user.id]" routerLinkActive="active">edition</a>
+         [routerLink]="['/user', 'edit', 'technicien', user.id]" routerLinkActive="active">edition</a>
       <a href="" *ngIf="user.type === 'gestionnaire'" class="btn btn-info"
-         [routerLink]="['/user', 'gestionnaire','edit',user.id]" routerLinkActive="active">edition</a>
+         [routerLink]="['/user', 'edit', 'gestionnaire', user.id]" routerLinkActive="active">edition</a>
     </td>
     <td>
       <button class="btn btn-danger" (click)="delete(user.id)">supprimer</button>

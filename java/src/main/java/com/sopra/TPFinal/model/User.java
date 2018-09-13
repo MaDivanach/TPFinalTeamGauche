@@ -26,28 +26,26 @@ import com.sopra.TPFinal.model.view.JsonViews;
 @SequenceGenerator(name = "seqUser", sequenceName = "seq_user", initialValue = 100, allocationSize = 1)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, length = 20, name = "type")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "type")
-@JsonSubTypes({ 
-	@Type(value = Admin.class, name = "admin"),
-	@Type(value = Gestionnaire.class, name = "gestionnaire"),
-	@Type(value = Stagiaire.class, name = "stagiaire"),
-	@Type(value = Technicien.class, name = "technicien"),
-	@Type(value = Formateur.class, name = "formateur")
-	})
+@JsonSubTypes({ @Type(value = Admin.class, name = "admin"), @Type(value = Gestionnaire.class, name = "gestionnaire"),
+		@Type(value = Stagiaire.class, name = "stagiaire"), @Type(value = Technicien.class, name = "technicien"),
+		@Type(value = Formateur.class, name = "formateur") })
 public class User {
 	@Id
 	@GeneratedValue(generator = "seqUser", strategy = GenerationType.IDENTITY)
 	@Column(name = "id_user")
 	@JsonView(JsonViews.Common.class)
 	private Integer id;
+	@Version
+	private int version;
 	@Column(name = "username", unique = true)
 	@JsonView(JsonViews.Common.class)
 	private String username;
 	@Column(name = "password")
 	@JsonView(JsonViews.Common.class)
 	private String password;
-//	@Column(name = "enable")
-//	@JsonView(JsonViews.Common.class)
-//	private boolean enable;
+	// @Column(name = "enable")
+	// @JsonView(JsonViews.Common.class)
+	// private boolean enable;
 	@Enumerated(EnumType.STRING)
 	@JsonView(JsonViews.Common.class)
 	private Role role;
@@ -60,8 +58,6 @@ public class User {
 	@Column(name = "telephone")
 	@JsonView(JsonViews.Common.class)
 	private String telephone;
-	@Version
-	private int version;
 	@Embedded
 	@JsonView(JsonViews.UserWithAdresse.class)
 	private Adresse adresse;
@@ -119,14 +115,6 @@ public class User {
 		this.password = password;
 	}
 
-//	public boolean isEnable() {
-//		return enable;
-//	}
-//
-//	public void setEnable(boolean enable) {
-//		this.enable = enable;
-//	}
-
 	public Role getRole() {
 		return role;
 	}
@@ -151,12 +139,20 @@ public class User {
 		this.prenom = prenom;
 	}
 
-	public String getTel() {
+	public String getTelephone() {
 		return telephone;
 	}
 
-	public void setTel(String tel) {
-		this.telephone = tel;
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public Adresse getAdresse() {
@@ -166,4 +162,5 @@ public class User {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
+
 }

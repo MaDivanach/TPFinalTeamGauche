@@ -6,29 +6,22 @@ export class User {
     private _id?: number,
     private _username?: string,
     private _password?: string,
-    private _enable?: boolean,
-    private _role?: Role,
     private _nom?: string,
     private _prenom?: string,
     private _telephone?: string,
-    private _adresse?: Adresse
+    private _role?: Role,
+    private _adresse?: Adresse,
+    private _type?: String
+    /*private _enable?: boolean,*/
   ) {
   }
 
-  get nom(): string {
-    return this._nom;
+  get id(): number {
+    return this._id;
   }
 
-  set nom(value: string) {
-    this._nom = value;
-  }
-
-  get prenom(): string {
-    return this._prenom;
-  }
-
-  set prenom(value: string) {
-    this._prenom = value;
+  set id(value: number) {
+    this._id = value;
   }
 
   get username(): string {
@@ -47,13 +40,13 @@ export class User {
     this._password = value;
   }
 
-  get telephone(): string {
-    return this._telephone;
-  }
+  /*  get enable(): boolean {
+      return this._enable;
+    }
 
-  set telephone(value: string) {
-    this._telephone = value;
-  }
+    set enable(value: boolean) {
+      this._enable = value;
+    }*/
 
   get role(): Role {
     return this._role;
@@ -63,20 +56,28 @@ export class User {
     this._role = value;
   }
 
-  get id(): number {
-    return this._id;
+  get nom(): string {
+    return this._nom;
   }
 
-  set id(value: number) {
-    this._id = value;
+  set nom(value: string) {
+    this._nom = value;
   }
 
-  get enable(): boolean {
-    return this._enable;
+  get prenom(): string {
+    return this._prenom;
   }
 
-  set enable(value: boolean) {
-    this._enable = value;
+  set prenom(value: string) {
+    this._prenom = value;
+  }
+
+  get telephone(): string {
+    return this._telephone;
+  }
+
+  set telephone(value: string) {
+    this._telephone = value;
   }
 
   get adresse(): Adresse {
@@ -85,5 +86,13 @@ export class User {
 
   set adresse(value: Adresse) {
     this._adresse = value;
+  }
+
+  get type(): String {
+    return this._type;
+  }
+
+  set type(value: String) {
+    this._type = value;
   }
 }

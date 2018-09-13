@@ -36,17 +36,18 @@ export class UserEditComponent implements OnInit {
         this.user = null;
       }
       if (params.id) {
-        this.userService.findById(params.id).subscribe(resp => {
+        this.userService.findById(params.id).subscribe(
+          resp => {
           this.user = resp;
-          console.log(this.user);
         });
       }
     });
   }
 
   public save() {
-    this.userService.save(this.user).subscribe(resp => {
-      this.router.navigate([`/user`]);
+    this.userService.save(this.user).subscribe(
+      resp => {
+      this.router.navigate(['/user']);
     });
   }
 }
