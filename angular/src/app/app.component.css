@@ -6,12 +6,15 @@
   margin: 0px;
 }
 
-.container {
-  background-image: url("../assets/images/container-background.jpg");
-}
-
 footer {
   background-color: black;
   color: white;
   text-align: center;
+}
+
+#contenu{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
