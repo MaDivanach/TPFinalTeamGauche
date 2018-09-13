@@ -1,1 +1,11 @@
+body {
+  background-image: url("./assets/images/classroom.jpg");
+  background-size: cover;
+}
+
+.container {
+  background-image: url("./assets/images/container-background.jpg");
+  padding: 0px;
+}
+
 /* You can add global styles to this file, and also import other style files */

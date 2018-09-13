@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
@@ -36,6 +37,8 @@ import com.sopra.TPFinal.repositories.GestionnaireRepository;
 import com.sopra.TPFinal.repositories.StagiaireRepository;
 import com.sopra.TPFinal.repositories.TechnicienRepository;
 import com.sopra.TPFinal.repositories.UserRepository;
+import com.sopra.TPFinal.services.CustomUserDetailService;
+import com.sopra.TPFinal.services.CustomUserDetails;
 
 @CrossOrigin(origins = { "*" })
 @RestController
@@ -52,6 +55,8 @@ public class UserRestController {
 	private FormateurRepository formateurRepository;
 	@Autowired
 	private StagiaireRepository stagiaireRepository;
+	@Autowired
+	private CustomUserDetailService cuds;
 
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
@@ -161,8 +166,7 @@ public class UserRestController {
 		if (br.hasErrors()) {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} else {
-			technicien.setPassword(technicien.getPassword());
-			getPasswordEncoder().encode(technicien.getPassword());
+//			technicien.setPassword(getPasswordEncoder().encode(technicien.getPassword()));
 			userRepository.save(technicien);
 			HttpHeaders header = new HttpHeaders();
 			header.setLocation(uCB.path("/rest/user/technicien/{id}").buildAndExpand(technicien.getId()).toUri());
@@ -246,6 +250,17 @@ public class UserRestController {
 		if (opt.isPresent()) {
 			userRepository.deleteById(id);
 			response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return response;
+	}
+	
+	@GetMapping(value = "/userload/{username}")
+	public ResponseEntity<UserDetails> loadByUsername (@PathVariable(name="username") String username){
+		ResponseEntity<UserDetails> response = null;
+		if (cuds.loadUserByUsername(username)!=null) {
+			response = new ResponseEntity<>(cuds.loadUserByUsername(username),HttpStatus.ACCEPTED);			
 		} else {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
