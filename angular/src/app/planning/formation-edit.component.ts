@@ -19,9 +19,14 @@ export class FormationEditComponent implements OnInit {
   formation: Formation = new Formation();
   gestionnaires: Gestionnaire[];
   salles: Salle[];
-  videoprojecteur: VideoProjecteur[];
+  videoprojecteurs: VideoProjecteur[];
 
-  constructor(private formationService: FormationService, private ar: ActivatedRoute, private router: Router, private materielService: MaterielService, private userService: UserService) {
+  constructor(
+    private formationService: FormationService,
+    private ar: ActivatedRoute,
+    private router: Router,
+    private materielService: MaterielService,
+    private userService: UserService) {
 
   }
 
@@ -45,9 +50,8 @@ export class FormationEditComponent implements OnInit {
 
 
   public save() {
-    this.formationService.save(this.formation).subscribe(resp => {
-      this.router.navigate([`/formation`]);
-    });
-    this.formation = new Formation();
+      this.formationService.save(this.formation).subscribe(resp => {
+        this.router.navigate([`/formation`]);
+      });
   }
 }

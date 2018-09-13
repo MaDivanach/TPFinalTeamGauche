@@ -30,7 +30,6 @@ public abstract class Materiel {
 	@Id
 	@JsonView(JsonViews.Common.class)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMateriel")
-	@JsonView(JsonViews.Common.class)
 	@Column(name = "id")
 	private Long id;
 	@Version

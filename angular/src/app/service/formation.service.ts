@@ -13,10 +13,7 @@ export class FormationService {
   header: HttpHeaders;
 
   constructor(private http: HttpClient) {
-    this.header = new HttpHeaders({
-      'Content-type': 'application/json',
-      'Authorization': 'Basic'
-    });
+    this.header = new HttpHeaders({'Content-type': 'application/json', 'Authorization': 'Basic'});
   }
 
   public list(): Observable<Formation[]> {
@@ -47,7 +44,7 @@ export class FormationService {
         sessions: formation.sessions
       };
       console.log(o);
-      return this.http.post(`${this.url}/rest/formation/`, o, {headers: this.header});
+      return this.http.post(`${this.url}/rest/formation/`, o);
     }
   }
 }

@@ -1,6 +1,6 @@
 export enum Niveau {
-  Debutant = 1,
-  Intermediaire = 2,
-  Avance = 3,
-  Expert = 4,
+  Debutant = 0,
+  Intermediaire = 1,
+  Avance = 2,
+  Expert = 3,
 }
