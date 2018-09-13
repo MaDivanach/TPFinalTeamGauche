@@ -33,7 +33,7 @@ public class SessionRestController {
 	public ResponseEntity<List<Session>> findAll() {
 		return new ResponseEntity<>(sessionRepository.findAll(), HttpStatus.OK);
 	}
-	
+
 //	@JsonView(JsonViews.SessionInFormation.class)
 //	@GetMapping(path = { "/sessioninformation" })
 //	public ResponseEntity<Optional<Session>> SessionInFormation(Long id) {

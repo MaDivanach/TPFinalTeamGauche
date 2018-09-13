@@ -12,11 +12,11 @@ import com.sopra.TPFinal.model.view.JsonViews;
 
 @Embeddable
 public class ExpertisePK implements Serializable {
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "formateur")
 	@JsonView(JsonViews.Common.class)
 	private Formateur formateur;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "matiere")
 
 	private Matiere matiere;

@@ -2,20 +2,17 @@ package com.sopra.TPFinal.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Embeddable
 public class SessionPK implements Serializable {
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "matiere")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinTable(name = "matiere", joinColumns = {@JoinColumn(name="")})
 	private Matiere matiere;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "formateur")
 	private Formateur formateur;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "formation")
 	private Formation formation;
 

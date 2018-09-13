@@ -1,7 +1,6 @@
+<h3>Edition des sessions</h3>
 <form (ngSubmit)="save()" #formulaire="ngForm">
   <div class="form-group">
-    <label for="id">Id :</label>
-    <input id="id" name="id" [(ngModel)]="session.key" class="form-control" readonly/><br/>
     <div class="form-group">
       <label for="dateDebut">Date de début: </label>
       <input id="dateDebut" name="dateDebut" type="date" [(ngModel)]="session.dateDebut" class="form-control" required/><br/>
@@ -11,14 +10,20 @@
       <input id="dateFin" name="dateFin" type="date" [(ngModel)]="session.dateFin" class="form-control" required/><br/>
     </div>
     <div class="form-group">
-      <label for="formateur">Formateurs: </label>
-      <select id="formateur" name="formateur" [(ngModel)]="session.formateur" class="form-control">
+      <label for="formation">Formation: </label>
+      <select id="formation" name="formation" [(ngModel)]="session.key.formation" class="form-control">
         <option *ngFor="let formateur of formateurs"></option>
       </select><br/>
     </div>
     <div class="form-group">
-      <label for="matiere">Matieres: </label>
-      <select id="matiere" name="matiere" [(ngModel)]="session.matiere" class="form-control">
+      <label for="formateur">Formateur: </label>
+      <select id="formateur" name="formateur" [(ngModel)]="session.key.formateur" class="form-control">
+        <option *ngFor="let formateur of formateurs"></option>
+      </select><br/>
+    </div>
+    <div class="form-group">
+      <label for="matiere">Matiere: </label>
+      <select id="matiere" name="matiere" [(ngModel)]="session.key.matiere" class="form-control">
         <option *ngFor="let matiere of matieres"></option>
       </select><br/>
     </div>
