@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.view.JsonViews;
+
 @Entity
 @DiscriminatorValue("gestionnaire")
 public class Gestionnaire extends User {
@@ -17,6 +20,7 @@ public class Gestionnaire extends User {
 	}
 
 	@OneToMany(mappedBy = "gestionnaire", fetch = FetchType.LAZY)
+	@JsonView(JsonViews.Common.class)
 	private Set<Formation> formations;
 
 	public Set<Formation> getFormations() {
