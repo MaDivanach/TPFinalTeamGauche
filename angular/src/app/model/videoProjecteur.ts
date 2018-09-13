@@ -5,6 +5,7 @@ export class VideoProjecteur extends Materiel {
 
   constructor(private _formationsVideoProj?: Formation[]) {
     super();
+    this.type = 'videoprojecteur';
   }
 
   get formationsVideoProj(): Formation[] {
