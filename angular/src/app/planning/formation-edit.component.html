@@ -17,8 +17,8 @@
       </div>
     <div class="form-group">
       <label for="gestionnaire">Gestionnaire de la formation</label>
-      <select id="gestionnaire" name="gestionnaire" [(ngModel)]="formation.gestionnaire" class="form-control" >
-        <option *ngFor="let g of gestionnaires"></option>
+      <select id="gestionnaire" name="gestionnaire" [(ngModel)]="idgestion" class="form-control" >
+        <option [value]="g.id" *ngFor="let g of gestionnaires">{{g.nom}}</option>
       </select><br/>
     </div>
     <div class="form-group">
