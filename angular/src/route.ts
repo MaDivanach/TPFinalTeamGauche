@@ -15,6 +15,7 @@ import {SessionEditComponent} from './app/planning/session-edit.component';
 import {MatiereEditComponent} from './app/matiere/matiere-edit.component';
 import {ExpertiseEditComponent} from './app/formateur/expertise-edit.component';
 import {LoginComponent} from './app/login/login.component';
+import {AuthGuardService} from './app/service/auth-guard.service';
 
 
 export const routes: Routes = [
@@ -26,7 +27,7 @@ export const routes: Routes = [
   {path: 'materiel', component: MaterielComponent},
   {path: 'materiel/create/:type', component: MaterielEditComponent},
   {path: 'materiel/edit/:type/:id', component: MaterielEditComponent},
-  {path: 'formation', component: FormationComponent},
+  {path: 'formation', canActivate: [AuthGuardService], component: FormationComponent},
   {path: 'formation/create', component: FormationEditComponent},
   {path: 'formation/edit/:id', component: FormationEditComponent},
   {path: 'formation/stagiaireinformation/:id', component: UserComponent},

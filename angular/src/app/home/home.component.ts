@@ -14,11 +14,11 @@ export class HomeComponent {
   greeting = {};
 
   constructor(private app: AuthService, private http: HttpClient) {
-    http.get('http:localhost:8080').subscribe(data => this.greeting = data);
+    http.get('').subscribe(data => this.greeting = data);
   }
 
   authenticated() {
-    return this.app.authenticated;
+    return this.app.signIn();
   }
 
 }

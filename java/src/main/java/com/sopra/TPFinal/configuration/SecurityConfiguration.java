@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         .authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous();
         http.headers().frameOptions().disable();
         
-		System.out.println(getPasswordEncoder().encode("admin"));
+//		System.out.println(getPasswordEncoder().encode("admin"));
 		// http.authorizeRequests().antMatchers("/**/edit").authenticated().and().formLogin().antMatchers("/**").permitAll();
 	      
 		
@@ -41,17 +41,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 //	              .failureUrl("/login?error=erreur").permitAll().and().logout().permitAll()
 //	              .logoutSuccessUrl("/rest/formation");
 
-		http
-	              .httpBasic()
-	            .and()
-	              .authorizeRequests()
-	                .antMatchers("/index.html", "/", "/home", "/login").permitAll()
-	                .anyRequest().authenticated();
+//		http
+//	              .httpBasic()
+//	            .and()
+//	              .authorizeRequests()
+//	                .antMatchers("/index.html", "/", "/home", "/login").permitAll()
+//	                .anyRequest().authenticated();
+		
 //	      http.authorizeRequests().antMatchers("/adherent/").permitAll();
 //	      http.authorizeRequests().antMatchers("/article/").permitAll();
 
-
-	      http.authorizeRequests().antMatchers("/rest/**").authenticated().and().httpBasic();
+//	      http.authorizeRequests().antMatchers("/rest/**").authenticated().and().httpBasic();
 
 
 	}
