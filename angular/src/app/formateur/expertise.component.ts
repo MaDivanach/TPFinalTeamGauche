@@ -12,8 +12,6 @@ import {Formateur} from '../model/formateur';
 })
 export class ExpertiseComponent implements OnInit {
 
-  matieres: Matiere[];
-  formateurs: Formateur[];
   expertises: Expertise[];
 
   constructor(private expertiseService: ExpertiseService) {

@@ -1,14 +1,18 @@
 <h1>Liste des sessions</h1>
 <table class="table">
   <tr>
-    <th scope="col">Id</th>
     <th scope="col">Date de début</th>
     <th scope="col">Date de fin</th>
+    <th scope="col">Formation</th>
+    <th scope="col">Formateurs</th>
+    <th scope="col">Matieres</th>
   </tr>
   <tr *ngFor="let session of sessions">
-    <td scope="rol">{{session.key}}</td>
     <td scope="rol">{{session.dateDebut}}</td>
     <td scope="rol">{{session.dateFin}}</td>
+    <td scope="rol">{{session.key.formation}}</td>
+    <td scope="rol">{{session.key.formateur}}</td>
+    <td scope="rol">{{session.key.matiere}}</td>
     <td><a href="" [routerLink]="['/session','edit',session.key]" routerLinkActive="active"
            class="btn btn-info">Edition</a>
     </td>

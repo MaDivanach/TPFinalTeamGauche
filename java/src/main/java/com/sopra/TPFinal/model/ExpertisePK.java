@@ -3,6 +3,7 @@ package com.sopra.TPFinal.model;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -11,13 +12,13 @@ import com.sopra.TPFinal.model.view.JsonViews;
 
 @Embeddable
 public class ExpertisePK implements Serializable {
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "formateur")
 	@JsonView(JsonViews.Common.class)
 	private Formateur formateur;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "matiere")
-	
+
 	private Matiere matiere;
 
 	public ExpertisePK() {
