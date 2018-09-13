@@ -1,6 +1,6 @@
 package com.sopra.TPFinal.web.controller.rest;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Formation;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.FormationRepository;
+import com.sopra.TPFinal.repositories.SessionRepository;
+import com.sopra.TPFinal.repositories.StagiaireRepository;
 
 @CrossOrigin(origins = { "*" })
 @RestController
@@ -32,7 +34,12 @@ import com.sopra.TPFinal.repositories.FormationRepository;
 public class FormationRestController {
 
 	@Autowired
-	private FormationRepository formationRepository;
+	private FormationRepository formationRepository; 
+	@Autowired
+	private StagiaireRepository stagiaireRepository; 
+	@Autowired
+	private SessionRepository sessionRepository; 
+	
 
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
@@ -40,19 +47,8 @@ public class FormationRestController {
 		return new ResponseEntity<>(formationRepository.findAll(), HttpStatus.OK);
 	}
 
-//	@JsonView(JsonViews.StagiaireInFormation.class)
-//	@GetMapping(path = { "/stagiaireinformation" })
-//	public ResponseEntity<Optional<Formation>> StagiaireInFormation(Long id) {
-//		return new ResponseEntity<>(formationRepository.StagiaireInFormation(id), HttpStatus.OK);
-//	}
-//	@JsonView(JsonViews.SessionInFormation.class)
-//	@GetMapping(path = { "/sessionInFormation" })
-//	public ResponseEntity<Optional<Formation>> SessionInFormation(Long id) {
-//		return new ResponseEntity<>(formationRepository.SessionInFormation(id), HttpStatus.OK);
-//	}
-	
 	@PostMapping(path = { "/", "" })
-	public ResponseEntity<Void> createFormation(@Valid @RequestBody Formation formation, BindingResult br,
+	public ResponseEntity<Void> createFormation(@Valid @RequestBody Formation formation, BindingResult br, 
 			UriComponentsBuilder uCB) {
 		ResponseEntity<Void> response = null;
 		if (br.hasErrors()) {
@@ -68,7 +64,7 @@ public class FormationRestController {
 
 	@GetMapping(value = "/{id}")
 	@JsonView(JsonViews.Common.class)
-	public ResponseEntity<Formation> findById(@PathVariable(name = "id") Long id) {
+	public ResponseEntity<Formation> findById(@PathVariable(name = "id") Long id) { 
 		Optional<Formation> opt = formationRepository.findById(id);
 		ResponseEntity<Formation> response = null;
 		if (opt.isPresent()) {
@@ -81,7 +77,7 @@ public class FormationRestController {
 
 	@JsonView(JsonViews.Common.class)
 	@PutMapping(path = { "/", "" })
-	public ResponseEntity<Formation> update(@Valid @RequestBody Formation formation, BindingResult br) {
+	public ResponseEntity<Formation> update(@Valid @RequestBody Formation formation, BindingResult br) { 
 		if (br.hasErrors() || formation.getId() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -97,6 +93,7 @@ public class FormationRestController {
 			formationEnBase.setSalle(formation.getSalle());
 			formationEnBase.setStagiaires(formation.getStagiaires());
 			formationEnBase.setSessions(formation.getSessions());
+			formationRepository.save(formationEnBase);
 			return new ResponseEntity<Formation>(formationEnBase, HttpStatus.OK);
 		} else {
 			// pas de formation
@@ -106,7 +103,7 @@ public class FormationRestController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
+	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) { 
 		Optional<Formation> opt = formationRepository.findById(id);
 		ResponseEntity<Void> response = null;
 		if (opt.isPresent()) {

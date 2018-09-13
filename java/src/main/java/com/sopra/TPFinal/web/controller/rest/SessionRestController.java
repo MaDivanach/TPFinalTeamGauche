@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.sopra.TPFinal.model.Formation;
 import com.sopra.TPFinal.model.Session;
 import com.sopra.TPFinal.model.SessionPK;
 import com.sopra.TPFinal.model.view.JsonViews;
@@ -32,6 +33,13 @@ public class SessionRestController {
 	public ResponseEntity<List<Session>> findAll() {
 		return new ResponseEntity<>(sessionRepository.findAll(), HttpStatus.OK);
 	}
+	
+//	@JsonView(JsonViews.SessionInFormation.class)
+//	@GetMapping(path = { "/sessioninformation" })
+//	public ResponseEntity<Optional<Session>> SessionInFormation(Long id) {
+//		return new ResponseEntity<>(sessionRepository.SessionInFormation(id), HttpStatus.OK);
+//	}
+//	
 
 	@PostMapping(path = { "/", "" })
 	public ResponseEntity<Void> createSession(@Valid @RequestBody Session session, BindingResult br,
