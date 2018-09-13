@@ -1,3 +1,18 @@
-<p>
-  expertise works!
-</p>
+<h1>Liste des expertises</h1>
+<table class="table">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Matière</th>
+    <th scope="col">Formateur(s)</th>
+  </tr>
+  <tr *ngFor="let expertise of expertises">
+    <td scope="rol">{{expertise.key}}</td>
+    <td><a href="" [routerLink]="['/expertise','edit',expertise.key]" routerLinkActive="active"
+           class="btn btn-info">Edition</a>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="delete(expertise.key)">Supprimer</button>
+    </td>
+  </tr>
+</table>
+<a href="" [routerLink]="['/expertise','create']" class="btn btn-info">Ajouter</a>

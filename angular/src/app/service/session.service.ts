@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Session} from '../model/session';
+import {SessionPK} from '../model/session-pk';
 
 @Injectable({
   providedIn: 'root'

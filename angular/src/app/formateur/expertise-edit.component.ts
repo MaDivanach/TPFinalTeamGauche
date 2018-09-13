@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Expertise} from '../model/expertise';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ExpertiseService} from '../service/expertise.service';
+import {Formateur} from '../model/formateur';
+import {FormationService} from '../service/formation.service';
+import {MatiereService} from '../service/matiere.service';
 
 @Component({
   selector: 'app-expertise-edit',
@@ -11,8 +14,14 @@ import {ExpertiseService} from '../service/expertise.service';
 export class ExpertiseEditComponent implements OnInit {
 
   expertise: Expertise = new Expertise();
+  formateurs: Formateur[];
 
-  constructor(private expertiseService: ExpertiseService, private ar: ActivatedRoute, private router: Router) {
+  constructor(
+    private expertiseService: ExpertiseService,
+    private ar: ActivatedRoute,
+    private router: Router,
+    private formateurService: FormationService,
+    private matiereService: MatiereService) {
   }
 
   ngOnInit() {

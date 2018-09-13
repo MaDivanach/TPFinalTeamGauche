@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Expertise} from '../model/expertise';
 import {ExpertiseService} from '../service/expertise.service';
+import {Niveau} from '../model/niveau.enum';
+import {Matiere} from '../model/matiere';
+import {Formateur} from '../model/formateur';
 
 @Component({
   selector: 'app-expertise',
