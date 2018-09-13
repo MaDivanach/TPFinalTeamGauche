@@ -11,7 +11,7 @@ export class User {
     private _telephone?: string,
     private _role?: Role,
     private _adresse?: Adresse,
-    private _type?: String
+    private _type?: string
     /*private _enable?: boolean,*/
   ) {
   }
@@ -88,11 +88,11 @@ export class User {
     this._adresse = value;
   }
 
-  get type(): String {
+  get type(): string {
     return this._type;
   }
 
-  set type(value: String) {
+  set type(value: string) {
     this._type = value;
   }
 }
