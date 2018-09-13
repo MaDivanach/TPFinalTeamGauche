@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,10 +40,10 @@ public class Matiere {
 	@JsonView(JsonViews.Common.class)
 	private Niveau niveau;
 	@JsonView(JsonViews.FormateurInMatiere.class)
-	@OneToMany(mappedBy = "key.matiere")
+	@OneToMany(mappedBy = "key.matiere", fetch = FetchType.LAZY)
 	private Set<Expertise> expertises;
 	@JsonView(JsonViews.SessionInMatiere.class)
-	@OneToMany(mappedBy = "key.matiere")
+	@OneToMany(mappedBy = "key.matiere", fetch = FetchType.LAZY)
 	private Set<Session> sessions;
 
 	public Matiere() {

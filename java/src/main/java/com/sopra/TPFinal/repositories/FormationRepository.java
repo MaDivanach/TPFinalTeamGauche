@@ -12,6 +12,9 @@ import com.sopra.TPFinal.model.Stagiaire;
 
 public interface FormationRepository extends JpaRepository<Formation, Long> {
 	
+//	@Query("select s from Formation s left join fetch s.formation where f.id_formation=:formation")
+//	Optional<Session> FindCustomByIdWithAll(@Param("formation") Long id);
+	
 	
 	
 	
