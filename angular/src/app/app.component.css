@@ -1,0 +1,17 @@
+.jumbotron {
+  border: 3px solid #6c6c6c;
+  text-align: center;
+  font-size: large;
+  background-color: lightgray;
+  margin: 0px;
+}
+
+.container {
+  background-image: url("../assets/images/container-background.jpg");
+}
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
