@@ -10,14 +10,7 @@ import {Router} from '@angular/router';
 })
 export class AppComponent {
   title = 'La Factory !';
-  greeting = {};
-  constructor(private app: AuthService, private http: HttpClient, private router: Router) {
-    this.app.authenticate(undefined, undefined);
+  constructor() {
   }
-  logout() {
-    this.http.post('logout', resp => {
-      this.app.authenticated = false;
-      this.router.navigateByUrl('/login');
-    }).subscribe();
-  }
+
 }

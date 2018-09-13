@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  authenticated = false;
+  /*authenticated = false;*/
 
-  constructor(private http: HttpClient) {
+  constructor() {
   }
 
-  authenticate(credentials, callback) {
+ /* authenticate(credentials, callback) {
 
     const headers = new HttpHeaders(credentials ? {
       authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
@@ -26,5 +26,25 @@ export class AuthService {
       return callback && callback();
     });
 
+  }*/
+
+  isAuth = false;
+
+  signIn() {
+    return new Promise(
+      (resolve, reject) => {
+        setTimeout(
+          () => {
+            this.isAuth = true;
+            resolve(true);
+          }, 2000
+        );
+      }
+    );
   }
+
+  signOut() {
+    this.isAuth = false;
+  }
+
 }
