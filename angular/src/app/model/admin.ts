@@ -6,6 +6,7 @@ export class Admin extends User {
   constructor() {
     super();
     this.role = Role.ADMIN;
+    this.type = 'admin';
   }
 
 }

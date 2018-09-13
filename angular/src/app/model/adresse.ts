@@ -1,6 +1,11 @@
 export class Adresse {
 
-  constructor(private _numero?: number, private _rue?: string, private _codePostal?: string, private _ville?: string) {
+  constructor(
+    private _numero?: number,
+    private _rue?: string,
+    private _codePostal?: string,
+    private _ville?: string
+  ) {
   }
 
 
