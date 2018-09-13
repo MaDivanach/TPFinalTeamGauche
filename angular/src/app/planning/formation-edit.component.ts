@@ -19,9 +19,14 @@ export class FormationEditComponent implements OnInit {
   formation: Formation = new Formation();
   gestionnaires: Gestionnaire[];
   salles: Salle[];
-  videoprojecteur: VideoProjecteur[];
+  videoprojecteurs: VideoProjecteur[];
 
-  constructor(private formationService: FormationService, private ar: ActivatedRoute, private router: Router, private materielService: MaterielService, private userService: UserService) {
+  constructor(
+    private formationService: FormationService,
+    private ar: ActivatedRoute,
+    private router: Router,
+    private materielService: MaterielService,
+    private userService: UserService) {
 
   }
 

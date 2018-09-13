@@ -28,6 +28,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Admin;
 import com.sopra.TPFinal.model.Formateur;
+import com.sopra.TPFinal.model.Formation;
 import com.sopra.TPFinal.model.Gestionnaire;
 import com.sopra.TPFinal.model.Role;
 import com.sopra.TPFinal.model.Stagiaire;
@@ -65,6 +66,13 @@ public class UserRestController {
 		response= new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
 		return response;
 	}
+	
+//	@JsonView(JsonViews.StagiaireInFormation.class)
+//	@GetMapping(path = { "/stagiaireinformation" })
+//	public ResponseEntity<Optional<Stagiaire>> StagiaireInFormation(Long id) {
+//		return new ResponseEntity<>(stagiaireRepository.StagiaireInFormation(id), HttpStatus.OK);
+//	}
+	
 	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = {"/gestionnaire/", "/gestionnaire"})
