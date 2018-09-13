@@ -3,16 +3,16 @@ import {Materiel} from './materiel';
 
 export class VideoProjecteur extends Materiel {
 
-  constructor(private _formationsVideoProj?: Formation[]) {
+  constructor(private _formations?: Formation[]) {
     super();
     this.type = 'videoprojecteur';
   }
 
   get formationsVideoProj(): Formation[] {
-    return this._formationsVideoProj;
+    return this._formations;
   }
 
   set formationsVideoProj(value: Formation[]) {
-    this._formationsVideoProj = value;
+    this._formations = value;
   }
 }
