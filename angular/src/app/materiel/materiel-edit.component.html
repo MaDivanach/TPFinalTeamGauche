@@ -1,24 +1,55 @@
-<!--
-<div> ID Materiel:
-  <input [(ngModel)]="materiel.id" disabled="disabled"/><br/>
+<div class="form-group">
+  <label for="id">ID</label>
+  <input id="id" class="form-control" [(ngModel)]="materiel.id" readonly="readonly" name="id"/>
 </div>
-<p>Ordinateur :</p><br/>
-<div *ngIf="materiel.type === 'ordinateur'">Processeur:
-  <input type="text" [(ngModel)]="materiel.processeur"/><br/>
-  <input type="text" [(ngModel)]="materiel.ram"/><br/>
-  <input type="text" [(ngModel)]="materiel.dd"/><br/>
-  <input type="date" [(ngModel)]="materiel.dateAchat"/><br/>
-  <input type="text" [(ngModel)]="materiel.stagiaires"/><br/>
-</div>
-<p>Salle :</p><br/>
-<div *ngIf="article.type === 'salle'">Capacite:
-  <input type="number" [(ngModel)]="materiel.capacite"/><br/>
-  <input type="text" [(ngModel)]="materiel.formationsSalle"/><br/>
-</div>
-<p>Videoprojecteur :</p><br/>
-<div *ngIf="article.type === 'videoprojecteur'">Formations attribuées:
-  <input type="text" [(ngModel)]="materiel.formationsVideoProj"/><br/>
+<div class="form-group">
+  <label for="type">type</label>
+  <input id="type" class="form-control" [(ngModel)]="materiel.type" readonly="readonly" name="type"/>
 </div>
 
-<button class="btn btn-danger" (click)="save(article.id)">save</button>
--->
+<!--ngIf impossible car le type de materiel n'est pas défini de base-->
+
+<form (ngSubmit)="save()">
+  <p>Ordinateur :</p><br/>
+  <div *ngIf="materiel.type == 'ordinateur'">Processeur:
+    <div class="form-group">
+      <label for="processeur">Processeur</label>
+      <input id="processeur" type="text" [(ngModel)]="materiel.processeur"/><br/>
+    </div>
+    <div class="form-group">
+      <label for="ram">Ram</label>
+      <input id="ram" type="text" [(ngModel)]="materiel.ram"/><br/>
+    </div>
+    <div class="form-group">
+      <label for="dd">DD</label>
+      <input id="dd" type="text" [(ngModel)]="materiel.dd"/><br/>
+    </div>
+    <div class="form-group">
+      <label for="dateAchat">date Achat</label>
+      <input id="dateAchat" type="date" [(ngModel)]="materiel.dateAchat"/><br/>
+    </div>
+    <!--<div class="form-group">
+      <label for="dd">DD</label>
+      <input type="text" [(ngModel)]="materiel.stagiaires"/><br/>
+    </div>-->
+  </div>
+
+  <p>Salle :</p><br/>
+  <div *ngIf="article.type === 'salle'">Capacite:
+    <div class="form-group">
+      <input type="number" [(ngModel)]="materiel.capacite"/><br/>
+    </div><!--<div class="form-group">
+    <input type="text" [(ngModel)]="materiel.formationsSalle"/><br/>
+    </div>-->
+
+  </div>
+  <p>Videoprojecteur :</p><br/>
+  <div *ngIf="article.type === 'videoprojecteur'">Formations attribuées:
+    <div class="form-group">
+      <input type="text" [(ngModel)]="materiel.formationsVideoProj"/><br/>
+    </div>
+  </div>
+
+  <button class="btn btn-danger" (click)="save(article.id)">save</button>
+
+</form>

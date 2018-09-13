@@ -25,10 +25,10 @@ export class SessionComponent implements OnInit {
     });
   }
 
-  public delete(key: SessionPK) {
+  /*public delete(key: SessionPK) {
     this.sessionService.delete(key).subscribe(resp => {
       this.list();
     });
-  }
+  }*/
 
 }

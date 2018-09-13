@@ -19,8 +19,8 @@
     <td scope="rol">{{f.gestionnaire}}</td>
     <td scope="col">{{f.videoProjecteur}}</td>
     <td scope="col">{{f.salle}}</td>
-    <td scope="col"><a href="" [routerLink]="['/formation',f.id,'stagiaire']" routerLinkActive="active" class="btn btn-info">Stagiaires</a></td>
-    <td scope="col"><a href="" [routerLink]="['/formation',f.id,'sessions']" routerLinkActive="active" class="btn btn-info">Sessions</a></td>
+    <td scope="col"><a href="" [routerLink]="['/formation','stagiaireinformation',f.id]" routerLinkActive="active" class="btn btn-info">Stagiaires</a></td>
+    <td scope="col"><a href="" [routerLink]="['/formation','sessioninformation',f.id]" routerLinkActive="active" class="btn btn-info">Sessions</a></td>
     <td><a href="" [routerLink]="['/formation','edit',f.id]" routerLinkActive="active" class="btn btn-info">Edition</a></td>
     <td><button class="btn btn-danger" (click)="delete(f.id)">Supprimer</button></td>
   </tr>

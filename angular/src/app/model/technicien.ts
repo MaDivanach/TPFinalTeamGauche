@@ -6,6 +6,7 @@ export class Technicien extends User {
   constructor() {
     super();
     this.role = Role.TECHNICIEN;
+    this.type = 'technicien';
   }
 
 }

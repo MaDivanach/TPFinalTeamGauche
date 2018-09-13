@@ -9,7 +9,7 @@ import {UserService} from '../service/user.service';
 })
 export class UserComponent implements OnInit {
 
-  user: User[];
+  users: User[];
 
   constructor(private userService: UserService) {
   }
@@ -19,15 +19,19 @@ export class UserComponent implements OnInit {
   }
 
     public list() {
-      this.userService.list().subscribe(resp => {
-        this.user = resp;
-      }, error => console.log(error));
+      this.userService.list().subscribe(
+        resp => {
+        this.users = resp;
+      }
+      );
     }
 
     public delete(id: number) {
-      return this.userService.delete(id).subscribe(resp => {
+      return this.userService.delete(id).subscribe(
+        resp => {
         this.list();
-      });
+      }
+      );
     }
 
 
