@@ -1,27 +1,38 @@
 <form (ngSubmit)="save()" #formulaire="ngForm">
   <div class="form-group">
-    <label for="id">id</label>
-    <input id="id" name="id" [(ngModel)]="user.id" class="form-control" readonly/><br/>
     <div class="form-group">
-      <label for="nom">nom</label>
-      <input id="nom" name="nom" [(ngModel)]="user.nom" class="form-control" minlength="3" required/><br/>
+      <label for="id">Identifiant</label>
+      <input id="id" name="id" [(ngModel)]="user.id" class="form-control" readonly/><br/>
+      <label for="type">Type</label>
+      <input id="type" name="type" [(ngModel)]="user.type" class="form-control" readonly/><br/>
     </div>
     <div class="form-group">
-      <label for="prenom">prenom</label>
+      <label for="username">Username*</label>
+      <input id="username" name="username" [(ngModel)]="user.username" class="form-control" required #username="ngModel"/>
+      <p *ngIf="username.dirty&&username.hasError('required')">Le username est obligatoire.</p>
+      <label for="password">Password*</label>
+      <input id="password" name="password" [(ngModel)]="user.password" class="form-control" required #password="ngModel"/>
+      <p *ngIf="password.dirty&&password.hasError('required')">Le password est obligatoire.</p>
+    </div>
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input id="nom" name="nom" [(ngModel)]="user.nom" class="form-control" required/><br/>
+      <label for="prenom">Prénom</label>
       <input id="prenom" name="prenom" [(ngModel)]="user.prenom" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <label for="username">username</label>
-      <input id="username" name="username" [(ngModel)]="user.username" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <label for="password">password</label>
-      <input id="password" name="password" [(ngModel)]="user.password" class="form-control"/>
-    </div>
-    <div class="form-group">
-      <label for="telephone">telephone</label>
+      <label for="telephone">Téléphone</label>
       <input id="telephone" name="telephone" [(ngModel)]="user.telephone" class="form-control"/>
     </div>
-   </div>
-    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <div class="form-group">
+      <label for="numero">Numero</label>
+      <input id="numero" name="rue" [(ngModel)]="user.adresse.numero" class="form-control">
+      <label for="rue">Rue</label>
+      <input id="rue" name="rue" [(ngModel)]="user.adresse.rue" class="form-control">
+      <label for="codePostal">Code Postal</label>
+      <input id="codePostal" name="codePostal" [(ngModel)]="user.adresse.codePostal" class="form-control">
+      <label for="ville">Ville</label>
+      <input id="ville" name="ville" [(ngModel)]="user.adresse.ville" class="form-control">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="formulaire.invalid">Enregistrer</button>
+  <p>*Champs obligatoires</p>
 </form>

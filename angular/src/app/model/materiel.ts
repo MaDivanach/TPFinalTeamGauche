@@ -1,6 +1,15 @@
 export class Materiel {
-  constructor(protected _id?: number, protected _coutUtilisation?: number) {
+  constructor(private _id?: number, private _coutUtilisation?: number, private _type?: string) {
 
+  }
+
+
+  get type(): string {
+    return this._type;
+  }
+
+  set type(value: string) {
+    this._type = value;
   }
 
   get id(): number {

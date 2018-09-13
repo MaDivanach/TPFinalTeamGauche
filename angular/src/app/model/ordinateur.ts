@@ -5,6 +5,7 @@ export class Ordinateur extends Materiel {
 
   constructor(private _processeur?: string, private  _ram?: string, private _dd?: string, private _dateAchat?: Date, private _stagiaires?: Stagiaire[]) {
     super();
+    this.type = 'ordinateur';
   }
 
 
