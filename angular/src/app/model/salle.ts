@@ -5,6 +5,7 @@ export class Salle extends Materiel {
 
   constructor(private _capacite?: number, private _formationsSalle?: Formation[]){
     super();
+    this.type='salle';
   }
 
 
