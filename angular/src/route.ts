@@ -14,11 +14,13 @@ import {FormationEditComponent} from './app/planning/formation-edit.component';
 import {SessionEditComponent} from './app/planning/session-edit.component';
 import {MatiereEditComponent} from './app/matiere/matiere-edit.component';
 import {ExpertiseEditComponent} from './app/formateur/expertise-edit.component';
-import {User} from './app/model/user';
+import {LoginComponent} from './app/login/login.component';
+
 
 export const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'user', component: UserComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'user/create/:type', component: UserEditComponent},
   {path: 'user/edit/:type/:id', component: UserEditComponent},
   {path: 'materiel', component: MaterielComponent},
