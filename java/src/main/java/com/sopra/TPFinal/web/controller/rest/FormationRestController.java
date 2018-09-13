@@ -23,6 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Formation;
+import com.sopra.TPFinal.model.Stagiaire;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.FormationRepository;
 import com.sopra.TPFinal.repositories.SessionRepository;
@@ -45,6 +46,12 @@ public class FormationRestController {
 	@GetMapping(path = { "/", "" })
 	public ResponseEntity<List<Formation>> findAll() {
 		return new ResponseEntity<>(formationRepository.findAll(), HttpStatus.OK);
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping(path = { "/findCustomByIdWithAll" })
+	public ResponseEntity<Optional<Stagiaire>> findCustomByIdWithAll(Long id) {
+		return new ResponseEntity<>(stagiaireRepository.findCustomByIdWithAll(id), HttpStatus.OK);
 	}
 
 	@PostMapping(path = { "/", "" })

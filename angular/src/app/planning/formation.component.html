@@ -17,8 +17,8 @@
     <td scope="rol">{{f.dateDebut}}</td>
     <td scope="rol">{{f.dateFin}}</td>
     <td scope="rol" ><span *ngIf="f.gestionnaire">{{f.gestionnaire.nom}}</span></td>
-    <td scope="col">{{f.videoProjecteur}}</td>
-    <td scope="col">{{f.salle}}</td>
+    <td scope="rol" ><span *ngIf="f.videoProjecteur">{{f.videoProjecteur.id}}</span></td>
+    <td scope="col" ><span *ngIf="f.salle">{{f.salle.id}}</span></td>
     <td scope="col"><a href="" [routerLink]="['/formation','stagiaireinformation',f.id]" routerLinkActive="active" class="btn btn-info">Stagiaires</a></td>
     <td scope="col"><a href="" [routerLink]="['/formation','sessioninformation',f.id]" routerLinkActive="active" class="btn btn-info">Sessions</a></td>
     <td><a href="" [routerLink]="['/formation','edit',f.id]" routerLinkActive="active" class="btn btn-info">Edition</a></td>
