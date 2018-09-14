@@ -1,4 +1,4 @@
-<form (ngSubmit)="save()" #formulaire="ngForm">
+<form (ngSubmit)="save()">
   <div class="form-group">
     <label for="id">ID</label>
     <input id="id" name="id" class="form-control" [(ngModel)]="materiel.id" readonly="readonly" name="id"/>
@@ -35,5 +35,5 @@
       <input id="capacite" name="capacite" class="form-control" type="number" [(ngModel)]="materiel.capacite"/><br/>
     </div>
   </div>
-  <button type="submit" class="btn btn-danger" [disabled]="formulaire.invalid">save</button>
+  <button type="submit" class="btn btn-danger">save</button>
 </form>
