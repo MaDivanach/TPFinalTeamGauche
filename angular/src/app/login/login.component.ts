@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authStatus = this.app.isAuth;
+    console.log(btoa('jimmy'));
   }
 
   constructor(private app: AuthService, private http: HttpClient, private router: Router, private userservice: UserService) {
