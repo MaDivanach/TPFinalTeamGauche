@@ -7,6 +7,7 @@ import {Admin} from '../model/admin';
 import {Technicien} from '../model/technicien';
 import {Stagiaire} from '../model/stagiaire';
 import {Formateur} from '../model/formateur';
+import {Adresse} from '../model/adresse';
 
 @Component({
   selector: 'app-user-edit',
