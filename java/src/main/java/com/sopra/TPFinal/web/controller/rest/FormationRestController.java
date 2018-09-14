@@ -1,6 +1,6 @@
 package com.sopra.TPFinal.web.controller.rest;
 
-import java.util.List; 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -23,11 +23,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sopra.TPFinal.model.Formation;
-import com.sopra.TPFinal.model.Stagiaire;
 import com.sopra.TPFinal.model.view.JsonViews;
 import com.sopra.TPFinal.repositories.FormationRepository;
-import com.sopra.TPFinal.repositories.SessionRepository;
-import com.sopra.TPFinal.repositories.StagiaireRepository;
 
 @CrossOrigin(origins = { "*" })
 @RestController
@@ -35,27 +32,22 @@ import com.sopra.TPFinal.repositories.StagiaireRepository;
 public class FormationRestController {
 
 	@Autowired
-	private FormationRepository formationRepository; 
-	@Autowired
-	private StagiaireRepository stagiaireRepository; 
-	@Autowired
-	private SessionRepository sessionRepository; 
-	
+	private FormationRepository formationRepository;
 
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
 	public ResponseEntity<List<Formation>> findAll() {
 		return new ResponseEntity<>(formationRepository.findAll(), HttpStatus.OK);
 	}
-	
+
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/findCustomByIdWithAll" })
-	public ResponseEntity<Optional<Stagiaire>> findCustomByIdWithAll(Long id) {
-		return new ResponseEntity<>(stagiaireRepository.findCustomByIdWithAll(id), HttpStatus.OK);
+	public ResponseEntity<Optional<Formation>> findCustomByIdWithAll(Long id) {
+		return new ResponseEntity<>(formationRepository.findCustomByIdWithAll(id), HttpStatus.OK);
 	}
 
 	@PostMapping(path = { "/", "" })
-	public ResponseEntity<Void> createFormation(@Valid @RequestBody Formation formation, BindingResult br, 
+	public ResponseEntity<Void> createFormation(@Valid @RequestBody Formation formation, BindingResult br,
 			UriComponentsBuilder uCB) {
 		ResponseEntity<Void> response = null;
 		if (br.hasErrors()) {
@@ -71,7 +63,7 @@ public class FormationRestController {
 
 	@GetMapping(value = "/{id}")
 	@JsonView(JsonViews.Common.class)
-	public ResponseEntity<Formation> findById(@PathVariable(name = "id") Long id) { 
+	public ResponseEntity<Formation> findById(@PathVariable(name = "id") Long id) {
 		Optional<Formation> opt = formationRepository.findById(id);
 		ResponseEntity<Formation> response = null;
 		if (opt.isPresent()) {
@@ -84,7 +76,7 @@ public class FormationRestController {
 
 	@JsonView(JsonViews.Common.class)
 	@PutMapping(path = { "/", "" })
-	public ResponseEntity<Formation> update(@Valid @RequestBody Formation formation, BindingResult br) { 
+	public ResponseEntity<Formation> update(@Valid @RequestBody Formation formation, BindingResult br) {
 		if (br.hasErrors() || formation.getId() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -110,7 +102,7 @@ public class FormationRestController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) { 
+	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
 		Optional<Formation> opt = formationRepository.findById(id);
 		ResponseEntity<Void> response = null;
 		if (opt.isPresent()) {
