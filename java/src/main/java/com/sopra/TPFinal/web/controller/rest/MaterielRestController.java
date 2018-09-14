@@ -36,91 +36,108 @@ import com.sopra.TPFinal.repositories.VideoProjecteurRepository;
 @RequestMapping("/rest/materiel")
 @RestController
 public class MaterielRestController {
-	
+
 	@Autowired
 	private MaterielRepository materielRepository;
-	
+
 	@Autowired
 	private OrdinateurRepository ordinateurRepository;
-	
+
 	@Autowired
 	private SalleRepository salleRepository;
-	
+
 	@Autowired
 	private VideoProjecteurRepository videoProjecteurRepository;
-	
+
 	@JsonView(JsonViews.Common.class)
 	@GetMapping(path = { "/", "" })
-	public ResponseEntity<List<Materiel>> findAll(){
+	public ResponseEntity<List<Materiel>> findAll() {
 		return new ResponseEntity<>(materielRepository.findAll(), HttpStatus.OK);
 	}
 	
-	@PostMapping(path = {"/ordinateur/", "/ordinateur"})
-    public ResponseEntity<Void> createStagiaire(@Valid @RequestBody Ordinateur ordinateur, BindingResult br, UriComponentsBuilder uCB) {
-        ResponseEntity<Void> response = null;
-        if(br.hasErrors()) {
-            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
-            materielRepository.save(ordinateur);
-            HttpHeaders header = new HttpHeaders();
-            header.setLocation(uCB.path("/rest/materiel/ordinateur/{id}").buildAndExpand(ordinateur.getId()).toUri());
-            response = new ResponseEntity<Void>(HttpStatus.CREATED);
-        }
-        return response;
-    }
-	
-	@PostMapping(path = {"/salle/", "/salle"})
-    public ResponseEntity<Void> createStagiaire(@Valid @RequestBody Salle salle, BindingResult br, UriComponentsBuilder uCB) {
-        ResponseEntity<Void> response = null;
-        if(br.hasErrors()) {
-            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
-            materielRepository.save(salle);
-            HttpHeaders header = new HttpHeaders();
-            header.setLocation(uCB.path("/rest/materiel/salle/{id}").buildAndExpand(salle.getId()).toUri());
-            response = new ResponseEntity<Void>(HttpStatus.CREATED);
-        }
-        return response;
-    }
-	
-	@PostMapping(path = {"/videoProjecteur/", "/videoProjecteur"})
-    public ResponseEntity<Void> createStagiaire(@Valid @RequestBody VideoProjecteur videoProjecteur, BindingResult br, UriComponentsBuilder uCB) {
-        ResponseEntity<Void> response = null;
-        if(br.hasErrors()) {
-            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
-            materielRepository.save(videoProjecteur);
-            HttpHeaders header = new HttpHeaders();
-            header.setLocation(uCB.path("/rest/materiel/videoProjecteur/{id}").buildAndExpand(videoProjecteur.getId()).toUri());
-            response = new ResponseEntity<Void>(HttpStatus.CREATED);
-        }
-        return response;
-    }
-	
+	@GetMapping(path = { "/{id}" })
+	public ResponseEntity<Materiel> findById(@PathVariable(name = "id") Long id) {
+		ResponseEntity<Materiel> response = null;
+		Optional<Materiel> opt = materielRepository.findById(id);
+		if (opt.isPresent()) {
+			response = new ResponseEntity<>(opt.get(), HttpStatus.OK);
+		} else {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return response;
+	}
+
+	@PostMapping(path = { "/ordinateur/", "/ordinateur" })
+	public ResponseEntity<Void> createOrdinateur(@Valid @RequestBody Ordinateur ordinateur, BindingResult br,
+			UriComponentsBuilder uCB) {
+		ResponseEntity<Void> response = null;
+		if (br.hasErrors()) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} else {
+			materielRepository.save(ordinateur);
+			HttpHeaders header = new HttpHeaders();
+			header.setLocation(uCB.path("/rest/materiel/ordinateur/{id}").buildAndExpand(ordinateur.getId()).toUri());
+			response = new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
+		return response;
+	}
+
+	@PostMapping(path = { "/salle/", "/salle" })
+	public ResponseEntity<Void> createSalle(@Valid @RequestBody Salle salle, BindingResult br,
+			UriComponentsBuilder uCB) {
+		ResponseEntity<Void> response = null;
+		if (br.hasErrors()) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} else {
+			materielRepository.save(salle);
+			HttpHeaders header = new HttpHeaders();
+			header.setLocation(uCB.path("/rest/materiel/salle/{id}").buildAndExpand(salle.getId()).toUri());
+			response = new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
+		return response;
+	}
+
+	@PostMapping(path = { "/videoProjecteur/", "/videoProjecteur" })
+	public ResponseEntity<Void> createVideoProjecteur(@Valid @RequestBody VideoProjecteur videoProjecteur, BindingResult br,
+			UriComponentsBuilder uCB) {
+		ResponseEntity<Void> response = null;
+		if (br.hasErrors()) {
+			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} else {
+			materielRepository.save(videoProjecteur);
+			HttpHeaders header = new HttpHeaders();
+			header.setLocation(
+					uCB.path("/rest/materiel/videoProjecteur/{id}").buildAndExpand(videoProjecteur.getId()).toUri());
+			response = new ResponseEntity<Void>(HttpStatus.CREATED);
+		}
+		return response;
+	}
+
 	@JsonView(JsonViews.Common.class)
 	@PutMapping(path = { "/ordinateur/", "/ordinateur" })
-	public ResponseEntity<Ordinateur> update(@Valid @RequestBody Ordinateur ordinateur, BindingResult br) {
+	public ResponseEntity<Ordinateur> updateOrdinateur(@Valid @RequestBody Ordinateur ordinateur, BindingResult br) {
 		if (br.hasErrors() || ordinateur.getId() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Optional<Ordinateur> opt = ordinateurRepository.findById(ordinateur.getId());
 		if (opt.isPresent()) {
-			Ordinateur OrdinateurEnBase = opt.get();
-			OrdinateurEnBase.setId(ordinateur.getId());
-			OrdinateurEnBase.setCoutUtilisation(ordinateur.getCoutUtilisation());
-			OrdinateurEnBase.setProcesseur(ordinateur.getProcesseur());
-			OrdinateurEnBase.setRam(ordinateur.getRam());
-			OrdinateurEnBase.setDd(ordinateur.getDd());
-			OrdinateurEnBase.setDateAchat(ordinateur.getDateAchat());
-			return new ResponseEntity<Ordinateur>(OrdinateurEnBase, HttpStatus.OK);
+			Ordinateur ordinateurEnBase = opt.get();
+			System.out.println(ordinateurEnBase);
+			ordinateurEnBase.setId(ordinateur.getId());
+			ordinateurEnBase.setCoutUtilisation(ordinateur.getCoutUtilisation());
+			ordinateurEnBase.setProcesseur(ordinateur.getProcesseur());
+			ordinateurEnBase.setRam(ordinateur.getRam());
+			ordinateurEnBase.setDd(ordinateur.getDd());
+			ordinateurEnBase.setDateAchat(ordinateur.getDateAchat());
+			return new ResponseEntity<Ordinateur>(ordinateurEnBase, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
-	
+
 	@JsonView(JsonViews.Common.class)
 	@PutMapping(path = { "/salle/", "/salle" })
-	public ResponseEntity<Salle> update(@Valid @RequestBody Salle salle, BindingResult br) {
+	public ResponseEntity<Salle> updateSalle(@Valid @RequestBody Salle salle, BindingResult br) {
 		if (br.hasErrors() || salle.getId() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -134,10 +151,11 @@ public class MaterielRestController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
-	
+
 	@JsonView(JsonViews.Common.class)
 	@PutMapping(path = { "/videoprojecteur/", "/videoprojecteur" })
-	public ResponseEntity<VideoProjecteur> update(@Valid @RequestBody VideoProjecteur videoProjecteur, BindingResult br) {
+	public ResponseEntity<VideoProjecteur> updateVideoProjecteur(@Valid @RequestBody VideoProjecteur videoProjecteur,
+			BindingResult br) {
 		if (br.hasErrors() || videoProjecteur.getId() == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -151,7 +169,7 @@ public class MaterielRestController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
 		Optional<Materiel> opt = materielRepository.findById(id);
@@ -164,6 +182,5 @@ public class MaterielRestController {
 		}
 		return response;
 	}
-	
-	
+
 }
